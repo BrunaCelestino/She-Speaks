@@ -7,7 +7,7 @@ routes.get('/', (req, res) => {
     title: 'Projeto Final {reprograma} - SheSpeak!',
     version: '1.0.0',
     mensagem:
-      'SheSpeak! é uma API que reúne professoras de idiomas que gostariam de se voluntariar e mulheres de baixa renda que tenham interesse em aprender um novo idioma. Essa API será um espaço seguro, onde aceitará apenas a participação de mulheres, tanto como alunas quanto como professoras.',
+      'SheSpeaks! é uma API que reúne professoras de idiomas que gostariam de se voluntariar e mulheres de baixa renda que tenham interesse em aprender um novo idioma. Essa API será um espaço seguro, onde aceitará apenas a participação de mulheres, tanto como alunas quanto como professoras.',
   });
 });
 

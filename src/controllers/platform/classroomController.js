@@ -309,7 +309,6 @@ const findAClassroomMatch = async (req, res) => {
         { $or: [{ status: 'empty' }, { status: 'open' }] },
       ],
     });
-
     if (!classroomFound) {
       return res.status(404).json({
         message: 'We could not find any results.',
@@ -331,6 +330,13 @@ const enrollInAClassroom = async (req, res) => {
     const authHeader = req.get('Authorization');
     const token = authHeader.split(' ')[1];
     const findStudent = await StudentSchema.findOne({ token: token });
+
+    if (!findStudent) {
+      return res.status(403).json({
+        message: 'You cannot access this route',
+        details: 'Forbidden',
+      });
+    }
 
     const classroomFound = await ClassroomSchema.findById(req.params.id);
 

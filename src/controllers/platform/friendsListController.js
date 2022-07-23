@@ -13,6 +13,12 @@ const sendFriendRequest = async (req, res) => {
     const findTeacher = await TeacherSchema.findOne({ token: token });
     const findStudent = await StudentSchema.findOne({ token: token });
 
+    if (findTeacher === null && findStudent === null) {
+      return res.status(403).json({
+        message: 'You cannot access this route',
+        details: 'Forbidden.',
+      });
+    }
     const findTeacherToAdd = await TeacherSchema.findById(req.params.id);
     const findStudentToAdd = await StudentSchema.findById(req.params.id);
 
@@ -20,12 +26,6 @@ const sendFriendRequest = async (req, res) => {
       return res.status(404).json({
         message: 'It was not possible to find this user.',
         details: 'Not found',
-      });
-    }
-    if (findTeacher === null && findStudent === null) {
-      return res.status(403).json({
-        message: 'You cannot access this route',
-        details: 'Forbidden.',
       });
     }
 
