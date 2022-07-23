@@ -10,13 +10,6 @@ const teacherSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  evaluation: {
-    type: Number,
-    default: 5.0,
-    float: true,
-    min: 0.0,
-    max: 5.0,
-  },
   preRegister: {
     type: mongoose.Types.ObjectId,
     required: true,

@@ -1,10 +1,10 @@
 /* eslint-disable no-underscore-dangle */
 /* eslint-disable object-shorthand */
-const MessagesSchema = require('../../models/plataform/messagesSchema');
+const MessagesSchema = require('../../models/platform/messagesSchema');
 const StudentSchema = require('../../models/student/studentSchema');
 const TeacherSchema = require('../../models/teacher/teacherSchema');
 const AdminSchema = require('../../models/admin/adminSchema');
-const NotificationSchema = require('../../models/plataform/notificationSchema');
+const NotificationSchema = require('../../models/platform/notificationSchema');
 
 const createMessages = async (req, res) => {
   const { body, attachments, to } = req.body;
@@ -15,6 +15,7 @@ const createMessages = async (req, res) => {
     const findTeacher = await TeacherSchema.findOne({ token: token });
     const findStudent = await StudentSchema.findOne({ token: token });
     const findAdmin = await AdminSchema.findOne({ token: token });
+
     let sender;
     let role;
     let mailbox;
@@ -26,7 +27,7 @@ const createMessages = async (req, res) => {
     if (findTeacher === null && findStudent === null && findAdmin === null) {
       return res.status(403).json({
         message: 'You cannot access this route',
-        details: 'You need to be logged in to post',
+        details: 'Forbidden',
       });
     }
     if (findTeacher) {
@@ -107,7 +108,7 @@ const findAllMessages = async (req, res) => {
     if (findTeacher === null && findStudent === null && findAdmin === null) {
       return res.status(403).json({
         message: 'You cannot access this route',
-        details: 'You need to be logged in to post',
+        details: 'Forbidden',
       });
     }
 
@@ -172,7 +173,7 @@ const findAllSentMessages = async (req, res) => {
     if (findTeacher === null && findStudent === null && findAdmin === null) {
       return res.status(403).json({
         message: 'You cannot access this route',
-        details: 'You need to be logged in to post',
+        details: 'Forbidden',
       });
     }
     if (findTeacher) {
@@ -244,7 +245,7 @@ const findAllReceivedMessages = async (req, res) => {
     if (findTeacher === null && findStudent === null && findAdmin === null) {
       return res.status(403).json({
         message: 'You cannot access this route',
-        details: 'You need to be logged in to post',
+        details: 'Forbidden',
       });
     }
 
@@ -319,7 +320,7 @@ const findAllUnreadMessages = async (req, res) => {
     if (findTeacher === null && findStudent === null && findAdmin === null) {
       return res.status(403).json({
         message: 'You cannot access this route',
-        details: 'You need to be logged in to post',
+        details: 'Forbidden',
       });
     }
     if (findTeacher) {
@@ -396,7 +397,7 @@ const findAllReadMessages = async (req, res) => {
     if (findTeacher === null && findStudent === null && findAdmin === null) {
       return res.status(403).json({
         message: 'You cannot access this route',
-        details: 'You need to be logged in to post',
+        details: 'Forbidden',
       });
     }
     if (findTeacher) {
@@ -470,7 +471,7 @@ const findMessageById = async (req, res) => {
     if (findTeacher === null && findStudent === null && findAdmin === null) {
       return res.status(403).json({
         message: 'You cannot access this route',
-        details: 'You need to be logged in to post',
+        details: 'Forbidden',
       });
     }
     if (findTeacher) {
@@ -481,8 +482,7 @@ const findMessageById = async (req, res) => {
       );
       if (!findMessage) {
         return res.status(404).json({
-          message: `Message: ${req.params.id} not found.`,
-          details: `There isn't a message id: ${req.params.id} in the database.`,
+          message: 'Message not found.',
         });
       }
       if (findMessage.to === findTeacher.username) {
@@ -497,8 +497,7 @@ const findMessageById = async (req, res) => {
         });
       }
       return res.status(404).json({
-        message: `Message: ${req.params.id} not found.`,
-        details: `There isn't a message id: ${req.params.id}, sent to: ${findTeacher.username} in the database.`,
+        message: 'Message not found.',
       });
     }
 
@@ -510,8 +509,7 @@ const findMessageById = async (req, res) => {
       );
       if (!findMessage) {
         return res.status(404).json({
-          message: `Message: ${req.params.id} not found.`,
-          details: `There isn't a message id: ${req.params.id} in the database.`,
+          message: 'Message not found.',
         });
       }
       if (findMessage.to === findStudent.username) {
@@ -526,8 +524,7 @@ const findMessageById = async (req, res) => {
         });
       }
       return res.status(404).json({
-        message: `Message: ${req.params.id} not found.`,
-        details: `There isn't a message id: ${req.params.id}, sent to: ${findStudent.username} in the database.`,
+        message: 'Message not found.',
       });
     }
     if (findAdmin) {
@@ -538,8 +535,7 @@ const findMessageById = async (req, res) => {
       );
       if (!findMessage) {
         return res.status(404).json({
-          message: `Message: ${req.params.id} not found.`,
-          details: `There isn't a message id: ${req.params.id} in the database.`,
+          message: 'Message not found.',
         });
       }
       if (findMessage.to === findAdmin.email) {
@@ -554,8 +550,7 @@ const findMessageById = async (req, res) => {
         });
       }
       return res.status(404).json({
-        message: `Message: ${req.params.id} not found.`,
-        details: `There isn't a message id: ${req.params.id}, sent to: ${findAdmin.email} in the database.`,
+        message: 'Message not found.',
       });
     }
     return res.status(500).json({
@@ -578,7 +573,7 @@ const deleteMessageById = async (req, res) => {
     if (findTeacher === null && findStudent === null && findAdmin === null) {
       return res.status(403).json({
         message: 'You cannot access this route',
-        details: 'You need to be logged in to post',
+        details: 'Forbidden',
       });
     }
     if (findTeacher) {
@@ -589,8 +584,7 @@ const deleteMessageById = async (req, res) => {
       );
       if (!findMessage) {
         return res.status(404).json({
-          message: `Message: ${req.params.id} not found.`,
-          details: `There isn't a message id: ${req.params.id} in the database.`,
+          message: 'Message not found.',
         });
       }
       if (
@@ -615,8 +609,7 @@ const deleteMessageById = async (req, res) => {
       );
       if (!findMessage) {
         return res.status(404).json({
-          message: `Message: ${req.params.id} not found.`,
-          details: `There isn't a message id: ${req.params.id} in the database.`,
+          message: 'Message not found.',
         });
       }
       if (
@@ -640,8 +633,7 @@ const deleteMessageById = async (req, res) => {
       );
       if (!findMessage) {
         return res.status(404).json({
-          message: `Message: ${req.params.id} not found.`,
-          details: `There isn't a message id: ${req.params.id} in the database.`,
+          message: 'Message not found.',
         });
       }
       if (

@@ -2,7 +2,7 @@ const express = require('express');
 
 const router = express.Router();
 
-const controller = require('../../controllers/plataform/postsController');
+const controller = require('../../controllers/platform/postsController');
 
 const { checkAuth, checkAuthAndPermissionPosts } = require('../../middlewares/auth');
 
@@ -17,5 +17,6 @@ router.patch('/feed/post/add-to-favorite/:id', checkAuth, controller.saveFavorit
 router.delete('/feed/post/remove-from-favorite/:id', checkAuth, controller.removeFavoritePosts);
 router.put('/feed/post/likes-dislikes/:id', checkAuthAndPermissionPosts, controller.likeOrDislikePosts);
 router.get('/feed/post/:id', checkAuth, controller.getPostsById);
+router.get('/feed', checkAuth, controller.getAllPosts);
 
 module.exports = router;

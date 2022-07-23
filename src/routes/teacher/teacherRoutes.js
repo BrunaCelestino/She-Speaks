@@ -5,7 +5,7 @@ const router = express.Router();
 const controller = require('../../controllers/teacher/teacherController');
 
 const { checkAuthAndPermissionLevel, checkAuth } = require('../../middlewares/auth');
-const { validateEmailPasswordUsername, hashPassword } = require('../../helpers/authentication');
+const { validateEmailPasswordUsername, hashPassword } = require('../../helpers/validationHelpers');
 
 router.post('/new-teacher/:id', validateEmailPasswordUsername, hashPassword, controller.createNewTeacher);
 router.get('/profile/home/:username', checkAuth, controller.findProfileByUsername);

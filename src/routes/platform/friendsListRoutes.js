@@ -2,7 +2,7 @@ const express = require('express');
 
 const router = express.Router();
 
-const controller = require('../../controllers/plataform/friendsListController');
+const controller = require('../../controllers/platform/friendsListController');
 
 const { checkAuth } = require('../../middlewares/auth');
 

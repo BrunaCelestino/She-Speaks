@@ -3,7 +3,7 @@ const jwt = require('jsonwebtoken');
 const StudentSchema = require('../models/student/studentSchema');
 const AdminSchema = require('../models/admin/adminSchema');
 const TeacherSchema = require('../models/teacher/teacherSchema');
-const PostsSchema = require('../models/plataform/postsSchema');
+const PostsSchema = require('../models/platform/postsSchema');
 
 const { SECRET } = process.env;
 
@@ -25,29 +25,29 @@ exports.checkAuthAndPermissionLevel = async (req, res, next) => {
     const findAdmin = await AdminSchema.findOne({ token: token });
     const findTeacher = await TeacherSchema.findOne({ token: token });
 
-    if (findStudent !== null) {
+    if (findStudent) {
       if (findStudent.id !== req.params.id) {
         return res.status(403).json({
           message: 'You cannot access this route',
-          details: `You can only access routes from the user-id: ${findStudent.id}`,
+          details: 'Forbidden',
         });
       }
     }
 
-    if (findTeacher !== null) {
+    if (findTeacher) {
       if (findTeacher.id !== req.params.id) {
         return res.status(403).json({
           message: 'You cannot access this route',
-          details: `You can only access routes from the user-id: ${findTeacher.id}`,
+          details: 'Forbidden',
         });
       }
     }
 
-    if (findAdmin !== null) {
+    if (findAdmin) {
       if (findAdmin.role !== 'admin') {
         return res.status(403).json({
           message: 'You cannot access this route',
-          details: 'Review your admin permissions and try again.',
+          details: 'Forbidden',
         });
       }
     }
@@ -75,30 +75,30 @@ exports.checkAuthAndPermissionPreRegister = async (req, res, next) => {
     const findAdmin = await AdminSchema.findOne({ token: token });
     const findTeacher = await TeacherSchema.findOne({ token: token });
 
-    if (findStudent !== null) {
+    if (findStudent) {
       if (findStudent.preRegister.toString() !== req.params.id) {
         return res.status(403).json({
           message: 'You cannot access this route',
-          details: `You can only update routes with the pre-register id: ${findStudent.preRegister}`,
+          details: 'Forbidden',
         });
       }
       return next();
     }
 
-    if (findTeacher !== null) {
+    if (findTeacher) {
       if (findTeacher.preRegister.toString() !== req.params.id) {
         return res.status(403).json({
           message: 'You cannot access this route',
-          details: `You can only update routes with the pre-register id: ${findTeacher.preRegister}`,
+          details: 'Forbidden',
         });
       }
     }
 
-    if (findAdmin !== null) {
+    if (findAdmin) {
       if (findAdmin.role !== 'admin') {
         return res.status(403).json({
           message: 'You cannot access this route',
-          details: 'Review your admin permissions and try again.',
+          details: 'Forbidden',
         });
       }
     }
@@ -125,11 +125,11 @@ exports.checkAuthAndAdminPermission = async (req, res, next) => {
 
     const findAdmin = await AdminSchema.findOne({ token: token });
 
-    if (findAdmin !== null) {
+    if (findAdmin) {
       if (findAdmin.role !== 'admin') {
         return res.status(403).json({
           message: 'You cannot access this route',
-          details: 'Review your admin permissions and try again.',
+          details: 'Forbidden',
         });
       }
       return next();
@@ -137,7 +137,7 @@ exports.checkAuthAndAdminPermission = async (req, res, next) => {
 
     return res.status(403).json({
       message: 'You cannot access this route',
-      details: 'Only the admin can access this route',
+      details: 'Forbidden',
     });
   } catch (error) {
     return res.status(500).json({ error: error.message });
@@ -166,8 +166,8 @@ exports.checkAuthAndPermissionPosts = async (req, res, next) => {
     const postFound = await PostsSchema.findById(req.params.id);
     if (postFound === null) {
       return res.status(404).json({
-        message: 'The post update have failed',
-        details: `There isn't a post with the id: ${req.params.id}, in the database.`,
+        message: 'The post modification have failed',
+        details: 'Not Found',
       });
     }
 
@@ -178,7 +178,7 @@ exports.checkAuthAndPermissionPosts = async (req, res, next) => {
         }
         return res.status(403).json({
           message: 'You cannot access this route',
-          details: `Only author: ${postFound.author} can make changes in this post.`,
+          details: 'Forbidden',
         });
       }
       if (findTeacher) {
@@ -187,7 +187,7 @@ exports.checkAuthAndPermissionPosts = async (req, res, next) => {
         }
         return res.status(403).json({
           message: 'You cannot access this route',
-          details: `Only author: ${postFound.author} can make changes in this post.`,
+          details: 'Forbidden',
         });
       }
       if (findAdmin) {
@@ -195,7 +195,7 @@ exports.checkAuthAndPermissionPosts = async (req, res, next) => {
           if (req.body.body || req.body.attachments || req.body.likes || req.body.dislikes) {
             return res.status(403).json({
               message: 'You cannot access this route',
-              details: 'Only the author can modify this post.',
+              details: 'Forbidden',
             });
           }
           return next();
@@ -204,7 +204,7 @@ exports.checkAuthAndPermissionPosts = async (req, res, next) => {
     }
     return res.status(403).json({
       message: 'You cannot access this route',
-      details: 'You need to be logged in.',
+      details: 'Forbidden',
     });
   } catch (error) {
     return res.status(500).json({ error: error.message });

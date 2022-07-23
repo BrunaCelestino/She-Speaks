@@ -31,9 +31,9 @@ const createNewStudentPreRegister = async (req, res) => {
     });
 
     if (findPreRegisterByCPF) {
-      return res.status(406).json({
+      return res.status(409).json({
         message: 'The registration of your pre-register have failed',
-        details: `There is a pre-register already assigned to the CPF: ${CPF}.`,
+        details: 'Conflict',
       });
     }
 
@@ -101,7 +101,7 @@ const getPreRegisterById = async (req, res) => {
     if (preRegisterFound === null) {
       return res.status(404).json({
         message: 'It was not possible to find the pre-register',
-        details: `There isn't a student pre-register with the id: ${req.params.id}, in the database.`,
+        details: 'Not Found',
       });
     }
 
@@ -151,14 +151,18 @@ const getPreRegisterById = async (req, res) => {
 };
 
 const getAllPreRegisters = async (req, res) => {
-  StudentsPreRegisterSchema.find((error, preRegisters) => {
-    if (error) {
-      return res.status(500).json({
-        message: error.message,
-      });
-    }
-    return res.status(200).json(preRegisters);
-  });
+  try {
+    return StudentsPreRegisterSchema.find((error, preRegisters) => {
+      if (error) {
+        return res.status(500).json({
+          message: error.message,
+        });
+      }
+      return res.status(200).json(preRegisters);
+    });
+  } catch (error) {
+    return res.status(500).json({ message: error.message });
+  }
 };
 
 const updatePreRegister = async (req, res) => {
@@ -177,7 +181,7 @@ const updatePreRegister = async (req, res) => {
     if (preRegisterFound === null) {
       return res.status(404).json({
         message: 'The pre-register update have failed',
-        details: `There isn't a pre-register with the id: ${req.params.id}, in the database.`,
+        details: 'Not Found',
       });
     }
 
@@ -186,9 +190,9 @@ const updatePreRegister = async (req, res) => {
     });
 
     if (findPreRegisterByCPF) {
-      return res.status(406).json({
+      return res.status(409).json({
         message: 'The update of your pre-register have failed',
-        details: `There is a pre-register already assigned to the CPF: ${CPF}.`,
+        details: 'Conflict',
       });
     }
 
@@ -218,14 +222,14 @@ const deletePreRegister = async (req, res) => {
     if (StudentsPreRegisterFound === null) {
       return res.status(404).json({
         message: 'It was not possible to delete the student pre-register',
-        details: `There isn't a student pre-register with the id: ${req.params.id}, in the database.`,
+        details: 'Not Found',
       });
     }
 
     await StudentsPreRegisterFound.delete();
 
     return res.status(200).json({
-      message: `Student pre-register: ${StudentsPreRegisterFound.fullName}, successfully deleted`,
+      message: 'Student pre-register successfully deleted',
       StudentsPreRegisterFound,
     });
   } catch (error) {

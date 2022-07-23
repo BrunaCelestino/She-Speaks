@@ -3,7 +3,7 @@
 /* eslint-disable object-shorthand */
 const StudentSchema = require('../../models/student/studentSchema');
 const TeacherSchema = require('../../models/teacher/teacherSchema');
-const NotificationSchema = require('../../models/plataform/notificationSchema');
+const NotificationSchema = require('../../models/platform/notificationSchema');
 
 const sendFriendRequest = async (req, res) => {
   try {
@@ -19,13 +19,13 @@ const sendFriendRequest = async (req, res) => {
     if (findTeacherToAdd === null && findStudentToAdd === null) {
       return res.status(404).json({
         message: 'It was not possible to find this user.',
-        details: "There aren't users with this id registered in the database.",
+        details: 'Not found',
       });
     }
     if (findTeacher === null && findStudent === null) {
       return res.status(403).json({
         message: 'You cannot access this route',
-        details: 'You need to be logged in.',
+        details: 'Forbidden.',
       });
     }
 
@@ -38,12 +38,13 @@ const sendFriendRequest = async (req, res) => {
             (friends) => friends.username === findTeacherToAdd.username,
           );
           if (findIfAlreadyFriends) {
-            return res.status(406).json({
+            return res.status(409).json({
               message: 'You cannot add this user to your friends',
-              details: `You already have added the user: ${findIfAlreadyFriends.username}, to your friends.`,
+              details: 'Conflict',
             });
           }
         }
+
         const newNotification = new NotificationSchema({
           requester: findStudent.username,
           requested: findTeacherToAdd.username,
@@ -64,15 +65,15 @@ const sendFriendRequest = async (req, res) => {
           );
 
           if (findIfAlreadyFriends) {
-            return res.status(406).json({
+            return res.status(409).json({
               message: 'You cannot add this user to your friends',
-              details: `You already have added the user: ${findIfAlreadyFriends.username}, to your friends.`,
+              details: 'Conflict',
             });
           }
         }
         if (findStudent.id === findStudentToAdd.id) {
-          return res.status(400).json({
-            message: 'You cannot add yourself',
+          return res.status(409).json({
+            message: 'Conflict',
           });
         }
         const newNotification = new NotificationSchema({
@@ -97,15 +98,15 @@ const sendFriendRequest = async (req, res) => {
             (friends) => friends.username === findTeacherToAdd.username,
           );
           if (findIfAlreadyFriends) {
-            return res.status(406).json({
+            return res.status(409).json({
               message: 'You cannot add this user to your friends',
-              details: `You already have added the user: ${findIfAlreadyFriends.username}, to your friends.`,
+              details: 'Conflict',
             });
           }
         }
         if (findTeacher.id === findTeacherToAdd.id) {
-          return res.status(400).json({
-            message: 'You cannot add yourself',
+          return res.status(409).json({
+            message: 'Conflict',
           });
         }
         const newNotification = new NotificationSchema({
@@ -126,9 +127,9 @@ const sendFriendRequest = async (req, res) => {
             (friends) => friends.username === findStudentToAdd.username,
           );
           if (findIfAlreadyFriends) {
-            return res.status(406).json({
+            return res.status(409).json({
               message: 'You cannot add this user to your friends',
-              details: `You already have added the user: ${findIfAlreadyFriends.username}, to your friends.`,
+              details: 'Conflict',
             });
           }
         }
@@ -165,7 +166,7 @@ const updateFriendRequest = async (req, res) => {
     if (findTeacher === null && findStudent === null) {
       return res.status(403).json({
         message: 'You cannot access this route',
-        details: 'You need to be logged in.',
+        details: 'Forbidden.',
       });
     }
 
@@ -178,8 +179,7 @@ const updateFriendRequest = async (req, res) => {
       if (!findNotifications) {
         return res.status(404).json({
           message: 'It was not possible to find this notification.',
-          details:
-            "There aren't notifications with this id registered in the database.",
+          details: 'Not found.',
         });
       }
       if (findNotifications.requestStatus !== 'sent') {
@@ -200,9 +200,9 @@ const updateFriendRequest = async (req, res) => {
             (friends) => friends.username === findTeacherToAdd.username,
           );
           if (findIfAlreadyFriends) {
-            return res.status(406).json({
+            return res.status(409).json({
               message: 'You cannot add this user to your friends',
-              details: `You already have added the user: ${findIfAlreadyFriends.username}, to your friends.`,
+              details: 'Conflict',
             });
           }
         }
@@ -233,7 +233,7 @@ const updateFriendRequest = async (req, res) => {
           await findTeacherToAdd.save();
 
           return res.status(200).json({
-            message: 'User successfuly added to your friends!.',
+            message: 'User successfuly added to your friends list!.',
             findStudent,
           });
         }
@@ -245,14 +245,14 @@ const updateFriendRequest = async (req, res) => {
             (friends) => friends.username === findStudentToAdd.username,
           );
           if (findIfAlreadyFriends) {
-            return res.status(406).json({
+            return res.status(409).json({
               message: 'You cannot add this user to your friends',
-              details: `You already have added the user: ${findIfAlreadyFriends.username}, to your friends.`,
+              details: 'Conflict',
             });
           }
           if (findStudent.id === findStudentToAdd.id) {
-            return res.status(400).json({
-              message: 'You cannot add yourself',
+            return res.status(409).json({
+              message: 'Conflict',
             });
           }
         }
@@ -286,7 +286,7 @@ const updateFriendRequest = async (req, res) => {
         await findStudentToAdd.save();
 
         return res.status(200).json({
-          message: 'User successfuly added to your friends!.',
+          message: 'User successfuly added to your friends list!.',
           findStudent,
         });
       }
@@ -301,8 +301,7 @@ const updateFriendRequest = async (req, res) => {
       if (!findNotifications) {
         return res.status(404).json({
           message: 'It was not possible to find this notification.',
-          details:
-            "There aren't notifications with this id registered in the database.",
+          details: 'Not Found',
         });
       }
       if (findNotifications.requestStatus !== 'sent') {
@@ -324,14 +323,14 @@ const updateFriendRequest = async (req, res) => {
             (friends) => friends.username === findTeacherToAdd.username,
           );
           if (findIfAlreadyFriends) {
-            return res.status(406).json({
+            return res.status(409).json({
               message: 'You cannot add this user to your friends',
-              details: `You already have added the user: ${findIfAlreadyFriends.username}, to your friends.`,
+              details: 'Conflict',
             });
           }
           if (findTeacher.id === findTeacherToAdd.id) {
-            return res.status(400).json({
-              message: 'You cannot add yourself',
+            return res.status(409).json({
+              message: 'Conflict',
             });
           }
         }
@@ -363,7 +362,7 @@ const updateFriendRequest = async (req, res) => {
           await findTeacherToAdd.save();
 
           return res.status(200).json({
-            message: 'User successfuly added to your friends!.',
+            message: 'User successfuly added to your friends list!.',
             findTeacher,
           });
         }
@@ -374,9 +373,9 @@ const updateFriendRequest = async (req, res) => {
             (friends) => friends.username === findStudentToAdd.username,
           );
           if (findIfAlreadyFriends) {
-            return res.status(406).json({
+            return res.status(409).json({
               message: 'You cannot add this user to your friends',
-              details: `You already have added the user: ${findIfAlreadyFriends.username}, to your friends.`,
+              details: 'Conflict',
             });
           }
         }
@@ -408,7 +407,7 @@ const updateFriendRequest = async (req, res) => {
           await findStudentToAdd.save();
 
           return res.status(200).json({
-            message: 'User successfuly added to your friends!.',
+            message: 'User successfuly added to your friends list!.',
             findTeacher,
           });
         }
@@ -433,7 +432,7 @@ const deleteFriend = async (req, res) => {
     if (findTeacher === null && findStudent === null) {
       return res.status(403).json({
         message: 'You cannot access this route',
-        details: 'You need to be logged in.',
+        details: 'Forbidden',
       });
     }
     if (findTeacher) {
@@ -444,7 +443,7 @@ const deleteFriend = async (req, res) => {
       if (checkIfAreFriends === undefined) {
         return res.status(404).json({
           message: 'You could not remove this user from your friends list.',
-          details: `We could not find the user: ${req.params.id}, in your friends list.`,
+          details: 'Not Found',
         });
       }
 
@@ -506,7 +505,7 @@ const deleteFriend = async (req, res) => {
       if (checkIfAreFriends === undefined) {
         return res.status(404).json({
           message: 'You could not remove this user from your friends list.',
-          details: `We could not find the user: ${req.params.id}, in your friends list.`,
+          details: 'Not Found',
         });
       }
 
@@ -581,7 +580,7 @@ const getFriendsList = async (req, res) => {
     if (findTeacher === null && findStudent === null) {
       return res.status(403).json({
         message: 'You cannot access this route',
-        details: 'You need to be logged in.',
+        details: 'Forbidden',
       });
     }
     if (findTeacher) {

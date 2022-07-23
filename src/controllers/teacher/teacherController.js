@@ -40,9 +40,9 @@ const createNewTeacher = async (req, res) => {
     });
 
     if (findTeacherByUsername || findStudentByUsername) {
-      return res.status(406).json({
+      return res.status(409).json({
         message: 'The registration of the new teacher have failed',
-        details: `There is a register already assigned to the username: ${username}.`,
+        details: 'Conflict',
       });
     }
     const findTeacherByEmail = await TeacherSchema.exists({
@@ -50,16 +50,16 @@ const createNewTeacher = async (req, res) => {
     });
 
     if (findTeacherByEmail) {
-      return res.status(406).json({
+      return res.status(409).json({
         message: 'The registration of the new teacher have failed',
-        details: `There is a register already assigned to the e-mail: ${email}.`,
+        details: 'Conflict',
       });
     }
 
     const checkPreRegisterStatus = await TeachersPreRegisterSchema.findById(req.params.id);
 
     if (checkPreRegisterStatus.applicationStatus !== 'approved') {
-      return res.status(406).json({
+      return res.status(409).json({
         message: 'The registration of the new Teacher have failed',
         details: `Your pre-register status is: ${checkPreRegisterStatus.applicationStatus}. You must be approved before signing up.`,
       });
@@ -100,7 +100,7 @@ const findProfileByUsername = async (req, res) => {
       if (teacherFound === null) {
         return res.status(404).json({
           message: 'It was not possible to find this teacher profile.',
-          details: `There isn't a teacher with the username: ${req.params.username}, in the database.`,
+          details: 'Not found',
         });
       }
       return res.status(200).json({
@@ -116,7 +116,7 @@ const findProfileByUsername = async (req, res) => {
     if (teacherFound === null) {
       return res.status(404).json({
         message: 'It was not possible to find this teacher profile.',
-        details: `There isn't a teacher with the username: ${req.params.username}, in the database.`,
+        details: 'Not Found',
       });
     }
 
@@ -147,7 +147,7 @@ const updateTeacher = async (req, res) => {
     if (teacherFound === null) {
       return res.status(404).json({
         message: 'The teacher profile update have failed',
-        details: `There isn't a teacher profile with the id: ${req.params.id}, in the database.`,
+        details: 'Not Found',
       });
     }
 
@@ -156,9 +156,9 @@ const updateTeacher = async (req, res) => {
     });
 
     if (findTeacherByUsername) {
-      return res.status(406).json({
+      return res.status(409).json({
         message: 'The update of your teacher profile have failed',
-        details: `There is a teacher profile already assigned to the username: ${username}.`,
+        details: 'Conflict',
       });
     }
 
@@ -193,7 +193,7 @@ const deleteTeacher = async (req, res) => {
     if (teacherFound === null) {
       return res.status(404).json({
         message: 'It was not possible to delete the teacher profile',
-        details: `There isn't a teacher profile with the id: ${req.params.id}, in the database.`,
+        details: 'Not Found',
       });
     }
 

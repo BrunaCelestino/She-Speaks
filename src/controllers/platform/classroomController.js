@@ -2,7 +2,7 @@
 const StudentSchema = require('../../models/student/studentSchema');
 const TeacherSchema = require('../../models/teacher/teacherSchema');
 const AdminSchema = require('../../models/admin/adminSchema');
-const ClassroomSchema = require('../../models/plataform/classroomSchema');
+const ClassroomSchema = require('../../models/platform/classroomSchema');
 
 const createClassroom = async (req, res) => {
   const {
@@ -14,7 +14,7 @@ const createClassroom = async (req, res) => {
     language,
     other,
     level,
-    learningFoccus,
+    learningFocus,
     DaysOfWeek,
     timeOfTheDay,
   } = req.body;
@@ -27,8 +27,7 @@ const createClassroom = async (req, res) => {
     if (findTeacher === null) {
       return res.status(403).json({
         message: 'You cannot access this route',
-        details:
-          'You need to be a teacher and be logged in to create a classroom',
+        details: 'Forbidden',
       });
     }
 
@@ -43,7 +42,7 @@ const createClassroom = async (req, res) => {
         language,
         other,
         level,
-        learningFoccus,
+        learningFocus,
         DaysOfWeek,
         timeOfTheDay,
       });
@@ -73,7 +72,7 @@ const updateClassroom = async (req, res) => {
     language,
     other,
     level,
-    learningFoccus,
+    learningFocus,
     DaysOfWeek,
     timeOfTheDay,
   } = req.body;
@@ -86,27 +85,23 @@ const updateClassroom = async (req, res) => {
     if (findTeacher === null) {
       return res.status(403).json({
         message: 'You cannot access this route',
-        details:
-          'You need to be a teacher and be logged in to create a classroom',
+        details: 'Forbidden',
       });
     }
-
     const classroomFound = await ClassroomSchema.findById(req.params.id);
 
     if (classroomFound === null) {
       return res.status(404).json({
         message: 'The classroom update have failed',
-        details: `There isn't a classroom with the id: ${req.params.id}, in the database.`,
+        details: 'Not found.',
       });
     }
-
     if (classroomFound.teacher !== findTeacher.username) {
       return res.status(403).json({
         message: 'The classroom update have failed',
-        details: `Only the classroom teacher ${classroomFound.teacher} can update this classroom.`,
+        details: 'Forbidden.',
       });
     }
-
     classroomFound.classroomName = classroomName || classroomFound.classroomName;
     classroomFound.classroomIcon = classroomIcon || classroomFound.classroomIcon;
     classroomFound.classLink = classLink || classroomFound.classLink;
@@ -115,11 +110,11 @@ const updateClassroom = async (req, res) => {
     classroomFound.language = language || classroomFound.language;
     classroomFound.other = other || classroomFound.other;
     classroomFound.level = level || classroomFound.level;
-    classroomFound.learningFoccus = learningFoccus || classroomFound.learningFoccus;
+    classroomFound.learningFocus = learningFocus || classroomFound.learningFocus;
     classroomFound.DaysOfWeek = DaysOfWeek || classroomFound.DaysOfWeek;
     classroomFound.timeOfTheDay = timeOfTheDay || classroomFound.timeOfTheDay;
-    const savedClassroom = await classroomFound.save();
 
+    const savedClassroom = await classroomFound.save();
     const findUpdate = await ClassroomSchema.find(savedClassroom);
 
     return res.status(200).json({
@@ -136,11 +131,10 @@ const getAllClassrooms = async (req, res) => {
     const classroomsFound = await ClassroomSchema.find();
 
     if (!classroomsFound) {
-      return res.status(500).json({
-        message: 'We could not load your friends list. Please try again later',
+      return res.status(404).json({
+        message: 'We could not find classrooms. Please try again later',
       });
     }
-
     return res.status(200).json({
       message: 'Here are all the classrooms.',
       classroomsFound,
@@ -157,7 +151,7 @@ const findClassroomById = async (req, res) => {
     if (!classroomFound) {
       return res.status(404).json({
         message: 'We could not find the classroom.',
-        details: `There isn't a classroom with the id: ${req.params.id}, in the database.`,
+        details: 'Not Found.',
       });
     }
     return res.status(200).json({
@@ -175,7 +169,7 @@ const findClassroomByFilters = async (req, res) => {
     language,
     other,
     level,
-    learningFoccus,
+    learningFocus,
     DaysOfWeek,
     timeOfTheDay,
     status,
@@ -206,9 +200,9 @@ const findClassroomByFilters = async (req, res) => {
       });
     }
 
-    if (learningFoccus) {
+    if (learningFocus) {
       classroomFound = await ClassroomSchema.find({
-        learningFoccus: { $regex: learningFoccus, $options: 'i' },
+        learningFocus: { $regex: learningFocus, $options: 'i' },
       });
     }
     if (DaysOfWeek) {
@@ -231,8 +225,7 @@ const findClassroomByFilters = async (req, res) => {
     if (classroomFound.length === 0) {
       return res.status(404).json({
         message: 'We could not find any results.',
-        details:
-          "There isn't a classroom with the this criteria in the database.",
+        details: 'Not Found',
       });
     }
     return res.status(200).json({
@@ -257,8 +250,7 @@ const deleteClassroom = async (req, res) => {
     if (findTeacher === null && findAdmin === null) {
       return res.status(403).json({
         message: 'You cannot access this route',
-        details:
-          'You need to be a teacher and be logged in to create a classroom',
+        details: 'Forbidden',
       });
     }
     const classroomFound = await ClassroomSchema.findById(req.params.id);
@@ -266,18 +258,17 @@ const deleteClassroom = async (req, res) => {
     if (!classroomFound) {
       return res.status(404).json({
         message: 'We could not find the classroom.',
-        details: `There isn't a classroom with the id: ${req.params.id}, in the database.`,
+        details: 'Not Found.',
       });
     }
     if (findTeacher) {
       if (classroomFound.teacher !== findTeacher.username) {
         return res.status(403).json({
           message: 'The classroom delete have failed',
-          details: `Only the classroom teacher ${classroomFound.teacher} can delete this classroom.`,
+          details: 'Forbidden.',
         });
       }
     }
-
     await classroomFound.delete();
 
     return res.status(200).json({
@@ -299,8 +290,7 @@ const findAClassroomMatch = async (req, res) => {
     if (findStudent === null) {
       return res.status(403).json({
         message: 'You cannot access this route',
-        details:
-          'You need to be a student and be logged in to find your match.',
+        details: 'Forbidden.',
       });
     }
 
@@ -313,7 +303,7 @@ const findAClassroomMatch = async (req, res) => {
           ],
         },
         { level: findStudent.languageLevel },
-        { learningFoccus: findStudent.learningInterest },
+        { learningFocus: findStudent.learningInterest },
         { DaysOfWeek: findStudent.freeDaysOfWeek },
         { timeOfTheDay: findStudent.timeOfTheDay },
         { $or: [{ status: 'empty' }, { status: 'open' }] },
@@ -324,7 +314,7 @@ const findAClassroomMatch = async (req, res) => {
       return res.status(404).json({
         message: 'We could not find any results.',
         details:
-          "You don't have a match yet. Try to find a classroom using the filters.",
+          'You don\'t have a match yet. Try to find a classroom using the filters.',
       });
     }
     return res.status(200).json({
@@ -340,7 +330,6 @@ const enrollInAClassroom = async (req, res) => {
   try {
     const authHeader = req.get('Authorization');
     const token = authHeader.split(' ')[1];
-
     const findStudent = await StudentSchema.findOne({ token: token });
 
     const classroomFound = await ClassroomSchema.findById(req.params.id);
@@ -348,7 +337,7 @@ const enrollInAClassroom = async (req, res) => {
     if (!classroomFound) {
       return res.status(404).json({
         message: 'We could not find the classroom.',
-        details: `There isn't a classroom with the id: ${req.params.id}, in the database.`,
+        details: 'Not Found.',
       });
     }
 
@@ -374,7 +363,6 @@ const enrollInAClassroom = async (req, res) => {
             });
           }
         }
-
         students.push({
           _id: findStudent.id,
           username: findStudent.username,
@@ -385,10 +373,9 @@ const enrollInAClassroom = async (req, res) => {
         if (classroomFound.students.length === classroomFound.limitOfStudents) {
           classroomFound.status = 'full';
         }
-
         await classroomFound.save();
         return res.status(200).json({
-          message: `You successfully enrolled in the classroom ${req.params.id}`,
+          message: 'You successfully enrolled in this classroom',
           classroomFound,
         });
       }
@@ -400,18 +387,18 @@ const enrollInAClassroom = async (req, res) => {
     return res.status(500).json({ message: error.message });
   }
 };
+
 const leaveAClassroom = async (req, res) => {
   try {
     const authHeader = req.get('Authorization');
     const token = authHeader.split(' ')[1];
-
     const findStudent = await StudentSchema.findOne({ token: token });
     const classroomFound = await ClassroomSchema.findById(req.params.id);
 
     if (!classroomFound) {
       return res.status(404).json({
         message: 'We could not find the classroom.',
-        details: `There isn't a classroom with the id: ${req.params.id}, in the database.`,
+        details: 'Not Found.',
       });
     }
     const { students } = classroomFound;
@@ -436,12 +423,13 @@ const leaveAClassroom = async (req, res) => {
         students.splice(index, 1);
 
         classroomFound.status = 'open';
+
         if (students.length === 0) {
           classroomFound.status = 'empty';
         }
         await classroomFound.save();
         return res.status(200).json({
-          message: `You successfully left the classroom ${req.params.id}`,
+          message: 'You successfully left the classroom',
           classroomFound,
         });
       }

@@ -38,7 +38,7 @@ const classroomSchema = new mongoose.Schema({
     required: true,
     enum: ['beginner', 'elementary', 'pre-Intermediate', 'intermediate', 'upper-Intermediate', 'advanced', 'proficient'],
   },
-  learningFoccus: {
+  learningFocus: {
     type: [String],
     required: true,
     enum: ['grammar', 'listening', 'writing', 'conversation'],

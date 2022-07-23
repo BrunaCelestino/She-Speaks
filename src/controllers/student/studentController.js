@@ -41,9 +41,9 @@ const createNewStudent = async (req, res) => {
     });
 
     if (findStudentByUsername || findTeacherByUsername) {
-      return res.status(406).json({
+      return res.status(409).json({
         message: 'The registration of the new student have failed',
-        details: `There is a register already assigned to the username: ${username}.`,
+        details: 'Conflict',
       });
     }
     const findStudentByEmail = await StudentSchema.exists({
@@ -51,9 +51,9 @@ const createNewStudent = async (req, res) => {
     });
 
     if (findStudentByEmail) {
-      return res.status(406).json({
+      return res.status(409).json({
         message: 'The registration of the new student have failed',
-        details: `There is a register already assigned to the e-mail: ${email}.`,
+        details: 'Conflict',
       });
     }
 
@@ -62,7 +62,7 @@ const createNewStudent = async (req, res) => {
     );
 
     if (checkPreRegisterStatus.applicationStatus !== 'approved') {
-      return res.status(406).json({
+      return res.status(409).json({
         message: 'The registration of the new student have failed',
         details: `Your pre-register status is: ${checkPreRegisterStatus.applicationStatus}. You must be approved before signing up.`,
       });
@@ -103,11 +103,11 @@ const findProfileByUsername = async (req, res) => {
       if (studentFound === null) {
         return res.status(404).json({
           message: 'It was not possible to find this student profile.',
-          details: `There isn't a student with the username: ${req.params.username}, in the database.`,
+          details: 'Not Found',
         });
       }
       return res.status(200).json({
-        message: `Student: -${studentFound.username}- successfully located.`,
+        message: 'Student successfully located.',
         studentFound,
       });
     }
@@ -118,12 +118,12 @@ const findProfileByUsername = async (req, res) => {
     if (studentFound === null) {
       return res.status(404).json({
         message: 'It was not possible to find this student profile.',
-        details: `There isn't a student with the username: ${req.params.username}, in the database.`,
+        details: 'Not Found',
       });
     }
 
     return res.status(200).json({
-      message: `Student: -${studentFound.username}- successfully located.`,
+      message: 'Student successfully located.',
       studentFound,
     });
   } catch (error) {
@@ -149,7 +149,7 @@ const updateStudent = async (req, res) => {
     if (studentFound === null) {
       return res.status(404).json({
         message: 'The student profile update have failed',
-        details: `There isn't a student profile with the id: ${req.params.id}, in the database.`,
+        details: 'Not Found',
       });
     }
 
@@ -158,9 +158,9 @@ const updateStudent = async (req, res) => {
     });
 
     if (findStudentByUsername) {
-      return res.status(406).json({
+      return res.status(409).json({
         message: 'The update of your student profile have failed',
-        details: `There is a student profile already assigned to the username: ${username}.`,
+        details: 'Conflict',
       });
     }
 
@@ -195,14 +195,14 @@ const deleteStudent = async (req, res) => {
     if (StudentFound === null) {
       return res.status(404).json({
         message: 'It was not possible to delete the student profile',
-        details: `There isn't a student profile with the id: ${req.params.id}, in the database.`,
+        details: 'Not Found',
       });
     }
 
     await StudentFound.delete();
 
     return res.status(200).json({
-      message: `Student profile: ${StudentFound.username}, successfully deleted`,
+      message: 'Student profile successfully deleted',
       StudentFound,
     });
   } catch (error) {

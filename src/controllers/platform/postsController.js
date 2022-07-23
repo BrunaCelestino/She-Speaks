@@ -1,6 +1,6 @@
 /* eslint-disable no-underscore-dangle */
 /* eslint-disable object-shorthand */
-const PostsSchema = require('../../models/plataform/postsSchema');
+const PostsSchema = require('../../models/platform/postsSchema');
 const StudentSchema = require('../../models/student/studentSchema');
 const TeacherSchema = require('../../models/teacher/teacherSchema');
 const AdminSchema = require('../../models/admin/adminSchema');
@@ -19,7 +19,7 @@ const createPosts = async (req, res) => {
     if (findTeacher === null && findStudent === null) {
       return res.status(403).json({
         message: 'You cannot access this route',
-        details: 'You need to be logged in to post',
+        details: 'Forbidden',
       });
     }
     if (findTeacher) {
@@ -60,7 +60,7 @@ const getPostsById = async (req, res) => {
     if (postFound === null) {
       return res.status(404).json({
         message: 'It was not possible to find this post',
-        details: `There isn't a post with the id: ${req.params.id}, in the database.`,
+        details: 'Not Found',
       });
     }
 
@@ -91,7 +91,7 @@ const findMyPosts = async (req, res) => {
       if (!postFound) {
         return res.status(404).json({
           message: 'It was not possible to find posts',
-          details: `There is not posts related to the user: ${findStudent.username}, in the database.`,
+          details: 'Not Found',
         });
       }
 
@@ -106,7 +106,7 @@ const findMyPosts = async (req, res) => {
       if (!postFound) {
         return res.status(404).json({
           message: 'It was not possible to find posts',
-          details: `There is not posts related to the user: ${findTeacher.username}, in the database.`,
+          details: 'Not Found',
         });
       }
 
@@ -118,7 +118,7 @@ const findMyPosts = async (req, res) => {
 
     return res.status(403).json({
       message: 'You cannot access this route',
-      details: 'You need to be logged in to see your posts',
+      details: 'Forbidden',
     });
   } catch (error) {
     return res.status(500).json({ message: error.message });
@@ -153,7 +153,7 @@ const deletePosts = async (req, res) => {
 
     await postFound.delete();
     return res.status(200).json({
-      message: `Post id: ${req.params.id}, successfully deleted`,
+      message: 'Post successfully deleted',
       postFound,
     });
   } catch (error) {
@@ -183,7 +183,7 @@ const likeOrDislikePosts = async (req, res) => {
       await postFound.save();
 
       return res.status(200).json({
-        message: 'Post successfuly evaluated!.',
+        message: 'Post successfuly liked!.',
         postFound,
       });
     }
@@ -194,7 +194,7 @@ const likeOrDislikePosts = async (req, res) => {
       await postFound.save();
 
       return res.status(200).json({
-        message: 'Post successfuly evaluated!.',
+        message: 'Post successfuly disliked!.',
         postFound,
       });
     }
@@ -225,7 +225,7 @@ const saveFavoritePosts = async (req, res) => {
     if (findTeacher === null && findStudent === null) {
       return res.status(403).json({
         message: 'You cannot access this route',
-        details: 'You need to be logged in to post',
+        details: 'Forbidden',
       });
     }
 
@@ -237,9 +237,9 @@ const saveFavoritePosts = async (req, res) => {
       );
 
       if (checkIfPostIsFavorite) {
-        return res.status(406).json({
+        return res.status(409).json({
           message: 'You cannot add this post to your favorites',
-          details: `You already have added the post: ${req.params.id}, to your favorites.`,
+          details: 'Forbidden',
         });
       }
 
@@ -263,8 +263,8 @@ const saveFavoritePosts = async (req, res) => {
 
       if (!checkIfPostIsFavorite) {
         return res.status(404).json({
-          message: 'You could not remove the post from your favorites.',
-          details: `You already have added the post: ${req.params.id}, to your favorites.`,
+          message: 'You could not add the post to your favorites.',
+          details: 'Not Found',
         });
       }
 
@@ -299,7 +299,7 @@ const removeFavoritePosts = async (req, res) => {
     if (findTeacher === null && findStudent === null) {
       return res.status(403).json({
         message: 'You cannot access this route',
-        details: 'You need to be logged in to post',
+        details: 'Forbidden',
       });
     }
 
@@ -313,7 +313,7 @@ const removeFavoritePosts = async (req, res) => {
       if (!checkIfPostIsFavorite) {
         return res.status(404).json({
           message: 'You could not remove the post from your favorites.',
-          details: `We could not find the post: ${req.params.id}, in your favorites.`,
+          details: 'Not Found',
         });
       }
 
@@ -337,7 +337,7 @@ const removeFavoritePosts = async (req, res) => {
       if (!checkIfPostIsFavorite) {
         return res.status(404).json({
           message: 'You could not remove the post from your favorites.',
-          details: `We could not find the post: ${req.params.id}, in your favorites.`,
+          details: 'Not Found',
         });
       }
 
@@ -391,7 +391,7 @@ const commentPosts = async (req, res) => {
     await postFound.save();
 
     return res.status(200).json({
-      message: `You commented on post id: ${req.params.id}.`,
+      message: `You commented on post: ${req.params.id}.`,
       postFound,
     });
   } catch (error) {
@@ -413,7 +413,7 @@ const deleteCommentFromPosts = async (req, res) => {
     if (postFound === null) {
       return res.status(404).json({
         message: 'Fail to delete the comment',
-        details: `There isn't a post with the id: ${req.params.id}, in the database.`,
+        details: 'Post Not Found',
       });
     }
     const { comments } = postFound;
@@ -424,7 +424,7 @@ const deleteCommentFromPosts = async (req, res) => {
     if (checkCommentId === undefined) {
       return res.status(404).json({
         message: 'Fail to delete the comment',
-        details: `There isn't a comment with the id: ${req.params.commentId}, in the database.`,
+        details: 'Comment not found',
       });
     }
     if (findTeacher) {
@@ -476,7 +476,7 @@ const deleteCommentFromPosts = async (req, res) => {
       }
     }
     return res.status(500).json({
-      message: `We could not delete the comment: ${req.params.commentId} from the post id: ${req.params.id} . Please try again later`,
+      message: 'We could not delete the comment. Please try again later',
     });
   } catch (error) {
     return res.status(500).json({ message: error.message });
@@ -491,13 +491,19 @@ const updateCommentFromPosts = async (req, res) => {
     const findTeacher = await TeacherSchema.findOne({ token: token });
     const findStudent = await StudentSchema.findOne({ token: token });
 
+    if (findTeacher === null && findStudent === null) {
+      return res.status(403).json({
+        message: 'You cannot access this route',
+        details: 'Forbidden',
+      });
+    }
     const postFound = await PostsSchema.findById(req.params.id).select(
       '-userId',
     );
     if (postFound === null) {
       return res.status(404).json({
         message: 'Fail to update the comment',
-        details: `There isn't a post with the id: ${req.params.id}, in the database.`,
+        details: 'Post Not Found',
       });
     }
     const { comments } = postFound;
@@ -508,8 +514,8 @@ const updateCommentFromPosts = async (req, res) => {
 
     if (checkCommentId === undefined) {
       return res.status(404).json({
-        message: 'Fail to delete the comment',
-        details: `There isn't a comment with the id: ${req.params.commentId}, in the database.`,
+        message: 'Fail to update the comment',
+        details: 'Comment Not Found',
       });
     }
 
@@ -550,8 +556,21 @@ const updateCommentFromPosts = async (req, res) => {
     }
 
     return res.status(500).json({
-      message: `We could not update the comment: ${req.params.commentId} from the post id: ${req.params.id} . Please try again later`,
-      details: 'Only the creator of the comment can update it.',
+      message: 'We could not update the comment. Please, try again later',
+    });
+  } catch (error) {
+    return res.status(500).json({ message: error.message });
+  }
+};
+
+const getAllPosts = async (req, res) => {
+  try {
+    const findAllPosts = await PostsSchema.find({})
+      .sort({ updatedAt: 'asc' })
+      .select('-userId');
+    return res.status(200).json({
+      message: 'Here is your feed:',
+      findAllPosts,
     });
   } catch (error) {
     return res.status(500).json({ message: error.message });
@@ -570,4 +589,5 @@ module.exports = {
   commentPosts,
   deleteCommentFromPosts,
   updateCommentFromPosts,
+  getAllPosts,
 };

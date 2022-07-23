@@ -2,7 +2,7 @@ const express = require('express');
 
 const router = express.Router();
 
-const controller = require('../../controllers/plataform/classroomController');
+const controller = require('../../controllers/platform/classroomController');
 
 const { checkAuth } = require('../../middlewares/auth');
 

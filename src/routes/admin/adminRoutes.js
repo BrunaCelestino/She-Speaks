@@ -4,7 +4,7 @@ const router = express.Router();
 
 const controller = require('../../controllers/admin/adminController');
 
-const { validateEmailPasswordUsername, hashPassword } = require('../../helpers/authentication');
+const { validateEmailPasswordUsername, hashPassword } = require('../../helpers/validationHelpers');
 
 router.post('/new', validateEmailPasswordUsername, hashPassword, controller.createNewAdmin);
 router.put('/update/:id', validateEmailPasswordUsername, hashPassword, controller.updateAdmin);

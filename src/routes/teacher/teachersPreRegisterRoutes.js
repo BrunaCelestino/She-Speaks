@@ -3,7 +3,7 @@ const express = require('express');
 const router = express.Router();
 
 const controller = require('../../controllers/teacher/teachersPreRegisterController');
-const { validateCPF } = require('../../helpers/authentication');
+const { validateCPF } = require('../../helpers/validationHelpers');
 const { checkAuthAndPermissionPreRegister, checkAuthAndAdminPermission } = require('../../middlewares/auth');
 
 router.post('/new-pre-register', validateCPF, controller.createNewTeacherPreRegister);

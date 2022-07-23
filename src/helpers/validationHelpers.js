@@ -50,7 +50,7 @@ exports.validateCPF = async (req, res, next) => {
     if (rest === 10 || rest === 11) rest = 0;
     if (rest !== parseInt(strCPF.substring(9, 10), 10)) {
       return res.status(422).json({
-        message: 'Invalid CPF number. Please, check it and try again1.',
+        message: 'Invalid CPF number. Please, check it and try again.',
         details: 'This is not an acceptable CPF format.',
       });
     }
