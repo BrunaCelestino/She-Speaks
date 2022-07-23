@@ -1,8 +1,8 @@
 const express = require('express');
 
 const app = express();
-
 const cors = require('cors');
+const swaggerUI = require('swagger-ui-express');
 
 app.use(cors());
 
@@ -12,6 +12,7 @@ const db = require('./database/mongoConfig');
 
 db.connect();
 
+const swaggerDocument = require('./swagger.json');
 const adminRoutes = require('./routes/admin/adminRoutes');
 const studentsPreRegisterRoutes = require('./routes/student/studentsPreRegisterRoutes');
 const studentRoutes = require('./routes/student/studentRoutes');
@@ -31,5 +32,6 @@ app.use('/admin', adminRoutes);
 app.use('/platform', platformRoutes, postRoutes, messagesRoutes, friendsListRoutes, classroomRoutes);
 app.use('/student', studentRoutes, studentsPreRegisterRoutes);
 app.use('/teacher', teachersPreRegisterRoutes, teacherRoutes);
+app.use('/api-docs', swaggerUI.serve, swaggerUI.setup(swaggerDocument));
 
 module.exports = app;
