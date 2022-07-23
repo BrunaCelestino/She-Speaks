@@ -1,10 +1,10 @@
-# <div align = 'center'> SheSpeak! </div>
+# <div align = 'center'> SheSpeaks! </div>
 <br>
 
 <div align ='justify'>
 
 ## Tema 
-SheSpeak! é uma API que reúne professoras de idiomas que gostariam de se voluntariar e mulheres de baixa renda que tenham interesse em aprender um novo idioma. Essa API será um espaço seguro, onde aceitará apenas a participação de mulheres, tanto como alunas quanto como professoras. 
+SheSpeaks! é uma API que reúne professoras de idiomas que gostariam de se voluntariar e mulheres de baixa renda que tenham interesse em aprender um novo idioma. Essa API será um espaço seguro, onde aceitará apenas a participação de mulheres, tanto como alunas quanto como professoras. 
 <br>
 
 ## Introdução
@@ -15,7 +15,7 @@ Em nosso país, viver é caro. Contas absurdas, alimentação, aluguel, filhos, 
 <br>
 
 ## Objetivo
-A SheSpeak! tem como objetivo tornar possível que mulheres que não possam dispor de investimentos, possam aprender um novo idioma. Através dessa iniciativa, espera-se que elas possam alcançar melhores oportunidades no mercado de trabalho, ou apenas desenvolver um novo hobby, afinal, com tantas demandas, elas merecem ter um momento de descompressão e lazer. 
+A SheSpeaks! tem como objetivo tornar possível que mulheres que não possam dispor de investimentos, possam aprender um novo idioma. Através dessa iniciativa, espera-se que elas possam alcançar melhores oportunidades no mercado de trabalho, ou apenas desenvolver um novo hobby, afinal, com tantas demandas, elas merecem ter um momento de descompressão e lazer. 
 <br>
 
 ## Descrição
