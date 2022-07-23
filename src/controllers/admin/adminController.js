@@ -10,7 +10,7 @@ const createNewAdmin = async (req, res) => {
   if (findAdminByEmail) {
     return res.status(409).json({
       message: 'The registration of a new admin have failed',
-      details: 'conflict',
+      details: 'Conflict',
     });
   }
 
@@ -138,7 +138,7 @@ const getOneAdminByEmail = async (req, res) => {
 
 const getAllAdmins = async (req, res) => {
   try {
-    return AdminSchema.find((error, admins) => {
+    AdminSchema.find((error, admins) => {
       if (error) {
         return res.status(500).json({
           message: error.message,
@@ -146,6 +146,7 @@ const getAllAdmins = async (req, res) => {
       }
       return res.status(200).json(admins);
     });
+    return res.status(500).json({ message: 'wr could not load the registers. Please, try again later ' });
   } catch (error) {
     return res.status(500).json({ message: error.message });
   }
