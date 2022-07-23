@@ -340,3 +340,4 @@ Futuramente, pretendo desenvolver o front-end para consumir essa API e também, 
 Dependências do Projeto: bcrypt, cors, dotenv-safe, express, jsonwebtoken, mongoose.
 Dependências de Desenvolvimento: eslint, prettier, jest, nodemon, supertest.
 </div>
+https://she-speaks.herokuapp.com/
