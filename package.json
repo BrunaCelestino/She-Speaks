@@ -1,7 +1,7 @@
 {
-  "name": "teste_back_end",
+  "name": "shespeaks",
   "version": "1.0.0",
-  "description": "back-end test ",
+  "description": "API que reúne professoras de idiomas que gostariam de se voluntariar e mulheres de baixa renda que tenham interesse em aprender um novo idioma. Essa API será um espaço seguro, onde aceitará apenas a participação de mulheres, tanto como alunas quanto como professoras.",
   "main": "server.js",
   "scripts": {
     "test": "jest",
@@ -10,15 +10,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/BrunaCelestino/teste-back-end.git"
+    "url": "git+https://github.com/BrunaCelestino/She-Speaks.git"
   },
   "author": "Bruna Celestino",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/BrunaCelestino/teste-back-end/issues"
+    "url": "https://github.com/BrunaCelestino/She-Speaks/issues"
   },
-  "homepage": "https://github.com/BrunaCelestino/teste-back-end#readme",
-  "eslintIgnore": ["admin.test.js", "volunteer.test.js"],
+  "homepage": "https://github.com/BrunaCelestino/She-Speaks#readme",
   "dependencies": {
     "bcrypt": "^5.0.1",
     "cors": "^2.8.5",
