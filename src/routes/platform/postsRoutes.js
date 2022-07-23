@@ -15,7 +15,7 @@ router.delete('/feed/post/commented-post/:id/remove-comment/:commentId', checkAu
 router.patch('/feed/post/commented-post/:id/update-comment/:commentId', checkAuth, controller.updateCommentFromPosts);
 router.patch('/feed/post/add-to-favorite/:id', checkAuth, controller.saveFavoritePosts);
 router.delete('/feed/post/remove-from-favorite/:id', checkAuth, controller.removeFavoritePosts);
-router.put('/feed/post/likes-dislikes/:id', checkAuthAndPermissionPosts, controller.likeOrDislikePosts);
+router.put('/feed/post/likes-dislikes/:id', checkAuth, controller.likeOrDislikePosts);
 router.get('/feed/post/:id', checkAuth, controller.getPostsById);
 router.get('/feed', checkAuth, controller.getAllPosts);
 

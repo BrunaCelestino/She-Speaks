@@ -51,6 +51,7 @@ const createPosts = async (req, res) => {
     return res.status(500).json({ message: error.message });
   }
 };
+
 const getPostsById = async (req, res) => {
   try {
     const postFound = await PostsSchema.findById(req.params.id).select(
@@ -176,7 +177,7 @@ const likeOrDislikePosts = async (req, res) => {
       });
     }
 
-    if (likes === 'true') {
+    if (likes === true) {
       postFound.likes += 1;
       postFound.clicks += 1;
 
@@ -187,7 +188,7 @@ const likeOrDislikePosts = async (req, res) => {
         postFound,
       });
     }
-    if (dislikes === 'true') {
+    if (dislikes === true) {
       postFound.dislikes += 1;
       postFound.clicks += 1;
 
@@ -221,7 +222,12 @@ const saveFavoritePosts = async (req, res) => {
     const postFound = await PostsSchema.findById(req.params.id).select(
       '-userId',
     );
-
+    if (!postFound) {
+      return res.status(404).json({
+        message: 'You could not add this post to your favorites',
+        details: 'Not Found',
+      });
+    }
     if (findTeacher === null && findStudent === null) {
       return res.status(403).json({
         message: 'You cannot access this route',
@@ -232,46 +238,51 @@ const saveFavoritePosts = async (req, res) => {
     if (findTeacher) {
       const { favorites } = findTeacher;
 
-      const checkIfPostIsFavorite = favorites.find(
-        (post) => post._id.toString() === req.params.id.toString(),
-      );
+      if (favorites.length > 0) {
+        const checkIfPostIsFavorite = favorites.find(
+          (post) => post._id.toString() === req.params.id.toString(),
+        );
 
-      if (checkIfPostIsFavorite) {
-        return res.status(409).json({
-          message: 'You cannot add this post to your favorites',
-          details: 'Forbidden',
-        });
+        if (checkIfPostIsFavorite) {
+          return res.status(409).json({
+            message: 'You cannot add this post to your favorites',
+            details: 'Conflict',
+          });
+        }
       }
 
       findTeacher.favorites.push(postFound);
-      await findTeacher.save();
       postFound.clicks += 1;
       await postFound.save();
+      await findTeacher.save();
 
+      const findProfile = await TeacherSchema.find(findTeacher);
       return res.status(200).json({
         message: 'Post successfuly added to your favorites!.',
-        findTeacher,
+        findProfile,
       });
     }
 
     if (findStudent) {
       const { favorites } = findStudent;
 
-      const checkIfPostIsFavorite = favorites.find(
-        (post) => post._id.toString() === req.params.id.toString(),
-      );
+      if (favorites.length > 0) {
+        const checkIfPostIsFavorite = favorites.find(
+          (post) => post._id.toString() === req.params.id.toString(),
+        );
 
-      if (!checkIfPostIsFavorite) {
-        return res.status(404).json({
-          message: 'You could not add the post to your favorites.',
-          details: 'Not Found',
-        });
+        if (checkIfPostIsFavorite) {
+          return res.status(409).json({
+            message: 'You could not add the post to your favorites.',
+            details: 'Conflict',
+          });
+        }
       }
 
       findStudent.favorites.push(postFound);
-      await findStudent.save();
       postFound.clicks += 1;
       await postFound.save();
+      await findStudent.save();
 
       const findProfile = await StudentSchema.find(findStudent);
       return res.status(200).json({
@@ -310,7 +321,7 @@ const removeFavoritePosts = async (req, res) => {
         (post) => post._id.toString() === req.params.id.toString(),
       );
 
-      if (!checkIfPostIsFavorite) {
+      if (checkIfPostIsFavorite === -1) {
         return res.status(404).json({
           message: 'You could not remove the post from your favorites.',
           details: 'Not Found',
@@ -333,8 +344,7 @@ const removeFavoritePosts = async (req, res) => {
       const checkIfPostIsFavorite = favorites.findIndex(
         (post) => post._id.toString() === req.params.id.toString(),
       );
-
-      if (!checkIfPostIsFavorite) {
+      if (checkIfPostIsFavorite === -1) {
         return res.status(404).json({
           message: 'You could not remove the post from your favorites.',
           details: 'Not Found',
@@ -367,6 +377,13 @@ const commentPosts = async (req, res) => {
     const findTeacher = await TeacherSchema.findOne({ token: token });
     const findStudent = await StudentSchema.findOne({ token: token });
 
+    if (!findTeacher && !findStudent) {
+      return res.status(403).json({
+        message: 'You cannot access this route',
+        details: 'Forbidden',
+      });
+    }
+
     let username;
 
     if (findTeacher !== null) {
@@ -384,6 +401,13 @@ const commentPosts = async (req, res) => {
     const postFound = await PostsSchema.findById(req.params.id).select(
       '-userId',
     );
+
+    if (postFound === null) {
+      return res.status(404).json({
+        message: 'It was not possible to find this post',
+        details: 'Not Found',
+      });
+    }
 
     postFound.comments.push(newComment);
     postFound.clicks += 1;
@@ -407,6 +431,12 @@ const deleteCommentFromPosts = async (req, res) => {
     const findStudent = await StudentSchema.findOne({ token: token });
     const findAdmin = await AdminSchema.findOne({ token: token });
 
+    if (!findTeacher && !findStudent && !findAdmin) {
+      return res.status(403).json({
+        message: 'You cannot access this route',
+        details: 'Forbidden',
+      });
+    }
     const postFound = await PostsSchema.findById(req.params.id).select(
       '-userId',
     );
@@ -417,6 +447,12 @@ const deleteCommentFromPosts = async (req, res) => {
       });
     }
     const { comments } = postFound;
+    if (comments.length === 0) {
+      return res.status(404).json({
+        message: 'Fail to delete the comment',
+        details: 'Comment not found',
+      });
+    }
     const checkCommentId = comments.find(
       (comment) => comment._id.toString() === req.params.commentId.toString(),
     );

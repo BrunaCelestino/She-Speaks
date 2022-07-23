@@ -22,9 +22,11 @@ const postRoutes = require('./routes/platform/postsRoutes');
 const messagesRoutes = require('./routes/platform/messagesRoutes');
 const friendsListRoutes = require('./routes/platform/friendsListRoutes');
 const classroomRoutes = require('./routes/platform/classroomRoutes');
+const index = require('./routes/indexRoutes');
 
 app.use(express.json());
 
+app.use('/', index);
 app.use('/admin', adminRoutes);
 app.use('/platform', platformRoutes, postRoutes, messagesRoutes, friendsListRoutes, classroomRoutes);
 app.use('/student', studentRoutes, studentsPreRegisterRoutes);

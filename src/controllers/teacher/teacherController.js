@@ -88,6 +88,12 @@ const findProfileByUsername = async (req, res) => {
     const findAdmin = await AdminSchema.findOne({ token: token });
     const findTeacher = await TeacherSchema.findOne({ token: token });
 
+    if (!findTeacher && !findAdmin) {
+      return res.status(403).json({
+        message: 'You cannot access this route',
+        details: 'Forbidden',
+      });
+    }
     if (
       (findTeacher !== null && findTeacher.username !== req.params.username)
       || (findAdmin !== null && findAdmin.role !== 'admin')

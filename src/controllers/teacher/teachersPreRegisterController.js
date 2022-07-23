@@ -147,9 +147,10 @@ const getPreRegisterById = async (req, res) => {
   }
 };
 
+// eslint-disable-next-line consistent-return
 const getAllPreRegisters = async (req, res) => {
   try {
-    return TeacherPreRegisterSchema.find((error, preRegisters) => {
+    TeacherPreRegisterSchema.find((error, preRegisters) => {
       if (error) {
         return res.status(500).json({
           message: error.message,

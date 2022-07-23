@@ -193,11 +193,11 @@ const getAllProfiles = async (req, res) => {
       }
     }
     const studentFound = await StudentSchema.find().select(
-      '-_id -preRegister -freeDaysOfWeek -timeOfTheDay -email -password -token -createdAt -updatedAt -__v -favorites',
+      '-_id -preRegister -freeDaysOfWeek -timeOfTheDay -email -password -token -createdAt -updatedAt -__v -favorites -messages',
     );
 
     const teacherFound = await TeacherSchema.find().select(
-      '-_id -preRegister -email -password -token -createdAt -updatedAt -__v -favorites',
+      '-_id -preRegister -email -password -token -createdAt -updatedAt -__v -favorites -messages',
     );
     if (studentFound === null && teacherFound === null) {
       return res.status(404).json({

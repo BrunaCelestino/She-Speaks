@@ -16,6 +16,12 @@ const createMessages = async (req, res) => {
     const findStudent = await StudentSchema.findOne({ token: token });
     const findAdmin = await AdminSchema.findOne({ token: token });
 
+    if (findTeacher === null && findStudent === null && findAdmin === null) {
+      return res.status(403).json({
+        message: 'You cannot access this route',
+        details: 'Forbidden',
+      });
+    }
     let sender;
     let role;
     let mailbox;
@@ -24,12 +30,13 @@ const createMessages = async (req, res) => {
     const studentReceiver = await StudentSchema.findOne({ username: to });
     const adminReceiver = await AdminSchema.findOne({ email: to });
 
-    if (findTeacher === null && findStudent === null && findAdmin === null) {
-      return res.status(403).json({
-        message: 'You cannot access this route',
-        details: 'Forbidden',
+    if (teacherReceiver === null && studentReceiver === null && adminReceiver === null) {
+      return res.status(404).json({
+        message: 'Could not send the message',
+        details: 'User Not Found',
       });
     }
+
     if (findTeacher) {
       sender = findTeacher.username;
       role = findTeacher.role;

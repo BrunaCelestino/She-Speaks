@@ -136,6 +136,7 @@ const getOneAdminByEmail = async (req, res) => {
   }
 };
 
+// eslint-disable-next-line consistent-return
 const getAllAdmins = async (req, res) => {
   try {
     AdminSchema.find((error, admins) => {
@@ -146,7 +147,6 @@ const getAllAdmins = async (req, res) => {
       }
       return res.status(200).json(admins);
     });
-    return res.status(500).json({ message: 'wr could not load the registers. Please, try again later ' });
   } catch (error) {
     return res.status(500).json({ message: error.message });
   }

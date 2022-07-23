@@ -25,6 +25,12 @@ exports.checkAuthAndPermissionLevel = async (req, res, next) => {
     const findAdmin = await AdminSchema.findOne({ token: token });
     const findTeacher = await TeacherSchema.findOne({ token: token });
 
+    if (!findTeacher && !findAdmin && !findStudent) {
+      return res.status(403).json({
+        message: 'You cannot access this route',
+        details: 'Forbidden',
+      });
+    }
     if (findStudent) {
       if (findStudent.id !== req.params.id) {
         return res.status(403).json({
@@ -75,6 +81,12 @@ exports.checkAuthAndPermissionPreRegister = async (req, res, next) => {
     const findAdmin = await AdminSchema.findOne({ token: token });
     const findTeacher = await TeacherSchema.findOne({ token: token });
 
+    if (!findTeacher && !findAdmin && !findStudent) {
+      return res.status(403).json({
+        message: 'You cannot access this route',
+        details: 'Forbidden',
+      });
+    }
     if (findStudent) {
       if (findStudent.preRegister.toString() !== req.params.id) {
         return res.status(403).json({
