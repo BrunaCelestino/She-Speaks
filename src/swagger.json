@@ -1,12 +1,1368 @@
 {
-  "openapi": "3.0.0",
+  "swagger": "2.0.0",
   "info": {
-    "title": "SheSpeaks!",
-    "version": "1.0.0",
-    "description": "SheSpeaks! é uma API que reúne professoras de idiomas que gostariam de se voluntariar e mulheres de baixa renda que tenham interesse em aprender um novo idioma. Essa API será um espaço seguro, onde aceitará apenas a participação de mulheres, tanto como alunas quanto como professoras."
+  "title": "SheSpeaks!",
+  "version": "1.0.0",
+  "description": "SheSpeaks! é uma API que reúne professoras de idiomas que gostariam de se voluntariar e mulheres de baixa renda que tenham interesse em aprender um novo idioma. Essa API será um espaço seguro, onde aceitará apenas a participação de mulheres, tanto como alunas quanto como professoras."
   },
   "servers": [
     { "url": "http://localhost:8099"},
     {"url":"https://she-speaks.herokuapp.com"}
-  ]
+  ],
+  "tags": [
+    {
+      "name": "Admin",
+      "description": "Using Admin routes"
+    },
+    {
+      "name": "Student",
+      "description": "Using Students routes"
+    },
+    {
+      "name": "Teacher",
+      "description": "Using Teacher routes"
+    },
+    {
+      "name": "Platform",
+      "description": "Using Platform routes"
+    }
+  ],
+  "definitions": {
+      "Admin": {
+        "type": "object",
+        "properties": {
+          "_id": {
+            "type": "string",
+            "default": "mongoose.Types.ObjectId"
+          },
+          "email": {
+            "type": "string",
+            "required": true
+
+          },
+          "name": {
+            "type": "string",
+            "required": true
+
+          },
+          "password": {
+            "type": "string",
+            "required": true
+
+          },
+          "role": {
+            "type": "string",
+            "default": "admin",
+            "required": true
+          },
+          "message": {
+            "type": ["object"]
+          },
+          "token": {
+            "type": "string"
+          }
+        }
+      },
+    "Student-PreRegister": {
+        "type": "object",
+        "properties": {
+          "_id": {
+            "type": "string",
+            "default": "mongoose.Types.ObjectId"
+          },
+          "fullName": {
+            "type": "string",
+            "required": true
+          },
+          "birthdate": {
+            "type": "string",
+            "required": true
+          },
+          "CPF": {
+            "type": "string",
+            "required": true,
+            "unique": true
+          },
+          "profession": {
+            "type": "string",
+            "required": true
+          },
+          "monthlyIncome": {
+            "type": "number",
+            "required": true
+          },
+          "gender": {
+            "type": "string",
+            "required": true,
+            "enum": {
+              "CISWOMAN": "cis woman",
+              "TRANSWOMAN": "trans woman"
+            }
+          },
+          "currentlyEmployed": {
+            "type": "boolean",
+            "required": true
+          },
+          "confirmInformation": {
+            "type": "boolean",
+            "required": true
+          },
+          "termsAndConditions": {
+            "type": "boolean",
+            "required": true
+          },
+          "applicationStatus": {
+            "type": "string",
+            "enum": ["pending", "approved", "under-review", "denied"],
+            "default": "pending"
+          }
+       }
+    },
+    "Student-Profile":{
+      "type": "object",
+      "properties": {
+        "_id": {
+          "type": "string",
+          "default": "mongoose.Types.ObjectId"
+        },
+        "profilePicture": {
+          "type": "string"
+        },
+        "username": {
+          "type": "string",
+          "required": true
+        },
+        "preRegister": {
+          "type": "string",
+          "required": true,
+          "ref": "student-pre-register"
+        },
+        "chosenLanguage": {
+          "type": "string",
+          "required": true,
+          "enum": ["english", "spanish", "german", "italian", "french", "other"]
+        },
+        "other": {
+          "type": "any",
+          "default": false
+        },
+        "languageLevel": {
+          "type": "string",
+          "required": true,
+          "enum": ["beginner", "elementary", "pre-Intermediate", "intermediate", "upper-Intermediate", "advanced", "proficient"]
+        },
+        "learningInterest": {
+          "type": ["string"],
+          "required": true,
+          "enum": ["grammar", "listening", "writing", "conversation"]
+        },
+        "freeDaysOfWeek": {
+          "type": ["string"],
+          "required": true,
+          "enum": ["sunday", "monday", "tuesday", "wednesday", "thursday", "friday", "saturday"]
+        },
+        "timeOfTheDay": {
+          "type": ["string"],
+          "required": true,
+          "enum": ["morning", "afternoon", "evening"]
+        },
+        "email": {
+          "type": "string",
+          "required": true,
+          "unique": true
+        },
+        "password": {
+          "type": "string",
+          "required": true
+        },
+        "classrooms": {
+          "type": "mongoose.Types.ObjectId",
+        " ref": "classroom"
+        },
+        "friendsList": {
+          "type": ["object"]
+        },
+        "role": {
+          "type": "string",
+          "required": true,
+          "default": "student"
+        },
+        "favorites": {
+          "type": ["object"]
+        },
+        "messages": {
+          "type": ["object"]
+
+        },
+        "token": {
+          "type": "string"
+        }
+      }
+    },
+    "Teacher-PreRegister":{
+      "type": "object",
+      "properties": {
+        "_id": {
+          "type": "string",
+          "default": "mongoose.Types.ObjectId"
+        },
+        "fullName": {
+          "type": "string",
+          "required": true
+        },
+        "birthdate": {
+          "type": "string",
+          "required": true
+        },
+        "CPF": {
+          "type": "string",
+          "required": true,
+          "unique": true
+        },
+        "profession": {
+          "type": "string",
+          "required": true
+        },
+        "timeOfExperience": {
+          "type": "string",
+          "required": true,
+          "enum": ["less than 1 year", "1 year", "2 years", "3 years", "more than 3 years"]
+        },
+        "gender": {
+          "type": "string",
+          "required": true,
+          "enum": {
+            "CISWOMAN": "cis woman",
+            "TRANSWOMAN": "trans woman"
+          }
+        },
+        "resume": {
+          "type": "string",
+          "required": true
+        },
+        "confirmInformation": {
+          "type": "boolean",
+          "required": true
+        },
+        "termsAndConditions": {
+          "type": "boolean",
+          "required": true
+        },
+        "applicationStatus": {
+          "type": "string",
+          "enum": ["pending", "approved", "under-review", "denied"],
+          "default": "pending"
+        }
+     }
+    },
+    "Teacher-Profile":{
+      "type": "object",
+      "properties": {
+        "_id": {
+          "type": "string",
+          "default": "mongoose.Types.ObjectId"
+        },
+        "profilePicture": {
+          "type": "string"
+        },
+        "username": {
+          "type": "string",
+          "required": true
+        },
+        "preRegister": {
+          "type": "string",
+          "required": true,
+          "ref": "teacher-pre-register"
+        },
+        "chosenLanguage": {
+          "type": "string",
+          "required": true,
+          "enum": ["english", "spanish", "german", "italian", "french", "other"]
+        },
+        "other": {
+          "type": "any",
+          "default": false
+        },
+        "LanguageLevelToTeach": {
+          "type": "string",
+          "required": true,
+          "enum": ["beginner", "elementary", "pre-Intermediate", "intermediate", "upper-Intermediate", "advanced", "proficient"]
+        },
+        "teachingInterest": {
+          "type": ["string"],
+          "required": true,
+          "enum": ["grammar", "listening", "writing", "conversation"]
+        },
+        "freeDaysOfWeek": {
+          "type": ["string"],
+          "required": true,
+          "enum": ["sunday", "monday", "tuesday", "wednesday", "thursday", "friday", "saturday"]
+        },
+        "timeOfTheDay": {
+          "type": ["string"],
+          "required": true,
+          "enum": ["morning", "afternoon", "evening"]
+        },
+        "email": {
+          "type": "string",
+          "required": true,
+          "unique": true
+        },
+        "password": {
+          "type": "string",
+          "required": true
+        },
+        "classrooms": {
+          "type": ["mongoose.Types.ObjectId"],
+        " ref": "classroom"
+      
+        },
+        "friendsList": {
+          "type": ["object"]
+        },
+        "role": {
+          "type": "string",
+          "required": true,
+          "default": "teacher"
+        },
+        "favorites": {
+          "type": ["object"]
+        },
+        "messages": {
+          "type": ["object"]
+
+        },
+        "token": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  "securitySchemes": {
+    "jwt": {
+      "type": "http",
+      "scheme": "bearer",
+      "in": "header",
+      "bearerFormat": "JWT"
+    }
+  },
+  "paths": {
+    "/admin/new": {
+      "post": {
+        "summary": "Register of a new Admin",
+        "description": "This route is responsible for creating a new Admin",
+        "tags": ["Admin"],
+        "parameters": [{
+          "in": "body",
+          "name": "body",
+          "required": true,
+          "schema": {
+            "type": "object",
+            "example": {
+                  "email": "brunaccelestino2012@gmail.com",
+                  "name": "Bruna",
+                  "password": "Fortes12@"
+                }
+          }
+          }],
+        "responses": {
+          "500": {
+            "description": "Internal Server Error"
+          },
+          "409": {
+            "description": "Conflict"
+          },
+          "201": {
+            "description": "Created"
+          }
+        }
+    }
+  },
+    "/admin/find-all-admins": {
+      "get": {
+        "summary": "Get all Admins",
+        "description": "This route finds all Admins",
+        "tags": ["Admin"],
+        "responses": {
+          "500": {
+            "description": "Internal Server Error"
+          },
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/admin/find-admin/{id}": {
+      "get": {
+        "summary": "Get an Admin by ID",
+        "description": "This route finds an Admin by the id",
+        "tags": ["Admin"],
+        "parameters": [{
+          "in": "path",
+          "name": "id",
+          "required": true,
+          "description": "Find Admin by ID",
+          "schema": {
+            "example": "62db6e5bf3081c1c7f631bef"
+          }
+        }],
+        "responses": {
+          "500": {
+            "description": "Internal Server Error"
+          },
+          "409": {
+            "description": "Conflict"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/admin/find-admin-by-email": {
+      "get": {
+        "summary": "Get an Admin by e-mail",
+        "description": "This route finds an Admin by the e-mail",
+        "tags": ["Admin"],
+        "parameters": [{
+          "in": "query",
+          "name": "email",
+          "required": true,
+          "description": "Find Admin by e-mail",
+          "schema": {
+            "example": "brunaccelestino@gmail.com"
+          }
+        }],
+        "responses": {
+          "500": {
+            "description": "Internal Server Error"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/admin/update/{id}": {
+      "put": {
+        "summary": "Updates an Admin by ID",
+        "description": "This route updates an Admin",
+        "tags": ["Admin"],
+        "parameters": [{
+          "in": "path",
+          "name": "id",
+          "required": true,
+          "description": "Find Admin by ID and Update",
+          "schema": {
+            "example": "62db6e5bf3081c1c7f631bef"
+          }
+        },
+        {
+          "in": "body",
+          "name": "body",
+          "required": true,
+            "schema": {
+              "type":"object",
+              "example":{
+                "email": "brunaccelestino2012@gmail.com"
+              }
+            }
+        }],
+
+        "responses": {
+          "500": {
+            "description": "Internal Server Error"
+          },
+          "409": {
+            "description": "Conflict"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/admin/delete/{id}": {
+      "delete": {
+        "summary": "Deletes an Admin by ID",
+        "description": "This route deletes an Admin",
+        "tags": ["Admin"],
+        "parameters": [{
+          "in": "path",
+          "name": "id",
+          "required": true,
+          "description": "Find Admin by ID and Delete",
+          "schema": {
+            "example": "62dc84bf0aeb862b174b2af8"
+          }
+        }],
+        "responses": {
+          "500": {
+            "description": "Internal Server Error"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/student/new-pre-register": {
+      "post": {
+        "summary": "New Student pre-register",
+        "description": "This route is responsible for creating a student pre-register",
+        "tags": ["Student"],
+        "parameters": [{
+          "in": "body",
+          "name": "body",
+          "required": true,
+              "schema": {
+                "type": "object",
+                "example": {
+                  "fullName": "Fernanda Maria",
+                  "birthdate": "03/04/1990",
+                  "CPF": "665.079.680-80",
+                  "profession":"nurse",
+                  "monthlyIncome": "1000",
+                  "gender": "cis woman",
+                  "currentlyEmployed": false,
+                  "confirmInformation": true,
+                  "termsAndConditions": true
+                }
+              }
+            }],
+        "responses": {
+          "500": {
+            "description": "Internal Server Error"
+          },
+          "409": {
+            "description": "Conflict"
+          },
+          "406": {
+            "description": "Not Acceptable"
+          },
+          "201": {
+            "description": "Created"
+          }
+        }
+      }
+    },
+    "/student/pre-register/{id}": {
+      "get": {
+        "summary": "Get a Student Pre-register by ID",
+        "description": "This route finds a Student Pre-register by id",
+        "tags": ["Student"],
+        "parameters": [{
+          "in": "path",
+          "name": "id",
+          "required": true,
+          "description": "Find Student Pre-register by ID",
+          "schema": {
+            "example": "62db6ec2f3081c1c7f631bf1"
+          }
+        }],
+        "responses": {
+          "500": {
+            "description": "Internal Server Error"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/student/all-pre-registers": {
+      "get": {
+        "security": [{
+          "jwt": []
+        }],
+        "summary": "Get all Student Pre-registers",
+        "description": "This route finds all Student Pre-registers",
+        "tags": ["Student"],
+        "parameters": [{
+          "in": "header",
+          "name": "Authorization",
+          "required": true,
+          "type": "string",
+          "description": "JWT Authorization Token",
+          "schema":{
+            "example":"Baerer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImJydW5hY2NlbGVzdGlub0BnbWFpbC5jb20iLCJpYXQiOjE2NTg1Nzk5Njh9.POfNTXXPKHe36otDS11A5Wt4wK1m3eRNXCrrE1541y0"
+          }
+        }],
+        "responses": {
+          "500": {
+            "description": "Internal Server Error"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+
+          "401": {
+            "description": "Unauthorized"
+          },
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/student/update-pre-register/{id}": {
+      "put": {
+        "security": [{
+          "jwt": []
+        }],
+        "summary": "Update Student Pre-register",
+        "description": "This route allows the Student Pre-register update",
+        "tags": ["Student"],
+        "parameters": [{
+          "in": "header",
+          "name": "Authorization",
+          "required": true,
+          "type": "string",
+          "description": "JWT Authorization Token",
+          "schema":{
+            "example":"Baerer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImJydW5hY2NlbGVzdGlub0BnbWFpbC5jb20iLCJpYXQiOjE2NTg1Nzk5Njh9.POfNTXXPKHe36otDS11A5Wt4wK1m3eRNXCrrE1541y0"
+          }
+        },
+        {
+          "in": "path",
+          "name": "id",
+          "required": true,
+          "description": "Find Student Pre-register by ID and Update",
+          "schema": {
+            "example": "62db6ec2f3081c1c7f631bf1"
+          }
+        },
+        {
+          "in": "body",
+          "name": "body",
+          "required": true,
+          "description": "Send data for the update",
+              "schema": {
+                "example": {
+                  "birthdate": "03/04/1991"
+                }
+              }
+            }
+      ],
+
+        "responses": {
+          "500": {
+            "description": "Internal Server Error"
+          },
+          "422": {
+            "description": "Unprocessable Entity"
+          },
+          "409": {
+            "description": "Conflict"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/student/delete-pre-register/{id}": {
+      "delete": {
+        "security": [{
+          "jwt": []
+        }],
+        "summary": "Delete Student Pre-register",
+        "description": "This route allows the Student Pre-register to be deleted",
+        "tags": ["Student"],
+        "parameters": [{
+          "in": "header",
+          "name": "Authorization",
+          "required": true,
+          "type": "string",
+          "description": "JWT Authorization Token",
+          "schema":{
+            "example":"Baerer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImJydW5hY2NlbGVzdGlub0BnbWFpbC5jb20iLCJpYXQiOjE2NTg1Nzk5Njh9.POfNTXXPKHe36otDS11A5Wt4wK1m3eRNXCrrE1541y0"
+          }
+        },
+        {
+          "in": "path",
+          "name": "id",
+          "required": true,
+          "description": "Find Student Pre-register by ID and Delete",
+          "schema": {
+            "example": "62dbf24ac3ed8067faac4e96"
+          }
+        }
+      ],
+
+        "responses": {
+          "500": {
+            "description": "Internal Server Error"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/student/new-student/{id}": {
+      "post": {
+        "summary": "New Student profile",
+        "description": "This route is responsible for creating a Student Profile",
+        "tags": ["Student"],
+        "parameters": [{
+          "in": "path",
+          "name": "id",
+          "required": true,
+          "description": "Find Student Pre-register by ID to create a new Student Profile",
+          "schema": {
+            "example": "62db6ec2f3081c1c7f631bf1"
+          }
+        },
+        {
+          "in": "body",
+          "name": "body",
+          "required": true,
+              "schema": {
+                "type": "object",
+                "example": {
+                    "profilePicture": "https://media-exp1.licdn.com/dms/image/C4D03AQFRMzvjdTk7Yw/profile-displayphoto-shrink_200_200/0/1650549116742?e=1663200000&v=beta&t=NkLQm4Gsesm5EQi7MG2Qk0u6oJURHGxE2sgdEekdke0",
+                    "username": "Brunastudent",
+                    "chosenLanguage":"english" ,
+                    "languageLevel": "beginner",
+                    "learningInterest": ["conversation"],
+                    "freeDaysOfWeek": ["monday"],
+                    "timeOfTheDay": ["afternoon"],
+                    "email": "brunaccelestino29@gmail.com",
+                    "password": "Fortes12@"
+                }
+              }
+            }],
+        "responses": {
+          "500": {
+            "description": "Internal Server Error"
+          },
+          "409": {
+            "description": "Conflict"
+          },
+          "406": {
+            "description": "Not Acceptable"
+          },
+          "201": {
+            "description": "Created"
+          }
+        }
+      }
+    },
+    "/student/profile/home/{username}": {
+      "get": {
+        "security": [{
+          "jwt": []
+        }],
+        "summary": "Get a Student Profile by username",
+        "description": "This route finds a Student Profile by username",
+        "tags": ["Student"],
+        "parameters": [{
+          "in": "header",
+          "name": "Authorization",
+          "required": true,
+          "type": "string",
+          "description": "JWT Authorization Token",
+          "schema":{
+            "example":"Baerer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImJydW5hY2NlbGVzdGlub0BnbWFpbC5jb20iLCJpYXQiOjE2NTg1Nzk5Njh9.POfNTXXPKHe36otDS11A5Wt4wK1m3eRNXCrrE1541y0"
+          }
+        },
+          {
+          "in": "path",
+          "name": "username",
+          "required": true,
+          "description": "Find Student Profile by Username",
+          "schema": {
+            "example": "fernandaStudent2"
+          }
+        }],
+        "responses": {
+          "500": {
+            "description": "Internal Server Error"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/student/profile/update/{id}": {
+      "put": {
+        "security": [{
+          "jwt": []
+        }],
+        "summary": "Update a Student Profile by ID",
+        "description": "This route finds a Student Profile by username and update",
+        "tags": ["Student"],
+        "parameters": [{
+          "in": "header",
+          "name": "Authorization",
+          "required": true,
+          "type": "string",
+          "description": "JWT Authorization Token",
+          "schema":{
+            "example":"Baerer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImJydW5hY2NlbGVzdGlub0BnbWFpbC5jb20iLCJpYXQiOjE2NTg1Nzk5Njh9.POfNTXXPKHe36otDS11A5Wt4wK1m3eRNXCrrE1541y0"
+          }
+        },
+          {
+          "in": "path",
+          "name": "id",
+          "required": true,
+          "description": "Find Student Profile by ID",
+          "schema": {
+            "example": "62dbfc936eec8760d52b058c"
+          }
+        },
+        {
+          "in": "body",
+          "name": "body",
+          "required": true,
+          "description": "Send data for the update",
+              "schema": {
+                "example": {
+                  "email": "brunaK@gmail.com"
+                }
+              }
+            }],
+        "responses": {
+          "500": {
+            "description": "Internal Server Error"
+          },
+          "409": {
+            "description": "Conflict"
+          },
+          "406": {
+            "description": "Not Acceptable"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/student/profile/delete/{id}": {
+      "delete": {
+        "security": [{
+          "jwt": []
+        }],
+        "summary": "Delete Student Profile",
+        "description": "This route allows the Student Profile to be deleted",
+        "tags": ["Student"],
+        "parameters": [{
+          "in": "header",
+          "name": "Authorization",
+          "required": true,
+          "type": "string",
+          "description": "JWT Authorization Token",
+          "schema":{
+            "example":"Baerer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImJydW5hY2NlbGVzdGlub0BnbWFpbC5jb20iLCJpYXQiOjE2NTg1Nzk5Njh9.POfNTXXPKHe36otDS11A5Wt4wK1m3eRNXCrrE1541y0"
+          }
+        },
+        {
+          "in": "path",
+          "name": "id",
+          "required": true,
+          "description": "Find Student Profile by ID and Delete",
+          "schema": {
+            "example": "62dbfc596eec8760d52b0582"
+          }
+        }
+      ],
+
+        "responses": {
+          "500": {
+            "description": "Internal Server Error"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/teacher/new-pre-register": {
+      "post": {
+        "summary": "New Teacher pre-register",
+        "description": "This route is responsible for creating a teacher pre-register",
+        "tags": ["Teacher"],
+        "parameters": [{
+          "in": "body",
+          "name": "body",
+          "required": true,
+              "schema": {
+                "type": "object",
+                "example": {
+                  "fullName": "Bruna Celestino",
+                  "birthdate": "09/10/1995",
+                  "CPF": "331.448.360-01",
+                  "profession":"back-end developer",
+                  "timeOfExperience": "more than 3 years",
+                  "gender": "cis woman",
+                  "resume": "cv-brunaCelestino",
+                  "confirmInformation": true,
+                  "termsAndConditions": true
+                }
+              }
+            }],
+        "responses": {
+          "500": {
+            "description": "Internal Server Error"
+          },
+          "409": {
+            "description": "Conflict"
+          },
+          "406": {
+            "description": "Not Acceptable"
+          },
+          "201": {
+            "description": "Created"
+          }
+        }
+      }
+    },
+    "/teacher/pre-register/{id}": {
+      "get": {
+        "summary": "Get a Teacher Pre-register by ID",
+        "description": "This route finds a Teacher Pre-register by id",
+        "tags": ["Teacher"],
+        "parameters": [{
+          "in": "path",
+          "name": "id",
+          "required": true,
+          "description": "Find Teacher Pre-register by ID",
+          "schema": {
+            "example": "62dce2618fe63e3fe0089e87"
+          }
+        }],
+        "responses": {
+          "500": {
+            "description": "Internal Server Error"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/teacher/all-pre-registers": {
+      "get": {
+        "security": [{
+          "jwt": []
+        }],
+        "summary": "Get all Teacher Pre-registers",
+        "description": "This route finds all Teacher Pre-registers",
+        "tags": ["Teacher"],
+        "parameters": [{
+          "in": "header",
+          "name": "Authorization",
+          "required": true,
+          "type": "string",
+          "description": "JWT Authorization Token",
+          "schema":{
+            "example":"Baerer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImJydW5hY2NlbGVzdGlub0BnbWFpbC5jb20iLCJpYXQiOjE2NTg1Nzk5Njh9.POfNTXXPKHe36otDS11A5Wt4wK1m3eRNXCrrE1541y0"
+          }
+        }],
+        "responses": {
+          "500": {
+            "description": "Internal Server Error"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+
+          "401": {
+            "description": "Unauthorized"
+          },
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/teacher/update-pre-register/{id}": {
+      "put": {
+        "security": [{
+          "jwt": []
+        }],
+        "summary": "Update Teacher Pre-register",
+        "description": "This route allows the Teacher Pre-register update",
+        "tags": ["Teacher"],
+        "parameters": [{
+          "in": "header",
+          "name": "Authorization",
+          "required": true,
+          "type": "string",
+          "description": "JWT Authorization Token",
+          "schema":{
+            "example":"Baerer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImJydW5hY2NlbGVzdGlub0BnbWFpbC5jb20iLCJpYXQiOjE2NTg1Nzk5Njh9.POfNTXXPKHe36otDS11A5Wt4wK1m3eRNXCrrE1541y0"
+          }
+        },
+        {
+          "in": "path",
+          "name": "id",
+          "required": true,
+          "description": "Find Teacher Pre-register by ID and Update",
+          "schema": {
+            "example": "62dce2618fe63e3fe0089e87"
+          }
+        },
+        {
+          "in": "body",
+          "name": "body",
+          "required": true,
+          "description": "Send data for the update",
+              "schema": {
+                "example": {
+                  "birthdate": "03/04/1991"
+                }
+              }
+            }
+      ],
+
+        "responses": {
+          "500": {
+            "description": "Internal Server Error"
+          },
+          "422": {
+            "description": "Unprocessable Entity"
+          },
+          "409": {
+            "description": "Conflict"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/teacher/delete-pre-register/{id}": {
+      "delete": {
+        "security": [{
+          "jwt": []
+        }],
+        "summary": "Delete Teacher Pre-register",
+        "description": "This route allows the Teacher Pre-register to be deleted",
+        "tags": ["Teacher"],
+        "parameters": [{
+          "in": "header",
+          "name": "Authorization",
+          "required": true,
+          "type": "string",
+          "description": "JWT Authorization Token",
+          "schema":{
+            "example":"Baerer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImJydW5hY2NlbGVzdGlub0BnbWFpbC5jb20iLCJpYXQiOjE2NTg1Nzk5Njh9.POfNTXXPKHe36otDS11A5Wt4wK1m3eRNXCrrE1541y0"
+          }
+        },
+        {
+          "in": "path",
+          "name": "id",
+          "required": true,
+          "description": "Find Teacher Pre-register by ID and Delete",
+          "schema": {
+            "example": "62dce2618fe63e3fe0089e87"
+          }
+        }
+      ],
+
+        "responses": {
+          "500": {
+            "description": "Internal Server Error"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/teacher/new-teacher/{id}": {
+      "post": {
+        "summary": "New Teacher profile",
+        "description": "This route is responsible for creating a Teacher Profile",
+        "tags": ["Teacher"],
+        "parameters": [{
+          "in": "path",
+          "name": "id",
+          "required": true,
+          "description": "Find Teacher Pre-register by ID to create a new Teacher Profile",
+          "schema": {
+            "example": "62dc0066f6dd7eea303344fd"
+          }
+        },
+        {
+          "in": "body",
+          "name": "body",
+          "required": true,
+              "schema": {
+                "type": "object",
+                "example": {
+                  "profilePicture": "link",
+                  "username": "BrunaTeacher22",
+                  "chosenLanguage": "english",
+                  "other": false,
+                  "LanguageLevelToTeach": "beginner",
+                  "teachingInterest": "conversation",
+                  "freeDaysOfWeek":["sunday"] ,
+                  "timeOfTheDay": ["afternoon"],
+                  "email": "brunaccelestino2x@gmail.com",
+                  "password": "Fortes12@"
+                }
+              }
+            }],
+        "responses": {
+          "500": {
+            "description": "Internal Server Error"
+          },
+          "409": {
+            "description": "Conflict"
+          },
+          "406": {
+            "description": "Not Acceptable"
+          },
+          "201": {
+            "description": "Created"
+          }
+        }
+      }
+    },
+    "/teacher/profile/home/{username}": {
+      "get": {
+        "security": [{
+          "jwt": []
+        }],
+        "summary": "Get a Teacher Profile by username",
+        "description": "This route finds a Teacher Profile by username",
+        "tags": ["Teacher"],
+        "parameters": [{
+          "in": "header",
+          "name": "Authorization",
+          "required": true,
+          "type": "string",
+          "description": "JWT Authorization Token",
+          "schema":{
+            "example":"Baerer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImJydW5hY2NlbGVzdGlub0BnbWFpbC5jb20iLCJpYXQiOjE2NTg1Nzk5Njh9.POfNTXXPKHe36otDS11A5Wt4wK1m3eRNXCrrE1541y0"
+          }
+        },
+          {
+          "in": "path",
+          "name": "username",
+          "required": true,
+          "description": "Find Teacher Profile by Username",
+          "schema": {
+            "example": "BrunaTeacher22"
+          }
+        }],
+        "responses": {
+          "500": {
+            "description": "Internal Server Error"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/teacher/profile/update/{id}": {
+      "put": {
+        "security": [{
+          "jwt": []
+        }],
+        "summary": "Update a Teacher Profile by ID",
+        "description": "This route finds a Teacher Profile by username and update",
+        "tags": ["Teacher"],
+        "parameters": [{
+          "in": "header",
+          "name": "Authorization",
+          "required": true,
+          "type": "string",
+          "description": "JWT Authorization Token",
+          "schema":{
+            "example":"Baerer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImJydW5hY2NlbGVzdGlub0BnbWFpbC5jb20iLCJpYXQiOjE2NTg1Nzk5Njh9.POfNTXXPKHe36otDS11A5Wt4wK1m3eRNXCrrE1541y0"
+          }
+        },
+          {
+          "in": "path",
+          "name": "id",
+          "required": true,
+          "description": "Find Teacher Profile by ID",
+          "schema": {
+            "example": "62dce46cba1322d56e0ddd47"
+          }
+        },
+        {
+          "in": "body",
+          "name": "body",
+          "required": true,
+          "description": "Send data for the update",
+              "schema": {
+                "example": {
+                  "email": "brunaxx@gmail.com"
+                }
+              }
+            }],
+        "responses": {
+          "500": {
+            "description": "Internal Server Error"
+          },
+          "409": {
+            "description": "Conflict"
+          },
+          "406": {
+            "description": "Not Acceptable"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/teacher/profile/delete/{id}": {
+      "delete": {
+        "security": [{
+          "jwt": []
+        }],
+        "summary": "Delete Teacher Profile",
+        "description": "This route allows the Teacher Profile to be deleted",
+        "tags": ["Teacher"],
+        "parameters": [{
+          "in": "header",
+          "name": "Authorization",
+          "required": true,
+          "type": "string",
+          "description": "JWT Authorization Token",
+          "schema":{
+            "example":"Baerer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImJydW5hY2NlbGVzdGlub0BnbWFpbC5jb20iLCJpYXQiOjE2NTg1Nzk5Njh9.POfNTXXPKHe36otDS11A5Wt4wK1m3eRNXCrrE1541y0"
+          }
+        },
+        {
+          "in": "path",
+          "name": "id",
+          "required": true,
+          "description": "Find Teacher Profile by ID and Delete",
+          "schema": {
+            "example": "62dce46cba1322d56e0ddd47"
+          }
+        }
+      ],
+
+        "responses": {
+          "500": {
+            "description": "Internal Server Error"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    }
+  }
 }
+
+
