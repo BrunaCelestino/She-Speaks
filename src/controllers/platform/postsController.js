@@ -89,7 +89,7 @@ const findMyPosts = async (req, res) => {
     if (findStudent) {
       const postFound = await PostsSchema.find({ userId: findStudent.id }).select('-userId');
 
-      if (!postFound) {
+      if (postFound.length === 0) {
         return res.status(404).json({
           message: 'It was not possible to find posts',
           details: 'Not Found',
@@ -104,7 +104,7 @@ const findMyPosts = async (req, res) => {
     if (findTeacher) {
       const postFound = await PostsSchema.find({ userId: findTeacher.id }).select('-userId');
 
-      if (!postFound) {
+      if (postFound.length === 0) {
         return res.status(404).json({
           message: 'It was not possible to find posts',
           details: 'Not Found',
@@ -168,6 +168,13 @@ const likeOrDislikePosts = async (req, res) => {
     const postFound = await PostsSchema.findById(req.params.id).select(
       '-userId',
     );
+
+    if (!postFound) {
+      return res.status(404).json({
+        message: 'Unable to complete the action.',
+        details: 'Not Found',
+      });
+    }
 
     if (likes && dislikes) {
       return res.status(409).json({
@@ -544,50 +551,52 @@ const updateCommentFromPosts = async (req, res) => {
     }
     const { comments } = postFound;
 
-    const checkCommentId = comments.find(
-      (comment) => comment._id.toString() === req.params.commentId.toString(),
-    );
-
-    if (checkCommentId === undefined) {
-      return res.status(404).json({
-        message: 'Fail to update the comment',
-        details: 'Comment Not Found',
-      });
-    }
-
-    if (findTeacher) {
-      if (findTeacher.username === checkCommentId.commentUsername) {
-        const index = comments.indexOf(checkCommentId);
-        comments.splice(index, 1, req.body.replyBody);
-
-        postFound.clicks += 1;
-        await postFound.save();
-
-        return res.status(200).json({
-          message: 'Comment successfully updated',
-          checkCommentId,
+    if (comments.length > 0) {
+      const checkCommentId = comments.find(
+        (comment) => comment._id.toString() === req.params.commentId.toString(),
+      );
+      if (checkCommentId === undefined) {
+        return res.status(404).json({
+          message: 'Fail to update the comment',
+          details: 'Comment Not Found',
         });
       }
-    }
+      if (findTeacher) {
+        if (findTeacher.username === checkCommentId.commentUsername) {
+          const index = comments.indexOf(checkCommentId);
+          const updatedComment = {
+            commentUsername: findTeacher.username,
+            replyBody: req.body.replyBody,
+            _id: req.params.commentId,
+          };
+          comments.splice(index, 1, updatedComment);
 
-    if (findStudent) {
-      if (findStudent.username === checkCommentId.commentUsername) {
-        const updatedComment = {
-          commentUsername: findStudent.username,
-          replyBody: req.body.replyBody,
-          _id: req.params.commentId,
-        };
+          postFound.clicks += 1;
+          await postFound.save();
 
-        const index = comments.indexOf(checkCommentId);
-        comments.splice(index, 1, updatedComment);
+          return res.status(200).json({
+            message: 'Comment successfully updated',
+            updatedComment,
+          });
+        }
+      }
+      if (findStudent) {
+        if (findStudent.username === checkCommentId.commentUsername) {
+          const updatedComment = {
+            commentUsername: findStudent.username,
+            replyBody: req.body.replyBody,
+            _id: req.params.commentId,
+          };
+          const index = comments.indexOf(checkCommentId);
+          comments.splice(index, 1, updatedComment);
+          postFound.clicks += 1;
 
-        postFound.clicks += 1;
-        await postFound.save();
-
-        return res.status(200).json({
-          message: 'Comment successfully updated',
-          updatedComment,
-        });
+          await postFound.save();
+          return res.status(200).json({
+            message: 'Comment successfully updated',
+            updatedComment,
+          });
+        }
       }
     }
 

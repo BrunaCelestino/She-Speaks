@@ -186,7 +186,7 @@ const findAllSentMessages = async (req, res) => {
     if (findTeacher) {
       const { messages } = findTeacher;
 
-      const findMessage = messages.find(
+      const findMessage = messages.filter(
         (message) => message.from === findTeacher.username,
       );
       if (!findMessage) {
@@ -203,7 +203,7 @@ const findAllSentMessages = async (req, res) => {
     if (findStudent) {
       const { messages } = findStudent;
 
-      const findMessage = messages.find(
+      const findMessage = messages.filter(
         (message) => message.from === findStudent.username,
       );
       if (!findMessage) {
@@ -218,7 +218,7 @@ const findAllSentMessages = async (req, res) => {
     }
     if (findAdmin) {
       const { messages } = findAdmin;
-      const findMessage = messages.find(
+      const findMessage = messages.filter(
         (message) => message.from === findAdmin.email,
       );
       if (!findMessage) {
@@ -259,7 +259,7 @@ const findAllReceivedMessages = async (req, res) => {
     if (findTeacher) {
       const { messages } = findTeacher;
 
-      const findMessage = messages.find(
+      const findMessage = messages.filter(
         (message) => message.to === findTeacher.username,
       );
       if (!findMessage) {
@@ -276,7 +276,7 @@ const findAllReceivedMessages = async (req, res) => {
     if (findStudent) {
       const { messages } = findStudent;
 
-      const findMessage = messages.find(
+      const findMessage = messages.filter(
         (message) => message.to === findStudent.username,
       );
       if (!findMessage) {
@@ -293,7 +293,7 @@ const findAllReceivedMessages = async (req, res) => {
     if (findAdmin) {
       const { messages } = findAdmin;
 
-      const findMessage = messages.find(
+      const findMessage = messages.filter(
         (message) => message.to === findAdmin.email,
       );
       if (!findMessage) {
@@ -333,7 +333,7 @@ const findAllUnreadMessages = async (req, res) => {
     if (findTeacher) {
       const { messages } = findTeacher;
 
-      const findMessage = messages.find(
+      const findMessage = messages.filter(
         (message) => message.read === false && message.to === findTeacher.username,
       );
       if (!findMessage) {
@@ -350,7 +350,7 @@ const findAllUnreadMessages = async (req, res) => {
     if (findStudent) {
       const { messages } = findStudent;
 
-      const findMessage = messages.find(
+      const findMessage = messages.filter(
         (message) => message.read === false && message.to === findStudent.username,
       );
 
@@ -368,7 +368,7 @@ const findAllUnreadMessages = async (req, res) => {
     if (findAdmin) {
       const { messages } = findAdmin;
 
-      const findMessage = messages.find(
+      const findMessage = messages.filter(
         (message) => message.read === false && message.to === findAdmin.username,
       );
 
@@ -410,7 +410,7 @@ const findAllReadMessages = async (req, res) => {
     if (findTeacher) {
       const { messages } = findTeacher;
 
-      const findMessage = messages.find(
+      const findMessage = messages.filter(
         (message) => message.read === true && message.to === findTeacher.username,
       );
       if (!findMessage) {
@@ -427,7 +427,7 @@ const findAllReadMessages = async (req, res) => {
     if (findStudent) {
       const { messages } = findStudent;
 
-      const findMessage = messages.find(
+      const findMessage = messages.filter(
         (message) => message.read === true && message.to === findStudent.username,
       );
 
@@ -444,7 +444,7 @@ const findAllReadMessages = async (req, res) => {
     if (findAdmin) {
       const { messages } = findAdmin;
 
-      const findMessage = messages.find(
+      const findMessage = messages.filter(
         (message) => message.read === true && message.to === findAdmin.username,
       );
       if (!findMessage) {
