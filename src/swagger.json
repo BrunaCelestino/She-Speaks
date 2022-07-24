@@ -1,15 +1,23 @@
 {
   "swagger": "2.0.0",
   "info": {
-  "title": "SheSpeaks!",
-  "version": "1.0.0",
-  "description": "SheSpeaks! é uma API que reúne professoras de idiomas que gostariam de se voluntariar e mulheres de baixa renda que tenham interesse em aprender um novo idioma. Essa API será um espaço seguro, onde aceitará apenas a participação de mulheres, tanto como alunas quanto como professoras."
+    "title": "SheSpeaks!",
+    "version": "1.0.0",
+    "description": "SheSpeaks! é uma API que reúne professoras de idiomas que gostariam de se voluntariar e mulheres de baixa renda que tenham interesse em aprender um novo idioma. Essa API será um espaço seguro, onde aceitará apenas a participação de mulheres, tanto como alunas quanto como professoras."
   },
   "servers": [
-    { "url": "http://localhost:8099"},
-    {"url":"https://she-speaks.herokuapp.com"}
+    {
+      "url": "http://localhost:8099"
+    },
+    {
+      "url": "https://she-speaks.herokuapp.com"
+    }
   ],
   "tags": [
+    {
+      "name": "SheSpeaks!",
+      "description": "Initial route"
+    },
     {
       "name": "Admin",
       "description": "Using Admin routes"
@@ -28,97 +36,101 @@
     }
   ],
   "definitions": {
-      "Admin": {
-        "type": "object",
-        "properties": {
-          "_id": {
-            "type": "string",
-            "default": "mongoose.Types.ObjectId"
-          },
-          "email": {
-            "type": "string",
-            "required": true
-
-          },
-          "name": {
-            "type": "string",
-            "required": true
-
-          },
-          "password": {
-            "type": "string",
-            "required": true
-
-          },
-          "role": {
-            "type": "string",
-            "default": "admin",
-            "required": true
-          },
-          "message": {
-            "type": ["object"]
-          },
-          "token": {
-            "type": "string"
-          }
+    "Admin": {
+      "type": "object",
+      "properties": {
+        "_id": {
+          "type": "string",
+          "default": "mongoose.Types.ObjectId"
+        },
+        "email": {
+          "type": "string",
+          "required": true
+        },
+        "name": {
+          "type": "string",
+          "required": true
+        },
+        "password": {
+          "type": "string",
+          "required": true
+        },
+        "role": {
+          "type": "string",
+          "default": "admin",
+          "required": true
+        },
+        "message": {
+          "type": [
+            "object"
+          ]
+        },
+        "token": {
+          "type": "string"
         }
-      },
-    "Student-PreRegister": {
-        "type": "object",
-        "properties": {
-          "_id": {
-            "type": "string",
-            "default": "mongoose.Types.ObjectId"
-          },
-          "fullName": {
-            "type": "string",
-            "required": true
-          },
-          "birthdate": {
-            "type": "string",
-            "required": true
-          },
-          "CPF": {
-            "type": "string",
-            "required": true,
-            "unique": true
-          },
-          "profession": {
-            "type": "string",
-            "required": true
-          },
-          "monthlyIncome": {
-            "type": "number",
-            "required": true
-          },
-          "gender": {
-            "type": "string",
-            "required": true,
-            "enum": {
-              "CISWOMAN": "cis woman",
-              "TRANSWOMAN": "trans woman"
-            }
-          },
-          "currentlyEmployed": {
-            "type": "boolean",
-            "required": true
-          },
-          "confirmInformation": {
-            "type": "boolean",
-            "required": true
-          },
-          "termsAndConditions": {
-            "type": "boolean",
-            "required": true
-          },
-          "applicationStatus": {
-            "type": "string",
-            "enum": ["pending", "approved", "under-review", "denied"],
-            "default": "pending"
-          }
-       }
+      }
     },
-    "Student-Profile":{
+    "Student-PreRegister": {
+      "type": "object",
+      "properties": {
+        "_id": {
+          "type": "string",
+          "default": "mongoose.Types.ObjectId"
+        },
+        "fullName": {
+          "type": "string",
+          "required": true
+        },
+        "birthdate": {
+          "type": "string",
+          "required": true
+        },
+        "CPF": {
+          "type": "string",
+          "required": true,
+          "unique": true
+        },
+        "profession": {
+          "type": "string",
+          "required": true
+        },
+        "monthlyIncome": {
+          "type": "number",
+          "required": true
+        },
+        "gender": {
+          "type": "string",
+          "required": true,
+          "enum": {
+            "CISWOMAN": "cis woman",
+            "TRANSWOMAN": "trans woman"
+          }
+        },
+        "currentlyEmployed": {
+          "type": "boolean",
+          "required": true
+        },
+        "confirmInformation": {
+          "type": "boolean",
+          "required": true
+        },
+        "termsAndConditions": {
+          "type": "boolean",
+          "required": true
+        },
+        "applicationStatus": {
+          "type": "string",
+          "enum": [
+            "pending",
+            "approved",
+            "under-review",
+            "denied"
+          ],
+          "default": "pending"
+        }
+      }
+    },
+    "Student-Profile": {
       "type": "object",
       "properties": {
         "_id": {
@@ -140,7 +152,14 @@
         "chosenLanguage": {
           "type": "string",
           "required": true,
-          "enum": ["english", "spanish", "german", "italian", "french", "other"]
+          "enum": [
+            "english",
+            "spanish",
+            "german",
+            "italian",
+            "french",
+            "other"
+          ]
         },
         "other": {
           "type": "any",
@@ -149,22 +168,53 @@
         "languageLevel": {
           "type": "string",
           "required": true,
-          "enum": ["beginner", "elementary", "pre-Intermediate", "intermediate", "upper-Intermediate", "advanced", "proficient"]
+          "enum": [
+            "beginner",
+            "elementary",
+            "pre-Intermediate",
+            "intermediate",
+            "upper-Intermediate",
+            "advanced",
+            "proficient"
+          ]
         },
         "learningInterest": {
-          "type": ["string"],
+          "type": [
+            "string"
+          ],
           "required": true,
-          "enum": ["grammar", "listening", "writing", "conversation"]
+          "enum": [
+            "grammar",
+            "listening",
+            "writing",
+            "conversation"
+          ]
         },
         "freeDaysOfWeek": {
-          "type": ["string"],
+          "type": [
+            "string"
+          ],
           "required": true,
-          "enum": ["sunday", "monday", "tuesday", "wednesday", "thursday", "friday", "saturday"]
+          "enum": [
+            "sunday",
+            "monday",
+            "tuesday",
+            "wednesday",
+            "thursday",
+            "friday",
+            "saturday"
+          ]
         },
         "timeOfTheDay": {
-          "type": ["string"],
+          "type": [
+            "string"
+          ],
           "required": true,
-          "enum": ["morning", "afternoon", "evening"]
+          "enum": [
+            "morning",
+            "afternoon",
+            "evening"
+          ]
         },
         "email": {
           "type": "string",
@@ -177,10 +227,12 @@
         },
         "classrooms": {
           "type": "mongoose.Types.ObjectId",
-        " ref": "classroom"
+          " ref": "classroom"
         },
         "friendsList": {
-          "type": ["object"]
+          "type": [
+            "object"
+          ]
         },
         "role": {
           "type": "string",
@@ -188,18 +240,21 @@
           "default": "student"
         },
         "favorites": {
-          "type": ["object"]
+          "type": [
+            "object"
+          ]
         },
         "messages": {
-          "type": ["object"]
-
+          "type": [
+            "object"
+          ]
         },
         "token": {
           "type": "string"
         }
       }
     },
-    "Teacher-PreRegister":{
+    "Teacher-PreRegister": {
       "type": "object",
       "properties": {
         "_id": {
@@ -226,7 +281,13 @@
         "timeOfExperience": {
           "type": "string",
           "required": true,
-          "enum": ["less than 1 year", "1 year", "2 years", "3 years", "more than 3 years"]
+          "enum": [
+            "less than 1 year",
+            "1 year",
+            "2 years",
+            "3 years",
+            "more than 3 years"
+          ]
         },
         "gender": {
           "type": "string",
@@ -250,12 +311,17 @@
         },
         "applicationStatus": {
           "type": "string",
-          "enum": ["pending", "approved", "under-review", "denied"],
+          "enum": [
+            "pending",
+            "approved",
+            "under-review",
+            "denied"
+          ],
           "default": "pending"
         }
-     }
+      }
     },
-    "Teacher-Profile":{
+    "Teacher-Profile": {
       "type": "object",
       "properties": {
         "_id": {
@@ -277,7 +343,14 @@
         "chosenLanguage": {
           "type": "string",
           "required": true,
-          "enum": ["english", "spanish", "german", "italian", "french", "other"]
+          "enum": [
+            "english",
+            "spanish",
+            "german",
+            "italian",
+            "french",
+            "other"
+          ]
         },
         "other": {
           "type": "any",
@@ -286,22 +359,53 @@
         "LanguageLevelToTeach": {
           "type": "string",
           "required": true,
-          "enum": ["beginner", "elementary", "pre-Intermediate", "intermediate", "upper-Intermediate", "advanced", "proficient"]
+          "enum": [
+            "beginner",
+            "elementary",
+            "pre-Intermediate",
+            "intermediate",
+            "upper-Intermediate",
+            "advanced",
+            "proficient"
+          ]
         },
         "teachingInterest": {
-          "type": ["string"],
+          "type": [
+            "string"
+          ],
           "required": true,
-          "enum": ["grammar", "listening", "writing", "conversation"]
+          "enum": [
+            "grammar",
+            "listening",
+            "writing",
+            "conversation"
+          ]
         },
         "freeDaysOfWeek": {
-          "type": ["string"],
+          "type": [
+            "string"
+          ],
           "required": true,
-          "enum": ["sunday", "monday", "tuesday", "wednesday", "thursday", "friday", "saturday"]
+          "enum": [
+            "sunday",
+            "monday",
+            "tuesday",
+            "wednesday",
+            "thursday",
+            "friday",
+            "saturday"
+          ]
         },
         "timeOfTheDay": {
-          "type": ["string"],
+          "type": [
+            "string"
+          ],
           "required": true,
-          "enum": ["morning", "afternoon", "evening"]
+          "enum": [
+            "morning",
+            "afternoon",
+            "evening"
+          ]
         },
         "email": {
           "type": "string",
@@ -313,12 +417,15 @@
           "required": true
         },
         "classrooms": {
-          "type": ["mongoose.Types.ObjectId"],
-        " ref": "classroom"
-      
+          "type": [
+            "mongoose.Types.ObjectId"
+          ],
+          " ref": "classroom"
         },
         "friendsList": {
-          "type": ["object"]
+          "type": [
+            "object"
+          ]
         },
         "role": {
           "type": "string",
@@ -326,14 +433,246 @@
           "default": "teacher"
         },
         "favorites": {
-          "type": ["object"]
+          "type": [
+            "object"
+          ]
         },
         "messages": {
-          "type": ["object"]
-
+          "type": [
+            "object"
+          ]
         },
         "token": {
           "type": "string"
+        }
+      }
+    },
+    "Notifications": {
+      "type": "object",
+      "properties": {
+        "_id": {
+          "type": "string",
+          "default": "mongoose.Types.ObjectId"
+        },
+        "requester": {
+          "type": "string",
+          "required": true
+        },
+        "requested": {
+          "type": "string",
+          "required": true
+        },
+        "requestType": {
+          "type": "string",
+          "enum": [
+            "message",
+            "friendRequest"
+          ],
+          "required": true
+        },
+        "description": {
+          "type": "string",
+          "required": true
+        },
+        "requestStatus": {
+          "type": "string",
+          "enum": [
+            "sent",
+            "accepted",
+            "denied"
+          ],
+          "required": true,
+          "default": "sent"
+        }
+      }
+    },
+    "Posts": {
+      "type": "object",
+      "properties": {
+        "_id": {
+          "type": "string",
+          "default": "mongoose.Types.ObjectId"
+        },
+        "userId": {
+          "type": "mongoose.Types.ObjectId",
+          "required": true
+        },
+        "author": {
+          "type": "string",
+          "required": true
+        },
+        "body": {
+          "type": "string",
+          "required": true
+        },
+        "attachments": {
+          "type": ["string"]
+        },
+        "clicks": {
+          "type": "number",
+          "default": 0
+        },
+        "likes": {
+          "type": "number",
+          "default": 0
+        },
+        "dislikes": {
+          "type": "number",
+          "default": 0
+        },
+        "comments": [
+          {
+            "_id": {
+              "type": "mongoose.Types.ObjectId",
+              "default": "mongoose.Types.ObjectId"
+            },
+            "commentUsername": {
+              "type": "string",
+              "required": true
+            },
+            "replyBody": {
+              "type": "string",
+              "required": true
+            }
+          }
+        ]
+      }
+    },
+    "Messages": {
+      "type": "object",
+      "properties": {
+        "_id": {
+          "type": "string",
+          "default": "mongoose.Types.ObjectId"
+        },
+        "from": {
+          "type": "string",
+          "required": true
+        },
+        "role": {
+          "type": "string",
+          "required": true
+        },
+        "to": {
+          "type": "string",
+          "required": true
+        },
+        "body": {
+          "type": "string",
+          "required": true
+        },
+        "attachments": {
+          "type": ["string"]
+        },
+        "read": {
+          "type": "boolean",
+          "default": false
+        }
+      }
+    },
+    "Classroom": {
+      "type": "object",
+      "properties": {
+        "_id": {
+          "type": "string",
+          "default": "mongoose.Types.ObjectId"
+        },
+        "classroomName": {
+          "type": "string",
+          "required": true
+        },
+        "classroomIcon": {
+          "type": "string"
+        },
+        "teacher": {
+          "type": "string",
+          "required": true
+        },
+        "classLink": {
+          "type": ["string"],
+          "required": true
+        },
+        "description": {
+          "type": "string"
+        },
+        "limitOfStudents": {
+          "type": "number",
+          "required": true
+        },
+        "language": {
+          "type": "string",
+          "required": true,
+          "enum": [
+            "english",
+            "spanish",
+            "german",
+            "italian",
+            "french",
+            "other"
+          ]
+        },
+        "other": {
+          "type": "string"
+        },
+        "level": {
+          "type": "string",
+          "required": true,
+          "enum": [
+            "beginner",
+            "elementary",
+            "pre-Intermediate",
+            "intermediate",
+            "upper-Intermediate",
+            "advanced",
+            "proficient"
+          ]
+        },
+        "learningFocus": {
+          "type": [
+            "string"
+          ],
+          "required": true,
+          "enum": [
+            "grammar",
+            "listening",
+            "writing",
+            "conversation"
+          ]
+        },
+        "DaysOfWeek": {
+          "type": [
+            "string"
+          ],
+          "required": true,
+          "enum": [
+            "sunday",
+            "monday",
+            "tuesday",
+            "wednesday",
+            "thursday",
+            "friday",
+            "saturday"
+          ]
+        },
+        "timeOfTheDay": {
+          "type": [
+            "string"
+          ],
+          "required": true,
+          "enum": [
+            "morning",
+            "afternoon",
+            "evening"
+          ]
+        },
+        "students": {
+          "type": ["object"]
+        },
+        "status": {
+          "type": "string",
+          "required": true,
+          "enum": ["empty", "open", "full", "closed"],
+          "default": "empty"
         }
       }
     }
@@ -347,24 +686,45 @@
     }
   },
   "paths": {
+    "/": {
+      "get": {
+        "summary": "About the Project",
+        "description": "This route contains the description of the project",
+        "tags": [
+          "SheSpeaks!"
+        ],
+        "responses": {
+          "500": {
+            "description": "Internal Server Error"
+          },
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/admin/new": {
       "post": {
         "summary": "Register of a new Admin",
         "description": "This route is responsible for creating a new Admin",
-        "tags": ["Admin"],
-        "parameters": [{
-          "in": "body",
-          "name": "body",
-          "required": true,
-          "schema": {
-            "type": "object",
-            "example": {
-                  "email": "brunaccelestino2012@gmail.com",
-                  "name": "Bruna",
-                  "password": "Fortes12@"
-                }
+        "tags": [
+          "Admin"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "example": {
+                "email": "brunaccelestino2012@gmail.com",
+                "name": "Bruna",
+                "password": "Fortes12@"
+              }
+            }
           }
-          }],
+        ],
         "responses": {
           "500": {
             "description": "Internal Server Error"
@@ -376,13 +736,15 @@
             "description": "Created"
           }
         }
-    }
-  },
+      }
+    },
     "/admin/find-all-admins": {
       "get": {
         "summary": "Get all Admins",
         "description": "This route finds all Admins",
-        "tags": ["Admin"],
+        "tags": [
+          "Admin"
+        ],
         "responses": {
           "500": {
             "description": "Internal Server Error"
@@ -397,16 +759,20 @@
       "get": {
         "summary": "Get an Admin by ID",
         "description": "This route finds an Admin by the id",
-        "tags": ["Admin"],
-        "parameters": [{
-          "in": "path",
-          "name": "id",
-          "required": true,
-          "description": "Find Admin by ID",
-          "schema": {
-            "example": "62db6e5bf3081c1c7f631bef"
+        "tags": [
+          "Admin"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "description": "Find Admin by ID",
+            "schema": {
+              "example": "62db6e5bf3081c1c7f631bef"
+            }
           }
-        }],
+        ],
         "responses": {
           "500": {
             "description": "Internal Server Error"
@@ -427,16 +793,20 @@
       "get": {
         "summary": "Get an Admin by e-mail",
         "description": "This route finds an Admin by the e-mail",
-        "tags": ["Admin"],
-        "parameters": [{
-          "in": "query",
-          "name": "email",
-          "required": true,
-          "description": "Find Admin by e-mail",
-          "schema": {
-            "example": "brunaccelestino@gmail.com"
+        "tags": [
+          "Admin"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "email",
+            "required": true,
+            "description": "Find Admin by e-mail",
+            "schema": {
+              "example": "brunaccelestino@gmail.com"
+            }
           }
-        }],
+        ],
         "responses": {
           "500": {
             "description": "Internal Server Error"
@@ -454,28 +824,31 @@
       "put": {
         "summary": "Updates an Admin by ID",
         "description": "This route updates an Admin",
-        "tags": ["Admin"],
-        "parameters": [{
-          "in": "path",
-          "name": "id",
-          "required": true,
-          "description": "Find Admin by ID and Update",
-          "schema": {
-            "example": "62db6e5bf3081c1c7f631bef"
-          }
-        },
-        {
-          "in": "body",
-          "name": "body",
-          "required": true,
+        "tags": [
+          "Admin"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "description": "Find Admin by ID and Update",
             "schema": {
-              "type":"object",
-              "example":{
+              "example": "62db6e5bf3081c1c7f631bef"
+            }
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "example": {
                 "email": "brunaccelestino2012@gmail.com"
               }
             }
-        }],
-
+          }
+        ],
         "responses": {
           "500": {
             "description": "Internal Server Error"
@@ -496,16 +869,20 @@
       "delete": {
         "summary": "Deletes an Admin by ID",
         "description": "This route deletes an Admin",
-        "tags": ["Admin"],
-        "parameters": [{
-          "in": "path",
-          "name": "id",
-          "required": true,
-          "description": "Find Admin by ID and Delete",
-          "schema": {
-            "example": "62dc84bf0aeb862b174b2af8"
+        "tags": [
+          "Admin"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "description": "Find Admin by ID and Delete",
+            "schema": {
+              "example": "62dc84bf0aeb862b174b2af8"
+            }
           }
-        }],
+        ],
         "responses": {
           "500": {
             "description": "Internal Server Error"
@@ -523,26 +900,30 @@
       "post": {
         "summary": "New Student pre-register",
         "description": "This route is responsible for creating a student pre-register",
-        "tags": ["Student"],
-        "parameters": [{
-          "in": "body",
-          "name": "body",
-          "required": true,
-              "schema": {
-                "type": "object",
-                "example": {
-                  "fullName": "Fernanda Maria",
-                  "birthdate": "03/04/1990",
-                  "CPF": "665.079.680-80",
-                  "profession":"nurse",
-                  "monthlyIncome": "1000",
-                  "gender": "cis woman",
-                  "currentlyEmployed": false,
-                  "confirmInformation": true,
-                  "termsAndConditions": true
-                }
+        "tags": [
+          "Student"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "example": {
+                "fullName": "Fernanda Maria",
+                "birthdate": "03/04/1990",
+                "CPF": "665.079.680-80",
+                "profession": "nurse",
+                "monthlyIncome": "1000",
+                "gender": "cis woman",
+                "currentlyEmployed": false,
+                "confirmInformation": true,
+                "termsAndConditions": true
               }
-            }],
+            }
+          }
+        ],
         "responses": {
           "500": {
             "description": "Internal Server Error"
@@ -563,16 +944,20 @@
       "get": {
         "summary": "Get a Student Pre-register by ID",
         "description": "This route finds a Student Pre-register by id",
-        "tags": ["Student"],
-        "parameters": [{
-          "in": "path",
-          "name": "id",
-          "required": true,
-          "description": "Find Student Pre-register by ID",
-          "schema": {
-            "example": "62db6ec2f3081c1c7f631bf1"
+        "tags": [
+          "Student"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "description": "Find Student Pre-register by ID",
+            "schema": {
+              "example": "62db6ec2f3081c1c7f631bf1"
+            }
           }
-        }],
+        ],
         "responses": {
           "500": {
             "description": "Internal Server Error"
@@ -588,22 +973,28 @@
     },
     "/student/all-pre-registers": {
       "get": {
-        "security": [{
-          "jwt": []
-        }],
+        "security": [
+          {
+            "jwt": []
+          }
+        ],
         "summary": "Get all Student Pre-registers",
         "description": "This route finds all Student Pre-registers",
-        "tags": ["Student"],
-        "parameters": [{
-          "in": "header",
-          "name": "Authorization",
-          "required": true,
-          "type": "string",
-          "description": "JWT Authorization Token",
-          "schema":{
-            "example":"Baerer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImJydW5hY2NlbGVzdGlub0BnbWFpbC5jb20iLCJpYXQiOjE2NTg1Nzk5Njh9.POfNTXXPKHe36otDS11A5Wt4wK1m3eRNXCrrE1541y0"
+        "tags": [
+          "Student"
+        ],
+        "parameters": [
+          {
+            "in": "header",
+            "name": "Authorization",
+            "required": true,
+            "type": "string",
+            "description": "JWT Authorization Token",
+            "schema": {
+              "example": "Baerer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImJydW5hY2NlbGVzdGlub0BnbWFpbC5jb20iLCJpYXQiOjE2NTg1Nzk5Njh9.POfNTXXPKHe36otDS11A5Wt4wK1m3eRNXCrrE1541y0"
+            }
           }
-        }],
+        ],
         "responses": {
           "500": {
             "description": "Internal Server Error"
@@ -611,7 +1002,6 @@
           "403": {
             "description": "Forbidden"
           },
-
           "401": {
             "description": "Unauthorized"
           },
@@ -623,44 +1013,48 @@
     },
     "/student/update-pre-register/{id}": {
       "put": {
-        "security": [{
-          "jwt": []
-        }],
+        "security": [
+          {
+            "jwt": []
+          }
+        ],
         "summary": "Update Student Pre-register",
         "description": "This route allows the Student Pre-register update",
-        "tags": ["Student"],
-        "parameters": [{
-          "in": "header",
-          "name": "Authorization",
-          "required": true,
-          "type": "string",
-          "description": "JWT Authorization Token",
-          "schema":{
-            "example":"Baerer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImJydW5hY2NlbGVzdGlub0BnbWFpbC5jb20iLCJpYXQiOjE2NTg1Nzk5Njh9.POfNTXXPKHe36otDS11A5Wt4wK1m3eRNXCrrE1541y0"
-          }
-        },
-        {
-          "in": "path",
-          "name": "id",
-          "required": true,
-          "description": "Find Student Pre-register by ID and Update",
-          "schema": {
-            "example": "62db6ec2f3081c1c7f631bf1"
-          }
-        },
-        {
-          "in": "body",
-          "name": "body",
-          "required": true,
-          "description": "Send data for the update",
-              "schema": {
-                "example": {
-                  "birthdate": "03/04/1991"
-                }
+        "tags": [
+          "Student"
+        ],
+        "parameters": [
+          {
+            "in": "header",
+            "name": "Authorization",
+            "required": true,
+            "type": "string",
+            "description": "JWT Authorization Token",
+            "schema": {
+              "example": "Baerer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImJydW5hY2NlbGVzdGlub0BnbWFpbC5jb20iLCJpYXQiOjE2NTg1Nzk5Njh9.POfNTXXPKHe36otDS11A5Wt4wK1m3eRNXCrrE1541y0"
+            }
+          },
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "description": "Find Student Pre-register by ID and Update",
+            "schema": {
+              "example": "62db6ec2f3081c1c7f631bf1"
+            }
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "description": "Send data for the update",
+            "schema": {
+              "example": {
+                "birthdate": "03/04/1991"
               }
             }
-      ],
-
+          }
+        ],
         "responses": {
           "500": {
             "description": "Internal Server Error"
@@ -688,33 +1082,37 @@
     },
     "/student/delete-pre-register/{id}": {
       "delete": {
-        "security": [{
-          "jwt": []
-        }],
+        "security": [
+          {
+            "jwt": []
+          }
+        ],
         "summary": "Delete Student Pre-register",
         "description": "This route allows the Student Pre-register to be deleted",
-        "tags": ["Student"],
-        "parameters": [{
-          "in": "header",
-          "name": "Authorization",
-          "required": true,
-          "type": "string",
-          "description": "JWT Authorization Token",
-          "schema":{
-            "example":"Baerer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImJydW5hY2NlbGVzdGlub0BnbWFpbC5jb20iLCJpYXQiOjE2NTg1Nzk5Njh9.POfNTXXPKHe36otDS11A5Wt4wK1m3eRNXCrrE1541y0"
+        "tags": [
+          "Student"
+        ],
+        "parameters": [
+          {
+            "in": "header",
+            "name": "Authorization",
+            "required": true,
+            "type": "string",
+            "description": "JWT Authorization Token",
+            "schema": {
+              "example": "Baerer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImJydW5hY2NlbGVzdGlub0BnbWFpbC5jb20iLCJpYXQiOjE2NTg1Nzk5Njh9.POfNTXXPKHe36otDS11A5Wt4wK1m3eRNXCrrE1541y0"
+            }
+          },
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "description": "Find Student Pre-register by ID and Delete",
+            "schema": {
+              "example": "62dbf24ac3ed8067faac4e96"
+            }
           }
-        },
-        {
-          "in": "path",
-          "name": "id",
-          "required": true,
-          "description": "Find Student Pre-register by ID and Delete",
-          "schema": {
-            "example": "62dbf24ac3ed8067faac4e96"
-          }
-        }
-      ],
-
+        ],
         "responses": {
           "500": {
             "description": "Internal Server Error"
@@ -738,35 +1136,45 @@
       "post": {
         "summary": "New Student profile",
         "description": "This route is responsible for creating a Student Profile",
-        "tags": ["Student"],
-        "parameters": [{
-          "in": "path",
-          "name": "id",
-          "required": true,
-          "description": "Find Student Pre-register by ID to create a new Student Profile",
-          "schema": {
-            "example": "62db6ec2f3081c1c7f631bf1"
-          }
-        },
-        {
-          "in": "body",
-          "name": "body",
-          "required": true,
-              "schema": {
-                "type": "object",
-                "example": {
-                    "profilePicture": "https://media-exp1.licdn.com/dms/image/C4D03AQFRMzvjdTk7Yw/profile-displayphoto-shrink_200_200/0/1650549116742?e=1663200000&v=beta&t=NkLQm4Gsesm5EQi7MG2Qk0u6oJURHGxE2sgdEekdke0",
-                    "username": "Brunastudent",
-                    "chosenLanguage":"english" ,
-                    "languageLevel": "beginner",
-                    "learningInterest": ["conversation"],
-                    "freeDaysOfWeek": ["monday"],
-                    "timeOfTheDay": ["afternoon"],
-                    "email": "brunaccelestino29@gmail.com",
-                    "password": "Fortes12@"
-                }
+        "tags": [
+          "Student"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "description": "Find Student Pre-register by ID to create a new Student Profile",
+            "schema": {
+              "example": "62db6ec2f3081c1c7f631bf1"
+            }
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "example": {
+                "profilePicture": "https://media-exp1.licdn.com/dms/image/C4D03AQFRMzvjdTk7Yw/profile-displayphoto-shrink_200_200/0/1650549116742?e=1663200000&v=beta&t=NkLQm4Gsesm5EQi7MG2Qk0u6oJURHGxE2sgdEekdke0",
+                "username": "Brunastudent",
+                "chosenLanguage": "english",
+                "languageLevel": "beginner",
+                "learningInterest": [
+                  "conversation"
+                ],
+                "freeDaysOfWeek": [
+                  "monday"
+                ],
+                "timeOfTheDay": [
+                  "afternoon"
+                ],
+                "email": "brunaccelestino29@gmail.com",
+                "password": "Fortes12@"
               }
-            }],
+            }
+          }
+        ],
         "responses": {
           "500": {
             "description": "Internal Server Error"
@@ -785,31 +1193,37 @@
     },
     "/student/profile/home/{username}": {
       "get": {
-        "security": [{
-          "jwt": []
-        }],
+        "security": [
+          {
+            "jwt": []
+          }
+        ],
         "summary": "Get a Student Profile by username",
         "description": "This route finds a Student Profile by username",
-        "tags": ["Student"],
-        "parameters": [{
-          "in": "header",
-          "name": "Authorization",
-          "required": true,
-          "type": "string",
-          "description": "JWT Authorization Token",
-          "schema":{
-            "example":"Baerer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImJydW5hY2NlbGVzdGlub0BnbWFpbC5jb20iLCJpYXQiOjE2NTg1Nzk5Njh9.POfNTXXPKHe36otDS11A5Wt4wK1m3eRNXCrrE1541y0"
-          }
-        },
+        "tags": [
+          "Student"
+        ],
+        "parameters": [
           {
-          "in": "path",
-          "name": "username",
-          "required": true,
-          "description": "Find Student Profile by Username",
-          "schema": {
-            "example": "fernandaStudent2"
+            "in": "header",
+            "name": "Authorization",
+            "required": true,
+            "type": "string",
+            "description": "JWT Authorization Token",
+            "schema": {
+              "example": "Baerer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImJydW5hY2NlbGVzdGlub0BnbWFpbC5jb20iLCJpYXQiOjE2NTg1Nzk5Njh9.POfNTXXPKHe36otDS11A5Wt4wK1m3eRNXCrrE1541y0"
+            }
+          },
+          {
+            "in": "path",
+            "name": "username",
+            "required": true,
+            "description": "Find Student Profile by Username",
+            "schema": {
+              "example": "fernandaStudent2"
+            }
           }
-        }],
+        ],
         "responses": {
           "500": {
             "description": "Internal Server Error"
@@ -831,42 +1245,48 @@
     },
     "/student/profile/update/{id}": {
       "put": {
-        "security": [{
-          "jwt": []
-        }],
+        "security": [
+          {
+            "jwt": []
+          }
+        ],
         "summary": "Update a Student Profile by ID",
         "description": "This route finds a Student Profile by username and update",
-        "tags": ["Student"],
-        "parameters": [{
-          "in": "header",
-          "name": "Authorization",
-          "required": true,
-          "type": "string",
-          "description": "JWT Authorization Token",
-          "schema":{
-            "example":"Baerer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImJydW5hY2NlbGVzdGlub0BnbWFpbC5jb20iLCJpYXQiOjE2NTg1Nzk5Njh9.POfNTXXPKHe36otDS11A5Wt4wK1m3eRNXCrrE1541y0"
-          }
-        },
+        "tags": [
+          "Student"
+        ],
+        "parameters": [
           {
-          "in": "path",
-          "name": "id",
-          "required": true,
-          "description": "Find Student Profile by ID",
-          "schema": {
-            "example": "62dbfc936eec8760d52b058c"
-          }
-        },
-        {
-          "in": "body",
-          "name": "body",
-          "required": true,
-          "description": "Send data for the update",
-              "schema": {
-                "example": {
-                  "email": "brunaK@gmail.com"
-                }
+            "in": "header",
+            "name": "Authorization",
+            "required": true,
+            "type": "string",
+            "description": "JWT Authorization Token",
+            "schema": {
+              "example": "Baerer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImJydW5hY2NlbGVzdGlub0BnbWFpbC5jb20iLCJpYXQiOjE2NTg1Nzk5Njh9.POfNTXXPKHe36otDS11A5Wt4wK1m3eRNXCrrE1541y0"
+            }
+          },
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "description": "Find Student Profile by ID",
+            "schema": {
+              "example": "62dbfc936eec8760d52b058c"
+            }
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "description": "Send data for the update",
+            "schema": {
+              "example": {
+                "email": "brunaK@gmail.com"
               }
-            }],
+            }
+          }
+        ],
         "responses": {
           "500": {
             "description": "Internal Server Error"
@@ -894,33 +1314,37 @@
     },
     "/student/profile/delete/{id}": {
       "delete": {
-        "security": [{
-          "jwt": []
-        }],
+        "security": [
+          {
+            "jwt": []
+          }
+        ],
         "summary": "Delete Student Profile",
         "description": "This route allows the Student Profile to be deleted",
-        "tags": ["Student"],
-        "parameters": [{
-          "in": "header",
-          "name": "Authorization",
-          "required": true,
-          "type": "string",
-          "description": "JWT Authorization Token",
-          "schema":{
-            "example":"Baerer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImJydW5hY2NlbGVzdGlub0BnbWFpbC5jb20iLCJpYXQiOjE2NTg1Nzk5Njh9.POfNTXXPKHe36otDS11A5Wt4wK1m3eRNXCrrE1541y0"
+        "tags": [
+          "Student"
+        ],
+        "parameters": [
+          {
+            "in": "header",
+            "name": "Authorization",
+            "required": true,
+            "type": "string",
+            "description": "JWT Authorization Token",
+            "schema": {
+              "example": "Baerer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImJydW5hY2NlbGVzdGlub0BnbWFpbC5jb20iLCJpYXQiOjE2NTg1Nzk5Njh9.POfNTXXPKHe36otDS11A5Wt4wK1m3eRNXCrrE1541y0"
+            }
+          },
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "description": "Find Student Profile by ID and Delete",
+            "schema": {
+              "example": "62dbfc596eec8760d52b0582"
+            }
           }
-        },
-        {
-          "in": "path",
-          "name": "id",
-          "required": true,
-          "description": "Find Student Profile by ID and Delete",
-          "schema": {
-            "example": "62dbfc596eec8760d52b0582"
-          }
-        }
-      ],
-
+        ],
         "responses": {
           "500": {
             "description": "Internal Server Error"
@@ -944,26 +1368,30 @@
       "post": {
         "summary": "New Teacher pre-register",
         "description": "This route is responsible for creating a teacher pre-register",
-        "tags": ["Teacher"],
-        "parameters": [{
-          "in": "body",
-          "name": "body",
-          "required": true,
-              "schema": {
-                "type": "object",
-                "example": {
-                  "fullName": "Bruna Celestino",
-                  "birthdate": "09/10/1995",
-                  "CPF": "331.448.360-01",
-                  "profession":"back-end developer",
-                  "timeOfExperience": "more than 3 years",
-                  "gender": "cis woman",
-                  "resume": "cv-brunaCelestino",
-                  "confirmInformation": true,
-                  "termsAndConditions": true
-                }
+        "tags": [
+          "Teacher"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "example": {
+                "fullName": "Bruna Celestino",
+                "birthdate": "09/10/1995",
+                "CPF": "331.448.360-01",
+                "profession": "back-end developer",
+                "timeOfExperience": "more than 3 years",
+                "gender": "cis woman",
+                "resume": "cv-brunaCelestino",
+                "confirmInformation": true,
+                "termsAndConditions": true
               }
-            }],
+            }
+          }
+        ],
         "responses": {
           "500": {
             "description": "Internal Server Error"
@@ -984,16 +1412,20 @@
       "get": {
         "summary": "Get a Teacher Pre-register by ID",
         "description": "This route finds a Teacher Pre-register by id",
-        "tags": ["Teacher"],
-        "parameters": [{
-          "in": "path",
-          "name": "id",
-          "required": true,
-          "description": "Find Teacher Pre-register by ID",
-          "schema": {
-            "example": "62dce2618fe63e3fe0089e87"
+        "tags": [
+          "Teacher"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "description": "Find Teacher Pre-register by ID",
+            "schema": {
+              "example": "62dce2618fe63e3fe0089e87"
+            }
           }
-        }],
+        ],
         "responses": {
           "500": {
             "description": "Internal Server Error"
@@ -1009,22 +1441,28 @@
     },
     "/teacher/all-pre-registers": {
       "get": {
-        "security": [{
-          "jwt": []
-        }],
+        "security": [
+          {
+            "jwt": []
+          }
+        ],
         "summary": "Get all Teacher Pre-registers",
         "description": "This route finds all Teacher Pre-registers",
-        "tags": ["Teacher"],
-        "parameters": [{
-          "in": "header",
-          "name": "Authorization",
-          "required": true,
-          "type": "string",
-          "description": "JWT Authorization Token",
-          "schema":{
-            "example":"Baerer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImJydW5hY2NlbGVzdGlub0BnbWFpbC5jb20iLCJpYXQiOjE2NTg1Nzk5Njh9.POfNTXXPKHe36otDS11A5Wt4wK1m3eRNXCrrE1541y0"
+        "tags": [
+          "Teacher"
+        ],
+        "parameters": [
+          {
+            "in": "header",
+            "name": "Authorization",
+            "required": true,
+            "type": "string",
+            "description": "JWT Authorization Token",
+            "schema": {
+              "example": "Baerer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImJydW5hY2NlbGVzdGlub0BnbWFpbC5jb20iLCJpYXQiOjE2NTg1Nzk5Njh9.POfNTXXPKHe36otDS11A5Wt4wK1m3eRNXCrrE1541y0"
+            }
           }
-        }],
+        ],
         "responses": {
           "500": {
             "description": "Internal Server Error"
@@ -1032,7 +1470,6 @@
           "403": {
             "description": "Forbidden"
           },
-
           "401": {
             "description": "Unauthorized"
           },
@@ -1044,44 +1481,48 @@
     },
     "/teacher/update-pre-register/{id}": {
       "put": {
-        "security": [{
-          "jwt": []
-        }],
+        "security": [
+          {
+            "jwt": []
+          }
+        ],
         "summary": "Update Teacher Pre-register",
         "description": "This route allows the Teacher Pre-register update",
-        "tags": ["Teacher"],
-        "parameters": [{
-          "in": "header",
-          "name": "Authorization",
-          "required": true,
-          "type": "string",
-          "description": "JWT Authorization Token",
-          "schema":{
-            "example":"Baerer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImJydW5hY2NlbGVzdGlub0BnbWFpbC5jb20iLCJpYXQiOjE2NTg1Nzk5Njh9.POfNTXXPKHe36otDS11A5Wt4wK1m3eRNXCrrE1541y0"
-          }
-        },
-        {
-          "in": "path",
-          "name": "id",
-          "required": true,
-          "description": "Find Teacher Pre-register by ID and Update",
-          "schema": {
-            "example": "62dce2618fe63e3fe0089e87"
-          }
-        },
-        {
-          "in": "body",
-          "name": "body",
-          "required": true,
-          "description": "Send data for the update",
-              "schema": {
-                "example": {
-                  "birthdate": "03/04/1991"
-                }
+        "tags": [
+          "Teacher"
+        ],
+        "parameters": [
+          {
+            "in": "header",
+            "name": "Authorization",
+            "required": true,
+            "type": "string",
+            "description": "JWT Authorization Token",
+            "schema": {
+              "example": "Baerer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImJydW5hY2NlbGVzdGlub0BnbWFpbC5jb20iLCJpYXQiOjE2NTg1Nzk5Njh9.POfNTXXPKHe36otDS11A5Wt4wK1m3eRNXCrrE1541y0"
+            }
+          },
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "description": "Find Teacher Pre-register by ID and Update",
+            "schema": {
+              "example": "62dce2618fe63e3fe0089e87"
+            }
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "description": "Send data for the update",
+            "schema": {
+              "example": {
+                "birthdate": "03/04/1991"
               }
             }
-      ],
-
+          }
+        ],
         "responses": {
           "500": {
             "description": "Internal Server Error"
@@ -1109,33 +1550,37 @@
     },
     "/teacher/delete-pre-register/{id}": {
       "delete": {
-        "security": [{
-          "jwt": []
-        }],
+        "security": [
+          {
+            "jwt": []
+          }
+        ],
         "summary": "Delete Teacher Pre-register",
         "description": "This route allows the Teacher Pre-register to be deleted",
-        "tags": ["Teacher"],
-        "parameters": [{
-          "in": "header",
-          "name": "Authorization",
-          "required": true,
-          "type": "string",
-          "description": "JWT Authorization Token",
-          "schema":{
-            "example":"Baerer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImJydW5hY2NlbGVzdGlub0BnbWFpbC5jb20iLCJpYXQiOjE2NTg1Nzk5Njh9.POfNTXXPKHe36otDS11A5Wt4wK1m3eRNXCrrE1541y0"
+        "tags": [
+          "Teacher"
+        ],
+        "parameters": [
+          {
+            "in": "header",
+            "name": "Authorization",
+            "required": true,
+            "type": "string",
+            "description": "JWT Authorization Token",
+            "schema": {
+              "example": "Baerer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImJydW5hY2NlbGVzdGlub0BnbWFpbC5jb20iLCJpYXQiOjE2NTg1Nzk5Njh9.POfNTXXPKHe36otDS11A5Wt4wK1m3eRNXCrrE1541y0"
+            }
+          },
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "description": "Find Teacher Pre-register by ID and Delete",
+            "schema": {
+              "example": "62dce2618fe63e3fe0089e87"
+            }
           }
-        },
-        {
-          "in": "path",
-          "name": "id",
-          "required": true,
-          "description": "Find Teacher Pre-register by ID and Delete",
-          "schema": {
-            "example": "62dce2618fe63e3fe0089e87"
-          }
-        }
-      ],
-
+        ],
         "responses": {
           "500": {
             "description": "Internal Server Error"
@@ -1159,36 +1604,44 @@
       "post": {
         "summary": "New Teacher profile",
         "description": "This route is responsible for creating a Teacher Profile",
-        "tags": ["Teacher"],
-        "parameters": [{
-          "in": "path",
-          "name": "id",
-          "required": true,
-          "description": "Find Teacher Pre-register by ID to create a new Teacher Profile",
-          "schema": {
-            "example": "62dc0066f6dd7eea303344fd"
-          }
-        },
-        {
-          "in": "body",
-          "name": "body",
-          "required": true,
-              "schema": {
-                "type": "object",
-                "example": {
-                  "profilePicture": "link",
-                  "username": "BrunaTeacher22",
-                  "chosenLanguage": "english",
-                  "other": false,
-                  "LanguageLevelToTeach": "beginner",
-                  "teachingInterest": "conversation",
-                  "freeDaysOfWeek":["sunday"] ,
-                  "timeOfTheDay": ["afternoon"],
-                  "email": "brunaccelestino2x@gmail.com",
-                  "password": "Fortes12@"
-                }
+        "tags": [
+          "Teacher"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "description": "Find Teacher Pre-register by ID to create a new Teacher Profile",
+            "schema": {
+              "example": "62dc0066f6dd7eea303344fd"
+            }
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "example": {
+                "profilePicture": "link",
+                "username": "BrunaTeacher22",
+                "chosenLanguage": "english",
+                "other": false,
+                "LanguageLevelToTeach": "beginner",
+                "teachingInterest": "conversation",
+                "freeDaysOfWeek": [
+                  "sunday"
+                ],
+                "timeOfTheDay": [
+                  "afternoon"
+                ],
+                "email": "brunaccelestino2x@gmail.com",
+                "password": "Fortes12@"
               }
-            }],
+            }
+          }
+        ],
         "responses": {
           "500": {
             "description": "Internal Server Error"
@@ -1207,31 +1660,37 @@
     },
     "/teacher/profile/home/{username}": {
       "get": {
-        "security": [{
-          "jwt": []
-        }],
+        "security": [
+          {
+            "jwt": []
+          }
+        ],
         "summary": "Get a Teacher Profile by username",
         "description": "This route finds a Teacher Profile by username",
-        "tags": ["Teacher"],
-        "parameters": [{
-          "in": "header",
-          "name": "Authorization",
-          "required": true,
-          "type": "string",
-          "description": "JWT Authorization Token",
-          "schema":{
-            "example":"Baerer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImJydW5hY2NlbGVzdGlub0BnbWFpbC5jb20iLCJpYXQiOjE2NTg1Nzk5Njh9.POfNTXXPKHe36otDS11A5Wt4wK1m3eRNXCrrE1541y0"
-          }
-        },
+        "tags": [
+          "Teacher"
+        ],
+        "parameters": [
           {
-          "in": "path",
-          "name": "username",
-          "required": true,
-          "description": "Find Teacher Profile by Username",
-          "schema": {
-            "example": "BrunaTeacher22"
+            "in": "header",
+            "name": "Authorization",
+            "required": true,
+            "type": "string",
+            "description": "JWT Authorization Token",
+            "schema": {
+              "example": "Baerer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImJydW5hY2NlbGVzdGlub0BnbWFpbC5jb20iLCJpYXQiOjE2NTg1Nzk5Njh9.POfNTXXPKHe36otDS11A5Wt4wK1m3eRNXCrrE1541y0"
+            }
+          },
+          {
+            "in": "path",
+            "name": "username",
+            "required": true,
+            "description": "Find Teacher Profile by Username",
+            "schema": {
+              "example": "BrunaTeacher22"
+            }
           }
-        }],
+        ],
         "responses": {
           "500": {
             "description": "Internal Server Error"
@@ -1253,42 +1712,48 @@
     },
     "/teacher/profile/update/{id}": {
       "put": {
-        "security": [{
-          "jwt": []
-        }],
+        "security": [
+          {
+            "jwt": []
+          }
+        ],
         "summary": "Update a Teacher Profile by ID",
         "description": "This route finds a Teacher Profile by username and update",
-        "tags": ["Teacher"],
-        "parameters": [{
-          "in": "header",
-          "name": "Authorization",
-          "required": true,
-          "type": "string",
-          "description": "JWT Authorization Token",
-          "schema":{
-            "example":"Baerer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImJydW5hY2NlbGVzdGlub0BnbWFpbC5jb20iLCJpYXQiOjE2NTg1Nzk5Njh9.POfNTXXPKHe36otDS11A5Wt4wK1m3eRNXCrrE1541y0"
-          }
-        },
+        "tags": [
+          "Teacher"
+        ],
+        "parameters": [
           {
-          "in": "path",
-          "name": "id",
-          "required": true,
-          "description": "Find Teacher Profile by ID",
-          "schema": {
-            "example": "62dce46cba1322d56e0ddd47"
-          }
-        },
-        {
-          "in": "body",
-          "name": "body",
-          "required": true,
-          "description": "Send data for the update",
-              "schema": {
-                "example": {
-                  "email": "brunaxx@gmail.com"
-                }
+            "in": "header",
+            "name": "Authorization",
+            "required": true,
+            "type": "string",
+            "description": "JWT Authorization Token",
+            "schema": {
+              "example": "Baerer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImJydW5hY2NlbGVzdGlub0BnbWFpbC5jb20iLCJpYXQiOjE2NTg1Nzk5Njh9.POfNTXXPKHe36otDS11A5Wt4wK1m3eRNXCrrE1541y0"
+            }
+          },
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "description": "Find Teacher Profile by ID",
+            "schema": {
+              "example": "62dce46cba1322d56e0ddd47"
+            }
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "description": "Send data for the update",
+            "schema": {
+              "example": {
+                "email": "brunaxx@gmail.com"
               }
-            }],
+            }
+          }
+        ],
         "responses": {
           "500": {
             "description": "Internal Server Error"
@@ -1316,33 +1781,37 @@
     },
     "/teacher/profile/delete/{id}": {
       "delete": {
-        "security": [{
-          "jwt": []
-        }],
+        "security": [
+          {
+            "jwt": []
+          }
+        ],
         "summary": "Delete Teacher Profile",
         "description": "This route allows the Teacher Profile to be deleted",
-        "tags": ["Teacher"],
-        "parameters": [{
-          "in": "header",
-          "name": "Authorization",
-          "required": true,
-          "type": "string",
-          "description": "JWT Authorization Token",
-          "schema":{
-            "example":"Baerer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImJydW5hY2NlbGVzdGlub0BnbWFpbC5jb20iLCJpYXQiOjE2NTg1Nzk5Njh9.POfNTXXPKHe36otDS11A5Wt4wK1m3eRNXCrrE1541y0"
+        "tags": [
+          "Teacher"
+        ],
+        "parameters": [
+          {
+            "in": "header",
+            "name": "Authorization",
+            "required": true,
+            "type": "string",
+            "description": "JWT Authorization Token",
+            "schema": {
+              "example": "Baerer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImJydW5hY2NlbGVzdGlub0BnbWFpbC5jb20iLCJpYXQiOjE2NTg1Nzk5Njh9.POfNTXXPKHe36otDS11A5Wt4wK1m3eRNXCrrE1541y0"
+            }
+          },
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "description": "Find Teacher Profile by ID and Delete",
+            "schema": {
+              "example": "62dce46cba1322d56e0ddd47"
+            }
           }
-        },
-        {
-          "in": "path",
-          "name": "id",
-          "required": true,
-          "description": "Find Teacher Profile by ID and Delete",
-          "schema": {
-            "example": "62dce46cba1322d56e0ddd47"
-          }
-        }
-      ],
-
+        ],
         "responses": {
           "500": {
             "description": "Internal Server Error"
@@ -1361,8 +1830,1980 @@
           }
         }
       }
+    },
+    "/platform/admin/sign-in": {
+      "post": {
+        "summary": "Admin sign in",
+        "description": "This route allows an Admin to sign in",
+        "tags": [
+          "Platform"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "example": {
+                "email": "brunaccelestino@gmail.com",
+                "password": "Fortes12@"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "500": {
+            "description": "Internal Server Error"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/platform/student/sign-in": {
+      "post": {
+        "summary": "Student sign in",
+        "description": "This route allows a Student to sign in",
+        "tags": [
+          "Platform"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "example": {
+                "username": "Brunatudent",
+                "password": "Fortes12@"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "500": {
+            "description": "Internal Server Error"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/platform/teacher/sign-in": {
+      "post": {
+        "summary": "Teacher sign in",
+        "description": "This route allows a Teacher to sign in",
+        "tags": [
+          "Platform"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "example": {
+                "username": "BrunaTeacher",
+                "password": "Fortes12@"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "500": {
+            "description": "Internal Server Error"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/platform/all-profiles": {
+      "get": {
+        "security": [
+          {
+            "jwt": []
+          }
+        ],
+        "summary": "Get all Profiles",
+        "description": "This route finds all Students and Teachers profiles",
+        "tags": [
+          "Platform"
+        ],
+        "parameters": [
+          {
+            "in": "header",
+            "name": "Authorization",
+            "required": true,
+            "type": "string",
+            "description": "JWT Authorization Token",
+            "schema": {
+              "example": "Baerer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImJydW5hY2NlbGVzdGlub0BnbWFpbC5jb20iLCJpYXQiOjE2NTg2OTA3NDh9.yTOCYjanNWjYygqYm8G70iYySRV2CrUj9R-A59Ycnu0"
+            }
+          }
+        ],
+        "responses": {
+          "500": {
+            "description": "Internal Server Error"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/platform/notifications": {
+      "get": {
+        "security": [
+          {
+            "jwt": []
+          }
+        ],
+        "summary": "Get all Notifications",
+        "description": "This route finds all notifications a user received",
+        "tags": [
+          "Platform"
+        ],
+        "parameters": [
+          {
+            "in": "header",
+            "name": "Authorization",
+            "required": true,
+            "type": "string",
+            "description": "JWT Authorization Token",
+            "schema": {
+              "example": "Baerer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImJydW5hY2NlbGVzdGlub0BnbWFpbC5jb20iLCJpYXQiOjE2NTg2OTA3NDh9.yTOCYjanNWjYygqYm8G70iYySRV2CrUj9R-A59Ycnu0"
+            }
+          }
+        ],
+        "responses": {
+          "500": {
+            "description": "Internal Server Error"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/platform/friends-list/request/{id}": {
+      "post": {
+        "security": [
+          {
+            "jwt": []
+          }
+        ],
+        "summary": "Send a friend request",
+        "description": "This route allows a user to send a friend request",
+        "tags": [
+          "Platform"
+        ],
+        "parameters": [
+          {
+            "in": "header",
+            "name": "Authorization",
+            "required": true,
+            "type": "string",
+            "description": "JWT Authorization Token",
+            "schema": {
+              "example": "Baerer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IkJydW5hVGVhY2hlciIsImlhdCI6MTY1ODY5MDYyOH0.nqwWi2DxfnOsaRbUL_oE6qgZ2DLLm5Zh5kzSDyUlCNY"
+            }
+          },
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "description": "Find user to send a friend request by ID",
+            "schema": {
+              "example": "62dbfc936eec8760d52b058c"
+            }
+          }
+        ],
+        "responses": {
+          "500": {
+            "description": "Internal Server Error"
+          },
+          "409": {
+            "description": "Conflict"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "201": {
+            "description": "Created"
+          }
+        }
+      }
+    },
+    "/platform/friends-list/update/{id}": {
+      "patch": {
+        "security": [
+          {
+            "jwt": []
+          }
+        ],
+        "summary": "Update a friend request by ID",
+        "description": "This route finds a friend request by id and update",
+        "tags": [
+          "Platform"
+        ],
+        "parameters": [
+          {
+            "in": "header",
+            "name": "Authorization",
+            "required": true,
+            "type": "string",
+            "description": "JWT Authorization Token",
+            "schema": {
+              "example": "Baerer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IkJydW5hdHVkZW50IiwiaWF0IjoxNjU4NjkwNTI2fQ.wt8L4eXm3LK7BEPNtjVytNIZPhiY_8pFIEOLXpgwzDQ"
+            }
+          },
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "description": "Find friend request by ID",
+            "schema": {
+              "example": "62dda0764d696a29fcae9b43"
+            }
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "description": "Send data for the update",
+            "schema": {
+              "example": {
+                "requestStatus": "accepted"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "500": {
+            "description": "Internal Server Error"
+          },
+          "409": {
+            "description": "Conflict"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/platform/friends-list/delete/{id}": {
+      "delete": {
+        "security": [
+          {
+            "jwt": []
+          }
+        ],
+        "summary": "Delete Friend",
+        "description": "This route allows the user to remove someone from their friends list",
+        "tags": [
+          "Platform"
+        ],
+        "parameters": [
+          {
+            "in": "header",
+            "name": "Authorization",
+            "required": true,
+            "type": "string",
+            "description": "JWT Authorization Token",
+            "schema": {
+              "example": "Baerer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IkJydW5hdHVkZW50IiwiaWF0IjoxNjU4NjkwNTI2fQ.wt8L4eXm3LK7BEPNtjVytNIZPhiY_8pFIEOLXpgwzDQ"
+            }
+          },
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "description": "Find and friend and delete",
+            "schema": {
+              "example": "62dc04ca806cdb92f55bcfe1"
+            }
+          }
+        ],
+        "responses": {
+          "500": {
+            "description": "Internal Server Error"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/platform/friends-list": {
+      "get": {
+        "security": [
+          {
+            "jwt": []
+          }
+        ],
+        "summary": "Get user's friends list",
+        "description": "This route finds the user's friends list",
+        "tags": [
+          "Platform"
+        ],
+        "parameters": [
+          {
+            "in": "header",
+            "name": "Authorization",
+            "required": true,
+            "type": "string",
+            "description": "JWT Authorization Token",
+            "schema": {
+              "example": "Baerer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IkJydW5hVGVhY2hlciIsImlhdCI6MTY1ODY5MDYyOH0.nqwWi2DxfnOsaRbUL_oE6qgZ2DLLm5Zh5kzSDyUlCNY"
+            }
+          }
+        ],
+        "responses": {
+          "500": {
+            "description": "Internal Server Error"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/platform/message/send": {
+      "post": {
+        "security": [
+          {
+            "jwt": []
+          }
+        ],
+        "summary": "Send a message",
+        "description": "This route allows the user to send messages",
+        "tags": [
+          "Platform"
+        ],
+        "parameters": [
+          {
+            "in": "header",
+            "name": "Authorization",
+            "required": true,
+            "type": "string",
+            "description": "JWT Authorization Token",
+            "schema": {
+              "example": "Baerer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IkJydW5hVGVhY2hlciIsImlhdCI6MTY1ODY5MDYyOH0.nqwWi2DxfnOsaRbUL_oE6qgZ2DLLm5Zh5kzSDyUlCNY"
+            }
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "example": {
+                "to": "Brunatudent",
+                "body": "Olá, aqui está a tarefa.",
+                "attachments": ["link da tarefa"]
+              }
+            }
+          }
+        ],
+        "responses": {
+          "500": {
+            "description": "Internal Server Error"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "201": {
+            "description": "Created"
+          }
+        }
+      }
+    },
+    "/platform/message/my-messages/all": {
+      "get": {
+        "security": [
+          {
+            "jwt": []
+          }
+        ],
+        "summary": "Get all the messages from a user",
+        "description": "This route finds all messages a user received and sent",
+        "tags": [
+          "Platform"
+        ],
+        "parameters": [
+          {
+            "in": "header",
+            "name": "Authorization",
+            "required": true,
+            "type": "string",
+            "description": "JWT Authorization Token",
+            "schema": {
+              "example": "Baerer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IkJydW5hVGVhY2hlciIsImlhdCI6MTY1ODY5MDYyOH0.nqwWi2DxfnOsaRbUL_oE6qgZ2DLLm5Zh5kzSDyUlCNY"
+            }
+          }
+        ],
+        "responses": {
+          "500": {
+            "description": "Internal Server Error"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/platform/message/my-messages/sent": {
+      "get": {
+        "security": [
+          {
+            "jwt": []
+          }
+        ],
+        "summary": "Get all the sent messages from a user",
+        "description": "This route finds all messages a user sent",
+        "tags": [
+          "Platform"
+        ],
+        "parameters": [
+          {
+            "in": "header",
+            "name": "Authorization",
+            "required": true,
+            "type": "string",
+            "description": "JWT Authorization Token",
+            "schema": {
+              "example": "Baerer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IkJydW5hVGVhY2hlciIsImlhdCI6MTY1ODY5MDYyOH0.nqwWi2DxfnOsaRbUL_oE6qgZ2DLLm5Zh5kzSDyUlCNY"
+            }
+          }
+        ],
+        "responses": {
+          "500": {
+            "description": "Internal Server Error"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/platform/message/my-messages/received": {
+      "get": {
+        "security": [
+          {
+            "jwt": []
+          }
+        ],
+        "summary": "Get all the received messages from a user",
+        "description": "This route finds all messages a user received",
+        "tags": [
+          "Platform"
+        ],
+        "parameters": [
+          {
+            "in": "header",
+            "name": "Authorization",
+            "required": true,
+            "type": "string",
+            "description": "JWT Authorization Token",
+            "schema": {
+              "example": "Baerer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IkJydW5hVGVhY2hlciIsImlhdCI6MTY1ODY5MDYyOH0.nqwWi2DxfnOsaRbUL_oE6qgZ2DLLm5Zh5kzSDyUlCNY"
+            }
+          }
+        ],
+        "responses": {
+          "500": {
+            "description": "Internal Server Error"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/platform/message/my-messages/received/unread": {
+      "get": {
+        "security": [
+          {
+            "jwt": []
+          }
+        ],
+        "summary": "Get all the unread messages from a user",
+        "description": "This route finds all unread messages a user received",
+        "tags": [
+          "Platform"
+        ],
+        "parameters": [
+          {
+            "in": "header",
+            "name": "Authorization",
+            "required": true,
+            "type": "string",
+            "description": "JWT Authorization Token",
+            "schema": {
+              "example": "Baerer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IkJydW5hVGVhY2hlciIsImlhdCI6MTY1ODY5MDYyOH0.nqwWi2DxfnOsaRbUL_oE6qgZ2DLLm5Zh5kzSDyUlCNY"
+            }
+          }
+        ],
+        "responses": {
+          "500": {
+            "description": "Internal Server Error"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/platform/message/my-messages/received/read": {
+      "get": {
+        "security": [
+          {
+            "jwt": []
+          }
+        ],
+        "summary": "Get all the read messages from a user",
+        "description": "This route finds all read messages a user received",
+        "tags": [
+          "Platform"
+        ],
+        "parameters": [
+          {
+            "in": "header",
+            "name": "Authorization",
+            "required": true,
+            "type": "string",
+            "description": "JWT Authorization Token",
+            "schema": {
+              "example": "Baerer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IkJydW5hVGVhY2hlciIsImlhdCI6MTY1ODY5MDYyOH0.nqwWi2DxfnOsaRbUL_oE6qgZ2DLLm5Zh5kzSDyUlCNY"
+            }
+          }
+        ],
+        "responses": {
+          "500": {
+            "description": "Internal Server Error"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/platform/message/my-messages/{id}": {
+      "get": {
+        "security": [
+          {
+            "jwt": []
+          }
+        ],
+        "summary": "Get a message from a user by ID",
+        "description": "This route finds a message by id",
+        "tags": [
+          "Platform"
+        ],
+        "parameters": [
+          {
+            "in": "header",
+            "name": "Authorization",
+            "required": true,
+            "type": "string",
+            "description": "JWT Authorization Token",
+            "schema": {
+              "example": "Baerer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IkJydW5hVGVhY2hlciIsImlhdCI6MTY1ODY5MDYyOH0.nqwWi2DxfnOsaRbUL_oE6qgZ2DLLm5Zh5kzSDyUlCNY"
+            }
+          },
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "description": "Find a message by ID",
+            "schema": {
+              "example": "62dc2fd68c4f48b7f3bf65d2"
+            }
+          }
+        ],
+        "responses": {
+          "500": {
+            "description": "Internal Server Error"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/platform/message/my-messages/delete/{id}": {
+      "delete": {
+        "security": [
+          {
+            "jwt": []
+          }
+        ],
+        "summary": "Delete a message from a user by ID",
+        "description": "This route finds a message by id and delete",
+        "tags": [
+          "Platform"
+        ],
+        "parameters": [
+          {
+            "in": "header",
+            "name": "Authorization",
+            "required": true,
+            "type": "string",
+            "description": "JWT Authorization Token",
+            "schema": {
+              "example": "Baerer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IkJydW5hVGVhY2hlciIsImlhdCI6MTY1ODY5MDYyOH0.nqwWi2DxfnOsaRbUL_oE6qgZ2DLLm5Zh5kzSDyUlCNY"
+            }
+          },
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "description": "Find a message by ID and delete",
+            "schema": {
+              "example": "62dc2fd68c4f48b7f3bf65d2"
+            }
+          }
+        ],
+        "responses": {
+          "500": {
+            "description": "Internal Server Error"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/platform/classroom/new": {
+      "post": {
+        "security": [
+          {
+            "jwt": []
+          }
+        ],
+        "summary": "New Classroom",
+        "description": "This route allows the teacher to create a new classroom",
+        "tags": [
+          "Platform"
+        ],
+        "parameters": [
+          {
+            "in": "header",
+            "name": "Authorization",
+            "required": true,
+            "type": "string",
+            "description": "JWT Authorization Token",
+            "schema": {
+              "example": "Baerer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IkJydW5hVGVhY2hlciIsImlhdCI6MTY1ODY5MDYyOH0.nqwWi2DxfnOsaRbUL_oE6qgZ2DLLm5Zh5kzSDyUlCNY"
+            }
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "example": {
+                "classroomName": "English on",
+                "classroomIcon": "link",
+                "classLink": [
+                    "https://meet.google.com/oyb-tbpu-ybx"
+                ],
+                "description": "Bem-vindos a sala English on",
+                "limitOfStudents": 3,
+                "language": "english",
+                "level": "beginner",
+                "learningFocus": [
+                    "conversation"
+                ],
+                "DaysOfWeek": [
+                    "monday"
+                ],
+                "timeOfTheDay": [
+                    "afternoon"
+                ]
+              }
+            }
+          }
+        ],
+        "responses": {
+          "500": {
+            "description": "Internal Server Error"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "201": {
+            "description": "Created"
+          }
+        }
+      }
+    },
+    "/platform/classroom/update/{id}": {
+      "put": {
+        "security": [
+          {
+            "jwt": []
+          }
+        ],
+        "summary": "Update a classroom by ID",
+        "description": "This route finds a classroom by id and update",
+        "tags": [
+          "Platform"
+        ],
+        "parameters": [
+          {
+            "in": "header",
+            "name": "Authorization",
+            "required": true,
+            "type": "string",
+            "description": "JWT Authorization Token",
+            "schema": {
+              "example": "Baerer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IkJydW5hVGVhY2hlciIsImlhdCI6MTY1ODY5MDYyOH0.nqwWi2DxfnOsaRbUL_oE6qgZ2DLLm5Zh5kzSDyUlCNY"
+            }
+          },
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "description": "Find classroom by ID and update",
+            "schema": {
+              "example": "62ddbd251146fbb621101b44"
+            }
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "description": "Send data for the update",
+            "schema": {
+              "example": {
+                "classroomName": "English OON"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "500": {
+            "description": "Internal Server Error"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/platform/classroom/all": {
+      "get": {
+        "security": [
+          {
+            "jwt": []
+          }
+        ],
+        "summary": "Get all the classrooms",
+        "description": "This route finds all the classrooms",
+        "tags": [
+          "Platform"
+        ],
+        "parameters": [
+          {
+            "in": "header",
+            "name": "Authorization",
+            "required": true,
+            "type": "string",
+            "description": "JWT Authorization Token",
+            "schema": {
+              "example": "Baerer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IkJydW5hVGVhY2hlciIsImlhdCI6MTY1ODY5MDYyOH0.nqwWi2DxfnOsaRbUL_oE6qgZ2DLLm5Zh5kzSDyUlCNY"
+            }
+          }
+        ],
+        "responses": {
+          "500": {
+            "description": "Internal Server Error"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/platform/classroom/{id}": {
+      "get": {
+        "security": [
+          {
+            "jwt": []
+          }
+        ],
+        "summary": "Get a classroom by ID",
+        "description": "This route finds a classroom by id",
+        "tags": [
+          "Platform"
+        ],
+        "parameters": [
+          {
+            "in": "header",
+            "name": "Authorization",
+            "required": true,
+            "type": "string",
+            "description": "JWT Authorization Token",
+            "schema": {
+              "example": "Baerer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IkJydW5hVGVhY2hlciIsImlhdCI6MTY1ODY5MDYyOH0.nqwWi2DxfnOsaRbUL_oE6qgZ2DLLm5Zh5kzSDyUlCNY"
+            }
+          },
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "description": "Find a classroom by ID",
+            "schema": {
+              "example": "62dc4763cb01dc1ff8ad1d1a"
+            }
+          }
+        ],
+        "responses": {
+          "500": {
+            "description": "Internal Server Error"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/platform/classroom/filter": {
+      "get": {
+        "security": [
+          {
+            "jwt": []
+          }
+        ],
+        "summary": "Get classrooms based on filters",
+        "description": "This route finds classrooms by filters",
+        "tags": [
+          "Platform"
+        ],
+        "parameters": [
+          {
+            "in": "header",
+            "name": "Authorization",
+            "required": true,
+            "type": "string",
+            "description": "JWT Authorization Token",
+            "schema": {
+              "example": "Baerer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IkJydW5hVGVhY2hlciIsImlhdCI6MTY1ODY5MDYyOH0.nqwWi2DxfnOsaRbUL_oE6qgZ2DLLm5Zh5kzSDyUlCNY"
+            }
+          },
+          {
+            "in": "query",
+            "name": "limitOfStudents",
+            "description": "Find classrooms by limit of students",
+            "schema": {
+              "example": 2
+            }
+          },
+          {
+            "in": "query",
+            "name": "language",
+            "description": "Find classrooms by the language",
+            "schema": {
+              "example": "english"
+            }
+          },
+          {
+            "in": "query",
+            "name": "other",
+            "description": "Find classrooms by the language, if it's not among the main ones",
+            "schema": {
+              "example": "greek"
+            }
+          },
+          {
+            "in": "query",
+            "name": "level",
+            "description": "Find classrooms by the level",
+            "schema": {
+              "example": "advanced"
+            }
+          },
+          {
+            "in": "query",
+            "name": "learningFocus",
+            "description": "Find classrooms by the learning focus",
+            "schema": {
+              "example": "grammar"
+            }
+          },
+          {
+            "in": "query",
+            "name": "DaysOfWeek",
+            "description": "Find classrooms by in which days of week the classes take place",
+            "schema": {
+              "example": "monday"
+            }
+          },
+          {
+            "in": "query",
+            "name": "timeOfTheDay",
+            "description": "Find classrooms by in which period of the day the classes take place",
+            "schema": {
+              "example": "evening"
+            }
+          },
+          {
+            "in": "query",
+            "name": "status",
+            "description": "Find classrooms by status",
+            "schema": {
+              "example": "open"
+            }
+          }
+        ],
+        "responses": {
+          "500": {
+            "description": "Internal Server Error"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/platform/classroom/delete/{id}": {
+      "delete": {
+        "security": [
+          {
+            "jwt": []
+          }
+        ],
+        "summary": "Delete a classroom",
+        "description": "This route finds a classroom by id and delete",
+        "tags": [
+          "Platform"
+        ],
+        "parameters": [
+          {
+            "in": "header",
+            "name": "Authorization",
+            "required": true,
+            "type": "string",
+            "description": "JWT Authorization Token",
+            "schema": {
+              "example": "Baerer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IkJydW5hVGVhY2hlciIsImlhdCI6MTY1ODY5MDYyOH0.nqwWi2DxfnOsaRbUL_oE6qgZ2DLLm5Zh5kzSDyUlCNY"
+            }
+          },
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "description": "Find a classroom by ID and delete",
+            "schema": {
+              "example": "62ddbc883ed264941a956f63"
+            }
+          }
+        ],
+        "responses": {
+          "500": {
+            "description": "Internal Server Error"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/platform/classroom/match": {
+      "get": {
+        "security": [
+          {
+            "jwt": []
+          }
+        ],
+        "summary": "Get a Classroom Match",
+        "description": "This route finds a Classroom Match to a student",
+        "tags": [
+          "Platform"
+        ],
+        "parameters": [
+          {
+            "in": "header",
+            "name": "Authorization",
+            "required": true,
+            "type": "string",
+            "description": "JWT Authorization Token",
+            "schema": {
+              "example": "Baerer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IkJydW5hdHVkZW50IiwiaWF0IjoxNjU4NjkwNTI2fQ.wt8L4eXm3LK7BEPNtjVytNIZPhiY_8pFIEOLXpgwzDQ"
+            }
+          }
+        ],
+        "responses": {
+          "500": {
+            "description": "Internal Server Error"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/platform/classroom/enroll/{id}": {
+      "patch": {
+        "security": [
+          {
+            "jwt": []
+          }
+        ],
+        "summary": "Enroll in a classroom",
+        "description": "This route allows a student to enroll in a classroom",
+        "tags": [
+          "Platform"
+        ],
+        "parameters": [
+          {
+            "in": "header",
+            "name": "Authorization",
+            "required": true,
+            "type": "string",
+            "description": "JWT Authorization Token",
+            "schema": {
+              "example": "Baerer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IkJydW5hdHVkZW50IiwiaWF0IjoxNjU4NjkwNTI2fQ.wt8L4eXm3LK7BEPNtjVytNIZPhiY_8pFIEOLXpgwzDQ"
+            }
+          },
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "description": "Find a classroom by ID",
+            "schema": {
+              "example": "62ddbd251146fbb621101b44"
+            }
+          }
+        ],
+        "responses": {
+          "500": {
+            "description": "Internal Server Error"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/platform/classroom/leave/{id}": {
+      "delete": {
+        "security": [
+          {
+            "jwt": []
+          }
+        ],
+        "summary": "Leave in a classroom",
+        "description": "This route allows a student to leave a classroom",
+        "tags": [
+          "Platform"
+        ],
+        "parameters": [
+          {
+            "in": "header",
+            "name": "Authorization",
+            "required": true,
+            "type": "string",
+            "description": "JWT Authorization Token",
+            "schema": {
+              "example": "Baerer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IkJydW5hdHVkZW50IiwiaWF0IjoxNjU4NjkwNTI2fQ.wt8L4eXm3LK7BEPNtjVytNIZPhiY_8pFIEOLXpgwzDQ"
+            }
+          },
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "description": "Find a classroom by ID",
+            "schema": {
+              "example": "62ddbd251146fbb621101b44"
+            }
+          }
+        ],
+        "responses": {
+          "500": {
+            "description": "Internal Server Error"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/platform/feed/post/new": {
+      "post": {
+        "security": [
+          {
+            "jwt": []
+          }
+        ],
+        "summary": "New Post",
+        "description": "This route allows the user to create a new post",
+        "tags": [
+          "Platform"
+        ],
+        "parameters": [
+          {
+            "in": "header",
+            "name": "Authorization",
+            "required": true,
+            "type": "string",
+            "description": "JWT Authorization Token",
+            "schema": {
+              "example": "Baerer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IkJydW5hVGVhY2hlciIsImlhdCI6MTY1ODY5MDYyOH0.nqwWi2DxfnOsaRbUL_oE6qgZ2DLLm5Zh5kzSDyUlCNY"
+            }
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "example": {
+                "body": "A importancia de um novo idioma ",
+                "attachments": "link"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "500": {
+            "description": "Internal Server Error"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "201": {
+            "description": "Created"
+          }
+        }
+      }
+    },
+    "/platform/feed/post/{id}": {
+      "get": {
+        "security": [
+          {
+            "jwt": []
+          }
+        ],
+        "summary": "Get a Post by ID",
+        "description": "This route allows the user to get a post by id",
+        "tags": [
+          "Platform"
+        ],
+        "parameters": [
+          {
+            "in": "header",
+            "name": "Authorization",
+            "required": true,
+            "type": "string",
+            "description": "JWT Authorization Token",
+            "schema": {
+              "example": "Baerer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IkJydW5hdHVkZW50IiwiaWF0IjoxNjU4NjkwNTI2fQ.wt8L4eXm3LK7BEPNtjVytNIZPhiY_8pFIEOLXpgwzDQ"
+            }
+          },
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "description": "Find a post by ID",
+            "schema": {
+              "example": "62ddc92a40af0eb8e60493e3"
+            }
+          }
+        ],
+        "responses": {
+          "500": {
+            "description": "Internal Server Error"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/platform/feed/post/my-posts": {
+      "get": {
+        "security": [
+          {
+            "jwt": []
+          }
+        ],
+        "summary": "Get the User's Posts",
+        "description": "This route allows the user to get all their posts",
+        "tags": [
+          "Platform"
+        ],
+        "parameters": [
+          {
+            "in": "header",
+            "name": "Authorization",
+            "required": true,
+            "type": "string",
+            "description": "JWT Authorization Token",
+            "schema": {
+              "example": "Baerer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IkJydW5hVGVhY2hlciIsImlhdCI6MTY1ODY5MDYyOH0.nqwWi2DxfnOsaRbUL_oE6qgZ2DLLm5Zh5kzSDyUlCNY"
+            }
+          }
+        ],
+        "responses": {
+          "500": {
+            "description": "Internal Server Error"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/platform/feed/post/update/{id}": {
+      "put": {
+        "security": [
+          {
+            "jwt": []
+          }
+        ],
+        "summary": "Update Post by ID",
+        "description": "This route allows the user to get a post by id and update",
+        "tags": [
+          "Platform"
+        ],
+        "parameters": [
+          {
+            "in": "header",
+            "name": "Authorization",
+            "required": true,
+            "type": "string",
+            "description": "JWT Authorization Token",
+            "schema": {
+              "example": "Baerer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IkJydW5hVGVhY2hlciIsImlhdCI6MTY1ODY5MDYyOH0.nqwWi2DxfnOsaRbUL_oE6qgZ2DLLm5Zh5kzSDyUlCNY"
+            }
+          },
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "description": "Find a post by ID and update",
+            "schema": {
+              "example": "62ddc92a40af0eb8e60493e3"
+            }
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "description": "Send data for the update",
+              "example": {
+                "attachments": "link 2"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "500": {
+            "description": "Internal Server Error"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/platform/feed/post/delete/{id}": {
+      "delete": {
+        "security": [
+          {
+            "jwt": []
+          }
+        ],
+        "summary": "Delete Post by ID",
+        "description": "This route allows the user to get a post by id and delete",
+        "tags": [
+          "Platform"
+        ],
+        "parameters": [
+          {
+            "in": "header",
+            "name": "Authorization",
+            "required": true,
+            "type": "string",
+            "description": "JWT Authorization Token",
+            "schema": {
+              "example": "Baerer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IkJydW5hVGVhY2hlciIsImlhdCI6MTY1ODY5MDYyOH0.nqwWi2DxfnOsaRbUL_oE6qgZ2DLLm5Zh5kzSDyUlCNY"
+            }
+          },
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "description": "Find a post by ID and delete",
+            "schema": {
+              "example": "62ddc92a40af0eb8e60493e3"
+            }
+          }
+        ],
+        "responses": {
+          "500": {
+            "description": "Internal Server Error"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/platform/feed/post/likes-dislikes/{id}": {
+      "put": {
+        "security": [
+          {
+            "jwt": []
+          }
+        ],
+        "summary": "Like or Dislike Post by ID",
+        "description": "This route allows the user to like or dislike a post",
+        "tags": [
+          "Platform"
+        ],
+        "parameters": [
+          {
+            "in": "header",
+            "name": "Authorization",
+            "required": true,
+            "type": "string",
+            "description": "JWT Authorization Token",
+            "schema": {
+              "example": "Baerer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IkJydW5hVGVhY2hlciIsImlhdCI6MTY1ODY5MDYyOH0.nqwWi2DxfnOsaRbUL_oE6qgZ2DLLm5Zh5kzSDyUlCNY"
+            }
+          },
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "description": "Find a post by ID and like or dislike",
+            "schema": {
+              "example": "62dc100fcd8ebb4e9987e021"
+            }
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "description": "Send data for the evaluation",
+              "example": {
+                "likes": true
+              }
+            }
+          }
+        ],
+        "responses": {
+          "500": {
+            "description": "Internal Server Error"
+          },
+          "409": {
+            "description": "Conflict"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/platform/feed/post/add-to-favorite/{id}": {
+      "patch": {
+        "security": [
+          {
+            "jwt": []
+          }
+        ],
+        "summary": "Add to favorites",
+        "description": "This route allows the user to favorite a post",
+        "tags": [
+          "Platform"
+        ],
+        "parameters": [
+          {
+            "in": "header",
+            "name": "Authorization",
+            "required": true,
+            "type": "string",
+            "description": "JWT Authorization Token",
+            "schema": {
+              "example": "Baerer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IkJydW5hVGVhY2hlciIsImlhdCI6MTY1ODY5MDYyOH0.nqwWi2DxfnOsaRbUL_oE6qgZ2DLLm5Zh5kzSDyUlCNY"
+            }
+          },
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "description": "Find a post by ID and add to favorites",
+            "schema": {
+              "example": "62dc100fcd8ebb4e9987e021"
+            }
+          }
+        ],
+        "responses": {
+          "500": {
+            "description": "Internal Server Error"
+          },
+          "409": {
+            "description": "Conflict"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/platform/feed/post/remove-from-favorite/{id}": {
+      "delete": {
+        "security": [
+          {
+            "jwt": []
+          }
+        ],
+        "summary": "Remove from favorites",
+        "description": "This route allows the user to remove a post from favorites",
+        "tags": [
+          "Platform"
+        ],
+        "parameters": [
+          {
+            "in": "header",
+            "name": "Authorization",
+            "required": true,
+            "type": "string",
+            "description": "JWT Authorization Token",
+            "schema": {
+              "example": "Baerer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IkJydW5hVGVhY2hlciIsImlhdCI6MTY1ODY5MDYyOH0.nqwWi2DxfnOsaRbUL_oE6qgZ2DLLm5Zh5kzSDyUlCNY"
+            }
+          },
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "description": "Find a post by ID and remove from favorites",
+            "schema": {
+              "example": "62dc100fcd8ebb4e9987e021"
+            }
+          }
+        ],
+        "responses": {
+          "500": {
+            "description": "Internal Server Error"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/platform/feed/post/new-comment/{id}": {
+      "patch": {
+        "security": [
+          {
+            "jwt": []
+          }
+        ],
+        "summary": "Comment a post",
+        "description": "This route allows the user to comment in a post",
+        "tags": [
+          "Platform"
+        ],
+        "parameters": [
+          {
+            "in": "header",
+            "name": "Authorization",
+            "required": true,
+            "type": "string",
+            "description": "JWT Authorization Token",
+            "schema": {
+              "example": "Baerer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IkJydW5hVGVhY2hlciIsImlhdCI6MTY1ODY5MDYyOH0.nqwWi2DxfnOsaRbUL_oE6qgZ2DLLm5Zh5kzSDyUlCNY"
+            }
+          },
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "description": "Find a post by ID and comment",
+            "schema": {
+              "example": "62dc100fcd8ebb4e9987e021"
+            }
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "description": "Send data for comment",
+              "example": {
+                "replyBody": "Muito interessante!"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "500": {
+            "description": "Internal Server Error"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/platform/feed/post/commented-post/{id}/update-comment/{commentId}": {
+      "patch": {
+        "security": [
+          {
+            "jwt": []
+          }
+        ],
+        "summary": "Upate a comment in a post",
+        "description": "This route allows the user to update a comment in a post",
+        "tags": [
+          "Platform"
+        ],
+        "parameters": [
+          {
+            "in": "header",
+            "name": "Authorization",
+            "required": true,
+            "type": "string",
+            "description": "JWT Authorization Token",
+            "schema": {
+              "example": "Baerer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IkJydW5hVGVhY2hlciIsImlhdCI6MTY1ODY5MDYyOH0.nqwWi2DxfnOsaRbUL_oE6qgZ2DLLm5Zh5kzSDyUlCNY"
+            }
+          },
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "description": "Find the post by ID",
+            "schema": {
+              "example": "62dc100fcd8ebb4e9987e021"
+            }
+          },
+          {
+            "in": "path",
+            "name": "commentId",
+            "required": true,
+            "description": "Find the comment by ID",
+            "schema": {
+              "example": "62ddd385b5796f20271c63aa"
+            }
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "description": "Send data for comment update",
+              "example": {
+                "replyBody": "Muito interessante! Adorei!"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "500": {
+            "description": "Internal Server Error"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/platform/feed/post/commented-post/{id}/remove-comment/{commentId}": {
+      "delete": {
+        "security": [
+          {
+            "jwt": []
+          }
+        ],
+        "summary": "Delete a comment in a post",
+        "description": "This route allows the user to delete a comment in a post",
+        "tags": [
+          "Platform"
+        ],
+        "parameters": [
+          {
+            "in": "header",
+            "name": "Authorization",
+            "required": true,
+            "type": "string",
+            "description": "JWT Authorization Token",
+            "schema": {
+              "example": "Baerer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IkJydW5hVGVhY2hlciIsImlhdCI6MTY1ODY5MDYyOH0.nqwWi2DxfnOsaRbUL_oE6qgZ2DLLm5Zh5kzSDyUlCNY"
+            }
+          },
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "description": "Find the post by ID",
+            "schema": {
+              "example": "62dc100fcd8ebb4e9987e021"
+            }
+          },
+          {
+            "in": "path",
+            "name": "commentId",
+            "required": true,
+            "description": "Find the comment by ID and delete",
+            "schema": {
+              "example": "62ddd385b5796f20271c63aa"
+            }
+          }
+        ],
+        "responses": {
+          "500": {
+            "description": "Internal Server Error"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/platform/feed": {
+      "get": {
+        "security": [
+          {
+            "jwt": []
+          }
+        ],
+        "summary": "Get Feed",
+        "description": "This route finds all posts",
+        "tags": [
+          "Platform"
+        ],
+        "parameters": [
+          {
+            "in": "header",
+            "name": "Authorization",
+            "required": true,
+            "type": "string",
+            "description": "JWT Authorization Token",
+            "schema": {
+              "example": "Baerer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IkJydW5hVGVhY2hlciIsImlhdCI6MTY1ODY5MDYyOH0.nqwWi2DxfnOsaRbUL_oE6qgZ2DLLm5Zh5kzSDyUlCNY"
+            }
+          }
+        ],
+        "responses": {
+          "500": {
+            "description": "Internal Server Error"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
     }
   }
 }
-
-
