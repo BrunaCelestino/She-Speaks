@@ -8,7 +8,7 @@ const { validateEmailPasswordUsername, hashPassword } = require('../../helpers/v
 
 router.post('/new-student/:id', validateEmailPasswordUsername, hashPassword, controller.createNewStudent);
 router.get('/profile/home/:username', checkAuth, controller.findProfileByUsername);
-router.put('/private-profile/update/:id', checkAuthAndPermissionLevel, validateEmailPasswordUsername, hashPassword, controller.updateStudent);
-router.delete('/private-profile/delete/:id', checkAuthAndPermissionLevel, controller.deleteStudent);
+router.put('/profile/update/:id', checkAuthAndPermissionLevel, validateEmailPasswordUsername, hashPassword, controller.updateStudent);
+router.delete('/profile/delete/:id', checkAuthAndPermissionLevel, controller.deleteStudent);
 
 module.exports = router;

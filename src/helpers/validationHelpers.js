@@ -2,69 +2,71 @@ const bcrypt = require('bcrypt');
 
 exports.validateCPF = async (req, res, next) => {
   const { CPF } = req.body;
-
   try {
-    let sum = 0;
-    let rest;
+    if (CPF) {
+      let sum = 0;
+      let rest;
 
-    // eslint-disable-next-line no-useless-escape
-    if (!CPF.match('^[0-9]{3}(.)[0-9]{3}(.)[0-9]{3}(-)[0-9]{2}$')) {
-      return res.status(422).json({
-        message: 'Invalid CPF format. Please, check it and try again.',
-        details: 'Use the format -> xxx.xxx.xxx-xx',
-      });
-    }
+      // eslint-disable-next-line no-useless-escape
+      if (!CPF.match('^[0-9]{3}(.)[0-9]{3}(.)[0-9]{3}(-)[0-9]{2}$')) {
+        return res.status(422).json({
+          message: 'Invalid CPF format. Please, check it and try again.',
+          details: 'Use the format -> xxx.xxx.xxx-xx',
+        });
+      }
 
-    const strCPF = String(CPF).replace(/[^\d]/g, '');
+      const strCPF = String(CPF).replace(/[^\d]/g, '');
 
-    if (strCPF.length !== 11) {
-      return res.status(422).json({
-        message: 'Invalid CPF number. Please, check it and try again.',
-        details: 'A CPF number must be 11 digits long.',
-      });
-    }
+      if (strCPF.length !== 11) {
+        return res.status(422).json({
+          message: 'Invalid CPF number. Please, check it and try again.',
+          details: 'A CPF number must be 11 digits long.',
+        });
+      }
 
-    if (
-      [
-        '00000000000',
-        '11111111111',
-        '22222222222',
-        '33333333333',
-        '44444444444',
-        '55555555555',
-        '66666666666',
-        '77777777777',
-        '88888888888',
-        '99999999999',
-      ].indexOf(strCPF) !== -1
-    ) {
-      return res.status(422).json({
-        message: 'Invalid CPF number. Please, check it and try again.',
-        details: 'The CPF numbers cannot be the same.',
-      });
-    }
+      if (
+        [
+          '00000000000',
+          '11111111111',
+          '22222222222',
+          '33333333333',
+          '44444444444',
+          '55555555555',
+          '66666666666',
+          '77777777777',
+          '88888888888',
+          '99999999999',
+        ].indexOf(strCPF) !== -1
+      ) {
+        return res.status(422).json({
+          message: 'Invalid CPF number. Please, check it and try again.',
+          details: 'The CPF numbers cannot be the same.',
+        });
+      }
 
-    for (let i = 1; i <= 9; i += 1) sum += parseInt(strCPF.substring(i - 1, i), 10) * (11 - i);
+      for (let i = 1; i <= 9; i += 1) sum += parseInt(strCPF.substring(i - 1, i), 10) * (11 - i);
 
-    rest = (sum * 10) % 11;
-    if (rest === 10 || rest === 11) rest = 0;
-    if (rest !== parseInt(strCPF.substring(9, 10), 10)) {
-      return res.status(422).json({
-        message: 'Invalid CPF number. Please, check it and try again.',
-        details: 'This is not an acceptable CPF format.',
-      });
-    }
+      rest = (sum * 10) % 11;
+      if (rest === 10 || rest === 11) rest = 0;
+      if (rest !== parseInt(strCPF.substring(9, 10), 10)) {
+        return res.status(422).json({
+          message: 'Invalid CPF number. Please, check it and try again.',
+          details: 'This is not an acceptable CPF format.',
+        });
+      }
 
-    sum = 0;
+      sum = 0;
 
-    for (let i = 1; i <= 10; i += 1) sum += parseInt(strCPF.substring(i - 1, i), 10) * (12 - i);
-    rest = (sum * 10) % 11;
-    if (rest === 10 || rest === 11) rest = 0;
-    if (rest !== parseInt(strCPF.substring(10, 11), 10)) {
-      return res.status(422).json({
-        message: 'Invalid CPF number. Please, check it and try again.',
-        details: 'This is not an acceptable CPF format.',
-      });
+      for (let i = 1; i <= 10; i += 1) sum += parseInt(strCPF.substring(i - 1, i), 10) * (12 - i);
+      rest = (sum * 10) % 11;
+      if (rest === 10 || rest === 11) rest = 0;
+      if (rest !== parseInt(strCPF.substring(10, 11), 10)) {
+        return res.status(422).json({
+          message: 'Invalid CPF number. Please, check it and try again.',
+          details: 'This is not an acceptable CPF format.',
+        });
+      }
+      return next();
     }
     return next();
   } catch (error) {
