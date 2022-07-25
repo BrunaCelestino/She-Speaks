@@ -24,12 +24,12 @@
 ---
 
 #  📑 Sumário
-- [Problema](#🚩-problema)
+- [Problema](#problema-🚩)
 - [Solução](#💡-solução)
 - [Tema](#❕-tema)
 - [Introdução](#📖-introdução)
 - [Objetivo](#🎯-objetivo)
-- [Arquitetura](#arquitetura-⚙️)
+- [Arquitetura](#)
 - [Descrição](#🚀-descrição)
   - [Admin](#admin)
   - [Alunas](#alunas)
@@ -38,7 +38,7 @@
 - [Tecnologias](#💻-tecnologias)
   - [Dependências do Projeto](#dependências-do-projeto)
   - [Dependências do Desenvolvimento](#dependências-do-desenvolvimento)
-- [Instalação](#🛠️-instalação)
+- [Instalação](#)
 - [Teste](#🖱️-teste)
 - [Implementações Futuras](#🔮-implementações-futuras)
 - [Autora](#👧-autora)
@@ -47,14 +47,14 @@
 
 <div align ='justify'>
 
----
 
-##  🚩 Problema
+##   Problema 🚩
 Atualmente conhecer outro idioma é muito importante, seja para conseguir se conectar com pessoas de outros países, seja para conseguir uma boa posição no mercado de trabalho. Ainda sim, o Brasil tem um número muito baixo de pessoas fluentes em um segundo idioma. 
 
 ---
 
 ## 💡 Solução
+
 API que conecta professoras de idioma voluntárias e alunas de baixa renda, para que possam, num espaço seguro, aprender novos idiomas, seja por interesse profissional, seja por lazer. 
 
 </div>
