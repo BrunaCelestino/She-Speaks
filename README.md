@@ -24,37 +24,37 @@
 ---
 
 #  📑 Sumário
-- [Problema](#problema)
-- [Solução](#solução)
-- [Tema](#tema)
-- [Introdução](#introdução)
-- [Objetivo](#objetivo)
-- [Arquitetura](#arquitetura)
-- [Descrição](#descrição)
+- [Problema](#🚩-problema)
+- [Solução](#💡-solução)
+- [Tema](#❕-tema)
+- [Introdução](#📖-introdução)
+- [Objetivo](#🎯-objetivo)
+- [Arquitetura](#⚙️-arquitetura)
+- [Descrição](#🚀-descrição)
   - [Admin](#admin)
   - [Alunas](#alunas)
   - [Professoras](#professoras)
   - [Plataforma](#plataforma)
-- [Tecnologias](#tecnologias)
+- [Tecnologias](#💻-tecnologias)
   - [Dependências do Projeto](#dependências-do-projeto)
   - [Dependências do Desenvolvimento](#dependências-do-desenvolvimento)
-- [Instalação](#instalação)
-  - [Teste](#teste)
-- [Implementações Futuras](#implementações-futuras)
-- [Autora](#autora)
-- [Referências](#referências)
+- [Instalação](#🛠️-instalação)
+- [Teste](#🖱️-teste)
+- [Implementações Futuras](#🔮-implementações-futuras)
+- [Autora](#👧-autora)
+- [Referências](#🔗-referências)
 
 
 <div align ='justify'>
 
 ---
 
-## Problema
+##  🚩 Problema
 Atualmente conhecer outro idioma é muito importante, seja para conseguir se conectar com pessoas de outros países, seja para conseguir uma boa posição no mercado de trabalho. Ainda sim, o Brasil tem um número muito baixo de pessoas fluentes em um segundo idioma. 
 
 ---
 
-## Solução
+## 💡 Solução
 API que conecta professoras de idioma voluntárias e alunas de baixa renda, para que possam, num espaço seguro, aprender novos idiomas, seja por interesse profissional, seja por lazer. 
 
 </div>
@@ -63,13 +63,13 @@ API que conecta professoras de idioma voluntárias e alunas de baixa renda, para
 
 <div align ='justify'>
 
-## Tema 
+## ❕ Tema 
 SheSpeaks! é uma API que reúne professoras de idiomas que gostariam de se voluntariar e mulheres de baixa renda que tenham interesse em aprender um novo idioma. Essa API será um espaço seguro, onde aceitará apenas a participação de mulheres, tanto como alunas quanto como professoras. 
 <br>
 
 ---
 
-## Introdução
+## 📖 Introdução
 Em 2018, profissionais que conheciam um idioma estrangeiro, podiam ter um ganho salarial de até 51,89% em relação aos que não sabiam outra língua. Cargos de hierarquia superior, podiam ter uma diferença ainda maior.  De acordo com uma pesquisa realizada pela British Council, em 2021, apenas 5% dos brasileiros falavam inglês e 1% era fluente. A porcentagem de brasileiros que falam outros idiomas é ainda menor. 
 Cada vez mais, seja no mercado de trabalho ou na vida social, nota-se a importância de saber mais de um idioma. Num mundo globalizado, não ter recursos para desenvolver um segundo idioma e, pela falta de suporte governamental, não ter acesso viável ao aprendizado, é uma segregação idiomática e social. 
 Embora escolas públicas ofereçam aulas de idiomas, sabe-se que elas são, muitas vezes, rasas e defasadas. Mas mesmo quando não são, um aluno de escola pública, aprendendo um idioma numa sala lotada, dificilmente terá o mesmo aproveitamento que um aluno de uma escola particular, ou de pessoas que têm condições financeiras para pagar cursos particulares. 
@@ -78,13 +78,13 @@ Em nosso país, viver é caro. Contas absurdas, alimentação, aluguel, filhos, 
 
 ---
 
-## Objetivo
+## 🎯 Objetivo
 A SheSpeaks! tem como objetivo tornar possível que mulheres que não possam dispor de investimentos, possam aprender um novo idioma. Através dessa iniciativa, espera-se que elas possam alcançar melhores oportunidades no mercado de trabalho, ou apenas desenvolver um novo hobby, afinal, com tantas demandas, elas merecem ter um momento de descompressão e lazer. 
 <br>
 
 ---
 
-## Arquitetura
+## ⚙️ Arquitetura
 
 <div align = "justify">
 
@@ -326,7 +326,7 @@ O servidor, criado dentro do repositório [She-Speaks](https://github.com/BrunaC
 ---
 
 
-## Descrição
+ ##  🚀 Descrição
 O uso da plataforma inicia-se no pré-registro, tanto da professora quanto da estudante. Ao cumprirem os requisitos pré estabelecidos, podem criar seu perfil e começar a utilizar a plataforma. Nelas, as professoras e alunas conseguem fazer postagens, mandar mensagens, adicionar amigas, sendo alertadas por meio de notificação, curtir, comentar e favoritar posts. Além disso, as professoras criam suas salas, com o limite de alunas que desejarem. As alunas podem pesquisar as salas, baseando-se em filtros. Caso queiram encontrar a melhor sala para elas, basta entrar na rota do “match”, e uma sala que atenda todos os requisitos que a aluna cadastrou em seu perfil, aparecerá para ela. Assim, a aluna pode se juntar a uma sala e, caso não tenha gostado, deixá-la  e se juntar a outras. 
 A plataforma é dividida em quatro pontos principais: , Admin, Alunas, Professoras e Plataforma.
 </div>
@@ -388,6 +388,7 @@ Identificada pelo seu “role”, e verificada através de seu token, a admin po
 As alunas precisam preencher um pré-cadastro, dando suas informações pessoais. Se seu pré-cadastro for aprovado, pode criar seu perfil e acessar a plataforma. Suas rotas são divididas entre pré-registro e perfil:  
 
 <br>
+</div>
 <div align ='center'>
 
 **Alunas: Rotas/EndPoints** 
@@ -449,11 +450,12 @@ As alunas precisam preencher um pré-cadastro, dando suas informações pessoais
 
 <div align ='center'>
 
-### Professoras
+###  Professoras
 
 </div>
 <div align = 'justify'>
 As professoras precisam preencher um pré-cadastro, dando suas informações pessoais. Se seu pré-cadastro for aprovado, pode criar seu perfil e acessar a plataforma. Suas rotas são divididas entre pré-registro e perfil:
+<br>
 <br>
 <div align ='center'>
 
@@ -723,7 +725,7 @@ Para que fosse possível a execução desse projeto, foi necessária a utilizaç
 <br>
 
 --- 
-##  Instalação: 
+## 🛠️ Instalação: 
 
 1. Entre na pasta onde você deseja clonar o repositório. Abra o **git** nela e digite: 
 
@@ -750,9 +752,11 @@ Para que fosse possível a execução desse projeto, foi necessária a utilizaç
 
 <br>
 
+--- 
+
 <div align = "justify">
 
-###  Teste 
+## 🖱️ Teste: 
 
 Opção 1: 
 
@@ -780,18 +784,18 @@ Opção 3:
 
 ---
 
-## Implementações Futuras
+## 🔮 Implementações Futuras
 <div align = 'justify'>
 Futuramente, pretendo desenvolver o front-end para consumir essa API e também, implementar o sistema de pagamentos para pessoas com rendas mais altas. Assim, as professoras seriam pagas e a plataforma contaria com um número maior de usuárias.  
 
 ---
 
 
-## Autora
+## 👧 Autora
 
 ---
 
-## Referências
+## 🔗 Referências
 
 [Quantos brasileiros falam inglês 2020?](https://www.vivendobauru.com.br/quantos-brasileiros-falam-ingles-2020/)
 
