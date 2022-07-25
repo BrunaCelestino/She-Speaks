@@ -359,33 +359,50 @@ Identificada pelo seu “role”, e verificada através de seu token, a admin po
 
 </div>
 
+
+
 <br>
 
 🟢**GET**
 
+<div align ='center'>
+
 |Método|Rota|Descrição|
-|------|----|---------|
+|:------:|:----:|:---------:|
 |`GET`|https://she-speaks.herokuapp.com/admin/find-all-admins|Rota que retorna todos os admins da plataforma|
 |`GET`|https://she-speaks.herokuapp.com/admin/find-admin-by-email/?email=|Rota que encontra um admin por e-mail|
 |`GET`|https://she-speaks.herokuapp.com/admin/find-admin/:id|Rota que encontra um admin por ID
 
+</div>
 🟡**POST**
 
+<div align ='center'>
+
 |Método|Rota|Descrição|
-|------|----|---------|
+|:------:|:----:|:---------:|
 |`POST`|https://she-speaks.herokuapp.com/admin/new|Cria um novo admin|
 
+</div>
+
 🔵**PUT**
+
+<div align ='center'>
+
 |Método|Rota|Descrição|
-|------|----|---------|
+|:------:|:----:|:---------:|
 |`PUT`|https://she-speaks.herokuapp.com/admin/update/:id|Atualiza o admin|
 
+</div>
 
 🔴**DELETE**
 
+<div align ='center'>
+
 |Método|Rota|Descrição|
-|------|----|---------|
+|:------:|:----:|:---------:|
 |`DELETE`|https://she-speaks.herokuapp.com/admin/delete/:id|Deleta um admin|
+
+</div>
 </div>
 
 <div align ='center'>
@@ -397,8 +414,10 @@ Identificada pelo seu “role”, e verificada através de seu token, a admin po
 <div align = 'justify'>
 As alunas precisam preencher um pré-cadastro, dando suas informações pessoais. Se seu pré-cadastro for aprovado, pode criar seu perfil e acessar a plataforma. Suas rotas são divididas entre pré-registro e perfil:  
 
-<br>
 </div>
+
+<br>
+
 <div align ='center'>
 
 **Alunas: Rotas/EndPoints** 
@@ -411,51 +430,83 @@ As alunas precisam preencher um pré-cadastro, dando suas informações pessoais
 
 🟡**POST**  
 
+
+
+
 |Método|Rota|Descrição|
-|------|----|---------|
+|:------:|:----:|:---------:|
 |`POST`|https://she-speaks.herokuapp.com/student/new-pre-register|Cria o pré-cadastro|
+
+</div>
 
 🟢**GET**
 
+<div align ='center'>
+
 |Método|Rota|Descrição|
-|------|----|---------|
+|:------:|:----:|:---------:|
 |`GET`|https://she-speaks.herokuapp.com/student/all-pre-registers|Retorna todos os pré-cadastros, rota para admin|
 |`GET`|https://she-speaks.herokuapp.com/student/pre-register/:id|Retorna pré-cadastro por Id, ver status da candidatura
 
+</div>
+
+
 🔵**PUT**
+
+<div align ='center'>
+
 |Método|Rota|Descrição|
-|------|----|---------|
+|:------:|:----:|:---------:|
 |`PUT`|https://she-speaks.herokuapp.com/student/update-pre-register/:id|Atualiza pré-cadastro
 
+</div>
+
 🔴**DELETE**
+
+<div align ='center'>
+
 |Método|Rota|Descrição|
-|------|----|---------|
+|:------:|:----:|:---------:|
 |`DELETE`|https://she-speaks.herokuapp.com/student/delete-pre-register/:id|Deleta pré-cadastro, rota para admin
 
+</div>
 
 2. **Perfil**  
 <br>
 
 🟡**POST**
 
+<div align ='center'>
+
 |Método|Rota|Descrição|
-|------|----|---------|
+|:------:|:----:|:---------:|
 |`POST`|https://she-speaks.herokuapp.com/student/new-student/id|Cria perfil do aluno com o id do pré-cadastro
+</div>
 
 🟢**GET**
+
+<div align ='center'>
+
 |Método|Rota|Descrição|
-|------|----|---------|
+|:------:|:----:|:---------:|
 |`GET`|https://she-speaks.herokuapp.com/student/profile/home/:username| Retorna perfil por username, se dono do perfil ou admin, retorna perfil completo, senão, perfil público
+</div>
 
 🔵**PUT**
+<div align ='center'>
+
 |Método|Rota|Descrição|
-|------|----|---------|
+|:------:|:----:|:---------:|
 |`PUT`|https://she-speaks.herokuapp.com/student/private-profile/update/:id|Atualiza perfil, somente o dono do token tem acesso
+</div>
 
 🔴**DELETE**
+<div align ='center'>
+
 |Método|Rota|Descrição|
-|------|----|---------|
+|:------:|:----:|:---------:|
 |`DELETE`|https://she-speaks.herokuapp.com/student/private-profile/delete/:id|Deleta perfil, somente dono ou admin tem acesso
+</div>
 </div>
 
 <div align ='center'>
@@ -478,51 +529,87 @@ As professoras precisam preencher um pré-cadastro, dando suas informações pes
 
 🟡**POST**
 
+<div align ='center'>
+
 |Método|Rota|Descrição|
-|------|----|---------|
+|:------:|:----:|:---------:|
 |`POST`|https://she-speaks.herokuapp.com/teacher/new-pre-register|Cria o pré-cadastro
+</div>
 
 🟢**GET**
+
+<div align ='center'>
+
 |Método|Rota|Descrição|
-|------|----|---------|
+|:------:|:----:|:---------:|
 |`GET`|https://she-speaks.herokuapp.com/teacher/all-pre-registers|Retorna todos os pré-cadastros, rota para admin
 |`GET`|https://she-speaks.herokuapp.com/teacher/pre-register/:id|Retorna  pré-cadastro por Id, ver status da candidatura
+</div>
 
 🔵**PUT**
+
+<div align ='center'>
+
 |Método|Rota|Descrição|
-|------|----|---------|
+|:------:|:----:|:---------:|
 |`PUT`|https://she-speaks.herokuapp.com/teacher/update-pre-register/:id|Atualiza pré-cadastro
+
+</div>
 
 
 🔴**DELETE**
+
+<div align ='center'>
+
 |Método|Rota|Descrição|
-|------|----|---------|
+|:------:|:----:|:---------:|
 |`DELETE`|https://she-speaks.herokuapp.com/teacher/delete-pre-register/:id|Deleta  pré-cadastro, rota para admin
 
+</div>
 
 2. **Perfil**
 <br>
 
 🟡**POST**  
+
+<div align ='center'>
+
 |Método|Rota|Descrição|
-|------|----|---------|
+|:------:|:----:|:---------:|
 |`POST`|https://she-speaks.herokuapp.com/teacher/new-student/id|Cria perfil do aluno com o id do pré-cadastro
 
+</div>
+
 🟢**GET**
+
+<div align ='center'>
+
 |Método|Rota|Descrição|
-|------|----|---------|
+|:------:|:----:|:---------:|
 |`GET`|https://she-speaks.herokuapp.com/teacher/profile/home/:username|Retorna perfil por username, se dono do perfil ou admin,, retorna perfil completo, senão, perfil público
 
+</div>
+
 🔵**PUT**
+
+<div align ='center'>
+
+
 |Método|Rota|Descrição|
-|------|----|---------|
+|:------:|:----:|:---------:|
 |`PUT`|https://she-speaks.herokuapp.com/teacher/private-profile/update/:id|Atualiza perfil, somente o dono do token tem acesso
+</div>
 
 🔴**DELETE**
+
+<div align ='center'>
+
 |Método|Rota|Descrição|
-|------|----|---------|
+|:------:|:----:|:---------:|
 |`DELETE`|https://she-speaks.herokuapp.com/teacher/private-profile/delete/:id|Deleta perfil, somente dono ou admin tem acesso
 </div>
+</div>
+
 <br>
 <div align ='center'>
 
@@ -543,55 +630,84 @@ A plataforma é subdividida em: Posts, Mensagens, Login, Lista de Amigos, Sala d
 <br>
 
 🟡**POST**
+
+<div align ='center'>
+
 |Método|Rota|Descrição|
-|------|----|---------|
+|:------:|:----:|:---------:|
 |`POST`|https://she-speaks.herokuapp.com/platform/feed/post/new|Cria uma nova postagem
+</div>
 
 🟢**GET**
+
+<div align ='center'>
+
+
 |Método|Rota|Descrição|
-|------|----|---------|
+|:------:|:----:|:---------:|
 |`GET`|https://she-speaks.herokuapp.com/platform/feed/post/:id|Retorna um post por Id
 |`GET`|https://she-speaks.herokuapp.com/platform/feed/post/my-posts|Retorna todos os posts de um usuário
 |`GET`|https://she-speaks.herokuapp.com/platform/feed|Retorna o feed da plataforma
+</div>
 
 🔵**PUT**
+<div align ='center'>
+
 |Método|Rota|Descrição|
-|------|----|---------|
+|:------:|:----:|:---------:|
 |`PUT`|https://she-speaks.herokuapp.com/platform/feed/post/update/:id|Atualiza post, somente o dono do token tem acesso
 |`PUT`|https://she-speaks.herokuapp.com/platform/feed/post/likes-dislikes/:id|Dar like ou deslike em um post
-
+</div>
 
 🔴**DELETE**
+
+<div align ='center'>
+
 |Método|Rota|Descrição|
-|------|----|---------|
+|:------:|:----:|:---------:|
 |`DELETE`|https://she-speaks.herokuapp.com/platform/feed/post/delete/:id|Deleta post, somente dono ou admin tem acesso
 |`DELETE`|https://she-speaks.herokuapp.com/platform/feed/post/remove-from-favorite/:id|Remove  post dos favoritos
+</div>
 
 🟣**PATCH**
+<div align ='center'>
+
 |Método|Rota|Descrição|
-|------|----|---------|
+|:------:|:----:|:---------:|
 |`PATCH`|https://she-speaks.herokuapp.com/platform/feed/post/add-to-favorite/:id|Adicionar o post aos favoritos do usuário
+</div>
 
 2. **Comentários**
 <br>
 
 🟣**PATCH**
+
+<div align ='center'>
+
 |Método|Rota|Descrição|
-|------|----|---------|
+|:------:|:----:|:---------:|
 |`PATCH`|https://she-speaks.herokuapp.com/platform/feed/post/new-comment/:id|Fazer um comentário em uma publicação
 |`PATCH`|https://she-speaks.herokuapp.com/platform/feed/post/commented-post/:id/update-comment/:commentId|Atualizar um comentário feito numa publicação
+</div>
 
 🔴**DELETE**
+
+<div align ='center'>
+
 |Método|Rota|Descrição|
-|------|----|---------|
+|:------:|:----:|:---------:|
 |`DELETE`|https://she-speaks.herokuapp.com/platform/feed/post/commented-post/:id/remove-comment/:commentId|Deleta comentário, feito em uma postagem
+</div>
 
 3. **Mensagens**
 <br>
 
 🟢**GET**
+
+<div align ='center'>
+
 |Método|Rota|Descrição|
-|------|----|---------|
+|:------:|:----:|:---------:|
 |`GET`|https://she-speaks.herokuapp.com/platform/message/my-messages/all|Retorna todas as mensagens do usuário
 |`GET`|https://she-speaks.herokuapp.com/platform/message/my-messages/sent|Retorna todas as mensagens enviadas
 |`GET`|https://she-speaks.herokuapp.com/platform/message/my-messages/received|Retorna todas as mensagens recebidas
@@ -599,98 +715,142 @@ A plataforma é subdividida em: Posts, Mensagens, Login, Lista de Amigos, Sala d
 |`GET`|https://she-speaks.herokuapp.com/platform/message/my-messages/received/read|Retorna todas as mensagens lidas
 |`GET`|https://she-speaks.herokuapp.com/platform/message/my-messages/:id|Retorna uma mensagem por Id
 
+</div>
+
 🟡**POST**
+<div align ='center'>
+
 |Método|Rota|Descrição|
-|------|----|---------|
+|:------:|:----:|:---------:|
 |`POST`|https://she-speaks.herokuapp.com/platform/message/send|Enviar (criar) uma mensagem
+</div>
 
 🔴**DELETE**
-|Método|Rota|Descrição|
-|------|----|---------|
-|`DELETE`|https://she-speaks.herokuapp.com/platform/message/my-messages/delete/:id|Deletar uma mensagem, por Id (somente do inbox do usuário logado)
+<div align ='center'>
 
+|Método|Rota|Descrição|
+|:------:|:----:|:---------:|
+|`DELETE`|https://she-speaks.herokuapp.com/platform/message/my-messages/delete/:id|Deletar uma mensagem, por Id (somente do inbox do usuário logado)
+</div>
+</div>
 
 4. **Login**
 <br>
 
 🟡**POST**
+<div align ='center'>
+
 |Método|Rota|Descrição|
-|------|----|---------|
+|:------:|:----:|:---------:|
 |`POST`|https://she-speaks.herokuapp.com/platform/student/sign-in|Login da aluna
 |`POST`|https://she-speaks.herokuapp.com/platform/teacher/sign-in|Login da professora
 |`POST`|https://she-speaks.herokuapp.com/platform/admin/sign-in|Login da admin
+</div>
 
 5. **Lista de Amigas**
 <br>
 
 🟡**POST**
+<div align ='center'>
+
+
 |Método|Rota|Descrição|
-|------|----|---------|
+|:------:|:----:|:---------:|
 |`POST`|https://she-speaks.herokuapp.com/platform/friends-list/request/:id|Enviar solicitação de amizade
+</div>
 
 🟣**PATCH**
+<div align ='center'>
+
 |Método|Rota|Descrição|
-|------|----|---------|
+|:------:|:----:|:---------:|
 |`PATCH`|https://she-speaks.herokuapp.com/platform/friends-list/update/:id|Aceitar ou recusar solicitação de amizade
+</div>
 
 🟢**GET**
+<div align ='center'>
+
 |Método|Rota|Descrição|
-|------|----|---------|
+|:------:|:----:|:---------:|
 |`GET`|https://she-speaks.herokuapp.com/platform/friends-list|Retorna lista de amigos do usuário
+</div>
 
 🔴**DELETE**
-|Método|Rota|Descrição|
-|------|----|---------|
-|`DELETE`|https://she-speaks.herokuapp.com/platform/friends-list/delete/:id|Desfazer (deletar)  amizade
+<div align ='center'>
 
+|Método|Rota|Descrição|
+|:------:|:----:|:---------:|
+|`DELETE`|https://she-speaks.herokuapp.com/platform/friends-list/delete/:id|Desfazer (deletar)  amizade
+</div>
 
 6. **Sala de aula**
 <br>
 
 🟡**POST**
+<div align ='center'>
+
 |Método|Rota|Descrição|
-|------|----|---------|
+|:------:|:----:|:---------:|
 |`POST`|https://she-speaks.herokuapp.com/platform/classroom/new|Criar uma sala de aula, somente para professoras
+</div>
 
 🔵**PUT**
+<div align ='center'>
+
 |Método|Rota|Descrição|
-|------|----|---------|
+|:------:|:----:|:---------:|
 |`PUT`|https://she-speaks.herokuapp.com/platform/classroom/update/:id|Atualizar  uma sala de aula, somente para professoras
+</div>
 
 🟣**PATCH**
+<div align ='center'>
+
 |Método|Rota|Descrição|
-|------|----|---------|
+|:------:|:----:|:---------:|
 |`PATCH`|https://she-speaks.herokuapp.com/platform/classroom/enroll/:id|Entrar em uma sala de aula, somente para alunas
+</div>
 
 🔴**DELETE**
+<div align ='center'>
+
 |Método|Rota|Descrição|
-|------|----|---------|
+|:------:|:----:|:---------:|
 |`DELETE`|https://she-speaks.herokuapp.com/platform/classroom/delete/:id|Deletar uma sala de aula, somente para professoras
 |`DELETE`|https://she-speaks.herokuapp.com/platform/classroom/leave/:id|Sair de uma sala de aula, somente para alunas
+</div>
 
 🟢**GET**
+<div align ='center'>
+
 |Método|Rota|Descrição|
-|------|----|---------|
+|:------:|:----:|:---------:|
 |`GET`|https://she-speaks.herokuapp.com/platform/classroom/all|Retorna todas as salas de aula
 |`GET`|https://she-speaks.herokuapp.com/platform/classroom/:id|Retorna uma sala de aula por Id
 |`GET`|https://she-speaks.herokuapp.com/platform/classroom/filter|Retorna salas de aula baseando-se nas pesquisas
 |`GET`|https://she-speaks.herokuapp.com/platform/classroom/match|Retorna a sala ideal para aluna, baseando-se no perfil dela e da sala
+</div>
 
 7. **Notificações**
 <br>
 
 🟢**GET**
+<div align ='center'>
+
 |Método|Rota|Descrição|
-|------|----|---------|
+|:------:|:----:|:---------:|
 |`GET`|https://she-speaks.herokuapp.com/platform/notifications|Retorna as notificações de mensagem ou solicitação de amizade, do usuário, encontrado pelo token
+</div>
 
 8. **Outras Funções**
 <br>
 
 🟢**GET**
+<div align ='center'>
+
 |Método|Rota|Descrição|
-|------|----|---------|
+|:------:|:----:|:---------:|
 |`GET`|https://she-speaks.herokuapp.com/platform/all-profiles|Retorna todos os perfis públicos e, se admin, privados
+</div>
 </div>
 
 ---
