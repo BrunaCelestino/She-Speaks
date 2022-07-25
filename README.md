@@ -35,8 +35,14 @@
   - [Alunas](#alunas)
   - [Professoras](#professoras)
   - [Plataforma](#plataforma)
-- [Tecnologias Utilizadas](#tecnologias-utilizadas)
+- [Tecnologias](#tecnologias)
+  - [Dependências do Projeto](#dependências-do-projeto)
+  - [Dependências do Desenvolvimento](#dependências-do-desenvolvimento)
+- [Instalação](#instalação)
+  - [Teste](#teste)
 - [Implementações Futuras](#implementações-futuras)
+- [Autora](#autora)
+- [Referências](#referências)
 
 
 <div align ='justify'>
@@ -388,7 +394,7 @@ As alunas precisam preencher um pré-cadastro, dando suas informações pessoais
 
 </div> 
 
-1.  Pré-cadastro
+1.  **Pré-cadastro**
 
 <br>
 
@@ -416,7 +422,7 @@ As alunas precisam preencher um pré-cadastro, dando suas informações pessoais
 |`DELETE`|https://she-speaks.herokuapp.com/student/delete-pre-register/:id|Deleta pré-cadastro, rota para admin
 
 
-2. Perfil  
+2. **Perfil**  
 <br>
 
 🟡**POST**
@@ -455,7 +461,7 @@ As professoras precisam preencher um pré-cadastro, dando suas informações pes
 
 </div>
 
-1.  Pré-cadastro 
+1.  **Pré-cadastro** 
 <br>
 
 🟡**POST**
@@ -482,7 +488,7 @@ As professoras precisam preencher um pré-cadastro, dando suas informações pes
 |`DELETE`|https://she-speaks.herokuapp.com/teacher/delete-pre-register/:id|Deleta  pré-cadastro, rota para admin
 
 
-2. Perfil
+2. **Perfil**
 <br>
 
 🟡**POST**  
@@ -520,7 +526,7 @@ A plataforma é subdividida em: Posts, Mensagens, Login, Lista de Amigos, Sala d
 
 </div>
 
-1. Posts 
+1. **Posts** 
 <br>
 
 🟡**POST**
@@ -533,6 +539,7 @@ A plataforma é subdividida em: Posts, Mensagens, Login, Lista de Amigos, Sala d
 |------|----|---------|
 |`GET`|https://she-speaks.herokuapp.com/platform/feed/post/:id|Retorna um post por Id
 |`GET`|https://she-speaks.herokuapp.com/platform/feed/post/my-posts|Retorna todos os posts de um usuário
+|`GET`|https://she-speaks.herokuapp.com/platform/feed|Retorna o feed da plataforma
 
 🔵**PUT**
 |Método|Rota|Descrição|
@@ -552,7 +559,7 @@ A plataforma é subdividida em: Posts, Mensagens, Login, Lista de Amigos, Sala d
 |------|----|---------|
 |`PATCH`|https://she-speaks.herokuapp.com/platform/feed/post/add-to-favorite/:id|Adicionar o post aos favoritos do usuário
 
-2. Comentários
+2. **Comentários**
 <br>
 
 🟣**PATCH**
@@ -566,7 +573,7 @@ A plataforma é subdividida em: Posts, Mensagens, Login, Lista de Amigos, Sala d
 |------|----|---------|
 |`DELETE`|https://she-speaks.herokuapp.com/platform/feed/post/commented-post/:id/remove-comment/:commentId|Deleta comentário, feito em uma postagem
 
-3. Mensagens
+3. **Mensagens**
 <br>
 
 🟢**GET**
@@ -590,7 +597,7 @@ A plataforma é subdividida em: Posts, Mensagens, Login, Lista de Amigos, Sala d
 |`DELETE`|https://she-speaks.herokuapp.com/platform/message/my-messages/delete/:id|Deletar uma mensagem, por Id (somente do inbox do usuário logado)
 
 
-4. Login
+4. **Login**
 <br>
 
 🟡**POST**
@@ -600,7 +607,7 @@ A plataforma é subdividida em: Posts, Mensagens, Login, Lista de Amigos, Sala d
 |`POST`|https://she-speaks.herokuapp.com/platform/teacher/sign-in|Login da professora
 |`POST`|https://she-speaks.herokuapp.com/platform/admin/sign-in|Login da admin
 
-5. Lista de Amigas
+5. **Lista de Amigas**
 <br>
 
 🟡**POST**
@@ -624,7 +631,7 @@ A plataforma é subdividida em: Posts, Mensagens, Login, Lista de Amigos, Sala d
 |`DELETE`|https://she-speaks.herokuapp.com/platform/friends-list/delete/:id|Desfazer (deletar)  amizade
 
 
-6. Sala de aula
+6. **Sala de aula**
 <br>
 
 🟡**POST**
@@ -656,7 +663,7 @@ A plataforma é subdividida em: Posts, Mensagens, Login, Lista de Amigos, Sala d
 |`GET`|https://she-speaks.herokuapp.com/platform/classroom/filter|Retorna salas de aula baseando-se nas pesquisas
 |`GET`|https://she-speaks.herokuapp.com/platform/classroom/match|Retorna a sala ideal para aluna, baseando-se no perfil dela e da sala
 
-7. Notificações
+7. **Notificações**
 <br>
 
 🟢**GET**
@@ -664,21 +671,17 @@ A plataforma é subdividida em: Posts, Mensagens, Login, Lista de Amigos, Sala d
 |------|----|---------|
 |`GET`|https://she-speaks.herokuapp.com/platform/notifications|Retorna as notificações de mensagem ou solicitação de amizade, do usuário, encontrado pelo token
 
-8. Outras Funções
+8. **Outras Funções**
 <br>
 
 🟢**GET**
 |Método|Rota|Descrição|
 |------|----|---------|
-|`GET`|https://she-speaks.herokuapp.com/platform/feed|Retorna o feed da plataforma
 |`GET`|https://she-speaks.herokuapp.com/platform/all-profiles|Retorna todos os perfis públicos e, se admin, privados
 </div>
 
 
-## Tecnologias Utilizadas
-Dependências do Projeto: bcrypt, cors, dotenv-safe, express, jsonwebtoken, mongoose.
-Dependências de Desenvolvimento: eslint, prettier, jest, nodemon, supertest.
-</div>
+
 
 ## AUTOMAÇÃO DE TESTES
 
@@ -690,88 +693,54 @@ Através das dependências Jest e SuperTest, foi possível realizar a automaçã
 
 
 
-##  INFORMAÇÕES TÉCNICAS 
-### DEPENDÊNCIAS:
-
+##  💻 Tecnologias
 <div align = "justify">
 
-Para que fosse possível a execução desse projeto, foi necessária a utilização de algumas dependências, descritas a seguir:
-</div>
+Para que fosse possível a execução desse projeto, foi necessária a utilização de dependências, descritas a seguir:
 
-<br>
 
-###  Módulos:
-
-<div align = "justify">
+### Dependências de projeto:
 
 - [Express](https://www.npmjs.com/package/express) - framework para aplicativo da web do Node.js;
-
-- [Nodemon](https://www.npmjs.com/package/nodemon) - ajuda no desenvolvimento de sistemas com o Node. js reiniciando automaticamente o servidor;
-
 - [Cors](https://www.npmjs.com/package/cors) - permite que um site acesse recursos de outro site mesmo estando em domínios diferentes;
-
 - [Dotenv-safe](https://www.npmjs.com/package/dotenv-safes) - garante que todas as variáveis de ambiente necessárias sejam definidas depois de lidas no arquivo .env;
-
-- [Mongoose](https://www.npmjs.com/package/mongoose) - Mongoose é uma ferramenta de modelagem de objetos MongoDB projetada para funcionar em um ambiente assíncrono;
-
-- [Bcrypt](https://www.npmjs.com/package/bcrypt) - Bcrypt é uma biblioteca que auxilia na encriptação (hasheamento) de senhas;
-
+- [Mongoose](https://www.npmjs.com/package/mongoose) - mongoose é uma ferramenta de modelagem de objetos MongoDB projetada para funcionar em um ambiente assíncrono;
+- [Bcrypt](https://www.npmjs.com/package/bcrypt) - bcrypt é uma biblioteca que auxilia na encriptação (hasheamento) de senhas;
 - [Jsonwebtoken](https://www.npmjs.com/package/jsonwebtoken) - Jsonwebtoken implementa Json web tokens;
 
+### Dependências de desenvolvimento:
+
+- [Nodemon](https://www.npmjs.com/package/nodemon) - ajuda no desenvolvimento de sistemas com o Node. js reiniciando automaticamente o servidor;
+- [ESLint](https://www.npmjs.com/package/eslint) - ferramenta que identifica e reporta padrões encontrados no código;
+- [Prettier](https://www.npmjs.com/package/prettier) - ferramenta que auxilia na formatação do código;
 - [Jest](https://www.npmjs.com/package/jest) - Jest permite que a automação de testes seja realizada;
-
 - [Supertest](https://www.npmjs.com/package/jest) - SuperTest facilita a testagem HTTP.
-   
- <br>
-
-</div>
-
-###  Arquivos: 
-
-<div align = "justify">
-
-- [package-lock.json](https://github.com/BrunaCelestino/ON15-TET-S15-TESTES/blob/BrunaCelestino/para-o-lar/reprograma-food/package-lock.json) - especifica a versão e suas dependências;
-
-
-- [package.json](https://github.com/BrunaCelestino/ON15-TET-S15-TESTES/blob/BrunaCelestino/para-o-lar/reprograma-food/package.json) - arquivo de configuração utilizado para estipular e configurar dependências;
-
-
-- [.gitignore](https://github.com/BrunaCelestino/ON15-TET-S15-TESTES/blob/BrunaCelestino/para-o-lar/reprograma-food/.gitignore) - arquivo que lista quais arquivos ou pastas o Git deve ignorar.
-<br>
+- [Swagger-UI-Express](https://www.npmjs.com/package/swagger-ui-express) - módulo que permite a documentação do projeto pelo swagger-ui, utilizando as informações obtidas no arquivo swagger.json.
 
 </div>
 
 <br>
 
-###  INSTALAÇÃO: 
+##  Instalação: 
 
 1. Entre na pasta onde você deseja clonar o repositório. Abra o **git** nela e digite: 
 
     ```bash
-    $ git clone https://github.com/BrunaCelestino/ON15-TET-S15-TESTES.git
+    $ git clone https://github.com/BrunaCelestino/She-Speaks.git
      ```
 
-2. Digite a linha abaixo para entrar na branch correta: 
+2. Digite a linha abaixo para entrar na pasta correta: 
 
     ```bash
-    $ git checkout BrunaCelestino
-    ```
-
-3. Digite a linha abaixo para entrar na pasta correta: 
-
-    ```bash
-    $ cd para-o-lar/
-    ```
-    ```bash
-    $ cd reprograma-food/
+    $ cd She-Speaks/
     ```
     
-4. Escreva a seguinte linha para instalar as dependências utilizadas nesse projeto: 
+3. Escreva a seguinte linha para instalar as dependências utilizadas nesse projeto: 
 
    ```bash
     $ npm install
     ```
-5. Inicie o servidor, utilizando a frase: 
+4. Inicie o servidor, utilizando a frase: 
 
    ```bash
     $ npm start
@@ -781,21 +750,42 @@ Para que fosse possível a execução desse projeto, foi necessária a utilizaç
 
 <div align = "justify">
 
-###  TESTE: 
+###  Teste: 
 
-- Importe a coleção para teste deste servidor clicando [aqui](https://www.getpostman.com/collections/8bf6ca3490ea774a08db)!
+Opção 1: 
 
-- Copie o link acima e, no Postman, clique em **Import** -> **Link** (cole o link) -> **Continue** -> **Import**.
+
+ - Para testar a documentação Swagger UI, clique:   
+ <a>
+ <a href="https://she-speaks.herokuapp.com/api-docs/"><img alt="Swagger Ui" src="https://img.shields.io/badge/Swagger.UI_Doc:_SheSpeaks!-blueviolet"> 
+</a>  
 
 <br>
 
-- Ou forke diretamente para o seu Postman clicando: <br> [![Run in Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/run-collection/20977023-ad9e3e45-03b8-4b01-a72c-5c4586fb5b5a?action=collection%2Ffork&collection-url=entityId%3D20977023-ad9e3e45-03b8-4b01-a72c-5c4586fb5b5a%26entityType%3Dcollection%26workspaceId%3D51132679-d0d9-4dec-aba4-1ccdfced55c7)
+Opção 2:
+- Importe a coleção para teste deste servidor clicando [aqui](https://www.getpostman.com/collections/8bf6ca3490ea774a08db)!
+   - Copie o link acima e, no Postman, clique em **Import** -> **Link** (cole o link) -> **Continue** -> **Import**.
+
+<br>
+
+Opção 3:
+- Forke diretamente para o seu Postman clicando: <br> [![Run in Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/run-collection/20977023-ad9e3e45-03b8-4b01-a72c-5c4586fb5b5a?action=collection%2Ffork&collection-url=entityId%3D20977023-ad9e3e45-03b8-4b01-a72c-5c4586fb5b5a%26entityType%3Dcollection%26workspaceId%3D51132679-d0d9-4dec-aba4-1ccdfced55c7)
 
 
 </div>
+
+<br>
 
 ## Implementações Futuras
 <div align = 'justify'>
 Futuramente, pretendo desenvolver o front-end para consumir essa API e também, implementar o sistema de pagamentos para pessoas com rendas mais altas. Assim, as professoras seriam pagas e a plataforma contaria com um número maior de usuárias. 
 
-https://she-speaks.herokuapp.com/
+
+## Autora
+
+## Referências
+
+[Quantos brasileiros falam inglês 2020?](https://www.vivendobauru.com.br/quantos-brasileiros-falam-ingles-2020/)
+
+[Brasileiros fluentes em inglês conseguem ganhar mais que o dobro no início da carreira](https://g1.globo.com/jornal-nacional/noticia/2022/03/14/brasileiros-fluentes-em-ingles-conseguem-ganhar-mais-que-o-dobro-no-inicio-da-carreira.ghtml)
+
