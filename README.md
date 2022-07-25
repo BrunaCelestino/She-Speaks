@@ -29,7 +29,7 @@
 - [Tema](#❕-tema)
 - [Introdução](#📖-introdução)
 - [Objetivo](#🎯-objetivo)
-- [Arquitetura](#⚙️-arquitetura)
+- [Arquitetura](#arquitetura-⚙️)
 - [Descrição](#🚀-descrição)
   - [Admin](#admin)
   - [Alunas](#alunas)
@@ -84,7 +84,7 @@ A SheSpeaks! tem como objetivo tornar possível que mulheres que não possam dis
 
 ---
 
-## ⚙️  Arquitetura
+##   Arquitetura ⚙️
 
 <div align = "justify">
 
