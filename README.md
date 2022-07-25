@@ -374,6 +374,7 @@ Identificada pelo seu “role”, e verificada através de seu token, a admin po
 |`GET`|https://she-speaks.herokuapp.com/admin/find-admin/:id|Rota que encontra um admin por ID
 
 </div>
+
 🟡**POST**
 
 <div align ='center'>
@@ -962,6 +963,11 @@ Futuramente, pretendo desenvolver o front-end para consumir essa API e também, 
 
 
 ## Autora
+|Autora|Sobre|
+|:------:|----|
+| <img src='./assets/foto.jpg' width = 1200 alt = 'foto autora'> | Sou uma profissional com 6 anos de experiência na área da educação, como professora de inglês, onde ministrei aulas para alunos de diferentes níveis e, com essa experiência, pude desenvolver habilidades de comunicação, empatia adaptação. Atualmente sou uma desenvolvedora backend Jr, graduanda em Ciência da Computação, formada pelo bootcamp {Reprograma}, que capacita mulheres para o mercado tecnológico. No bootcamp, aprendi a desenvolver APIs rest, trabalhando em equipe ou individualmente. Atualmente desenvolvo APIs utilizando JavaScript e Node.js, com banco de dados MongoDB, criptografia através de JWT, testes com Jest, conteinerinação com Docker e versionamento de código com GIT. |
+
+
 
 ---
 
