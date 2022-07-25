@@ -76,6 +76,7 @@ const createNewStudent = async (req, res) => {
 
     return res.status(201).json({
       message: 'Register successfully created',
+      newStudentRegister,
       findNewStudent,
     });
   } catch (error) {
@@ -188,6 +189,7 @@ const updateStudent = async (req, res) => {
 
     return res.status(200).json({
       message: 'Student profile successfully updated',
+      savedStudent,
       findUpdate,
     });
   } catch (error) {

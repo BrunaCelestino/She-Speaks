@@ -73,6 +73,7 @@ const createNewTeacher = async (req, res) => {
 
     return res.status(201).json({
       message: 'Register successfully created',
+      newTeacherRegister,
       findNewTeacher,
     });
   } catch (error) {
@@ -185,6 +186,7 @@ const updateTeacher = async (req, res) => {
 
     return res.status(200).json({
       message: 'Teacher profile successfully updated',
+      savedTeacher,
       findUpdate,
     });
   } catch (error) {
