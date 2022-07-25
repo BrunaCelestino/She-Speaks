@@ -341,7 +341,7 @@ A plataforma é dividida em quatro pontos principais: , Admin, Alunas, Professor
 <div align = 'justify'>
 Identificada pelo seu “role”, e verificada através de seu token, a admin pode acessar qualquer rota, ver conteúdos na íntegra, aprovar candidatas e deletar conteúdos. O cadastro do admin é simples. Conta com nome, e-mail, senha e papel. As rotas  específicas para o controle do cadastro do admin, contam com Criar, Atualizar, Deletar e Ler, baseado em critérios. 
 <br>
-<br>
+
 
 <div align ='center'>
 
@@ -454,7 +454,7 @@ As alunas precisam preencher um pré-cadastro, dando suas informações pessoais
 </div>
 <div align = 'justify'>
 As professoras precisam preencher um pré-cadastro, dando suas informações pessoais. Se seu pré-cadastro for aprovado, pode criar seu perfil e acessar a plataforma. Suas rotas são divididas entre pré-registro e perfil:
-
+<br>
 <div align ='center'>
 
 **Professoras: Rotas/EndPoints**  
@@ -520,6 +520,7 @@ As professoras precisam preencher um pré-cadastro, dando suas informações pes
 <div align = 'justify'>
 
 A plataforma é subdividida em: Posts, Mensagens, Login, Lista de Amigos, Sala de Aula, Notificações e Outras Funções. É aqui que o usuário conseguirá utilizar as funcionalidades da plataforma. 
+<br>
 <div align ='center'>
 
 **Plataforma: Rotas/EndPoints**
@@ -680,10 +681,10 @@ A plataforma é subdividida em: Posts, Mensagens, Login, Lista de Amigos, Sala d
 |`GET`|https://she-speaks.herokuapp.com/platform/all-profiles|Retorna todos os perfis públicos e, se admin, privados
 </div>
 
+---
 
 
-
-## AUTOMAÇÃO DE TESTES
+## Automação de Testes
 
 <div align = "justify">
 
@@ -691,7 +692,7 @@ Através das dependências Jest e SuperTest, foi possível realizar a automaçã
 
 </div>
 
-
+---
 
 ##  💻 Tecnologias
 <div align = "justify">
@@ -714,13 +715,14 @@ Para que fosse possível a execução desse projeto, foi necessária a utilizaç
 - [ESLint](https://www.npmjs.com/package/eslint) - ferramenta que identifica e reporta padrões encontrados no código;
 - [Prettier](https://www.npmjs.com/package/prettier) - ferramenta que auxilia na formatação do código;
 - [Jest](https://www.npmjs.com/package/jest) - Jest permite que a automação de testes seja realizada;
-- [Supertest](https://www.npmjs.com/package/jest) - SuperTest facilita a testagem HTTP.
+- [Supertest](https://www.npmjs.com/package/jest) - SuperTest facilita a testagem HTTP;
 - [Swagger-UI-Express](https://www.npmjs.com/package/swagger-ui-express) - módulo que permite a documentação do projeto pelo swagger-ui, utilizando as informações obtidas no arquivo swagger.json.
 
 </div>
 
 <br>
 
+--- 
 ##  Instalação: 
 
 1. Entre na pasta onde você deseja clonar o repositório. Abra o **git** nela e digite: 
@@ -750,14 +752,14 @@ Para que fosse possível a execução desse projeto, foi necessária a utilizaç
 
 <div align = "justify">
 
-###  Teste: 
+###  Teste 
 
 Opção 1: 
 
 
  - Para testar a documentação Swagger UI, clique:   
  <a>
- <a href="https://she-speaks.herokuapp.com/api-docs/"><img alt="Swagger Ui" src="https://img.shields.io/badge/Swagger.UI_Doc:_SheSpeaks!-blueviolet"> 
+    <a href="https://she-speaks.herokuapp.com/api-docs/"><img alt="Swagger Ui" src="https://img.shields.io/badge/Swagger.UI_Doc:_SheSpeaks!-blueviolet"> 
 </a>  
 
 <br>
@@ -776,12 +778,18 @@ Opção 3:
 
 <br>
 
+---
+
 ## Implementações Futuras
 <div align = 'justify'>
-Futuramente, pretendo desenvolver o front-end para consumir essa API e também, implementar o sistema de pagamentos para pessoas com rendas mais altas. Assim, as professoras seriam pagas e a plataforma contaria com um número maior de usuárias. 
+Futuramente, pretendo desenvolver o front-end para consumir essa API e também, implementar o sistema de pagamentos para pessoas com rendas mais altas. Assim, as professoras seriam pagas e a plataforma contaria com um número maior de usuárias.  
+
+---
 
 
 ## Autora
+
+---
 
 ## Referências
 
