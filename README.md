@@ -24,7 +24,7 @@
 ---
 
 #  📑 Sumário
-- [Problema](#-problema)
+- [Problema](#problema)
 - [Solução](#💡-solução)
 - [Tema](#❕-tema)
 - [Introdução](#📖-introdução)
