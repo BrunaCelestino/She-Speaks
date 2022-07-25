@@ -24,7 +24,7 @@
 ---
 
 #  📑 Sumário
-- [Problema](#problema-🚩)
+- [Problema](#-problema)
 - [Solução](#💡-solução)
 - [Tema](#❕-tema)
 - [Introdução](#📖-introdução)
@@ -48,7 +48,7 @@
 <div align ='justify'>
 
 
-###  Problema 🚩
+### 🚩  Problema 
 Atualmente conhecer outro idioma é muito importante, seja para conseguir se conectar com pessoas de outros países, seja para conseguir uma boa posição no mercado de trabalho. Ainda sim, o Brasil tem um número muito baixo de pessoas fluentes em um segundo idioma. 
 
 ---
