@@ -84,7 +84,7 @@ A SheSpeaks! tem como objetivo tornar possível que mulheres que não possam dis
 
 ---
 
-## ⚙️ Arquitetura
+## ⚙️  Arquitetura
 
 <div align = "justify">
 
