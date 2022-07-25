@@ -1,6 +1,12 @@
 # <div align = 'center'> SheSpeaks! </div>
 <br>
 
+<br>
+<div align = "center">
+<img src='./assets/she-speaks.png' width = 500 alt = 'logo she-speaks'>
+</div>
+<br>
+
 <div align ='justify'>
 
 ## Tema 
