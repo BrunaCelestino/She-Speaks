@@ -230,64 +230,99 @@ O servidor, criado dentro do repositório [She-Speaks](https://github.com/BrunaC
 - 📄[Procfile](https://github.com/BrunaCelestino/She-Speaks/blob/main/Procfile) - Configuração para rodar projeto no Heroku;
 - 📄[README.md](https://github.com/BrunaCelestino/She-Speaks/blob/main/README.md) - Documentação do projeto;
 - 📄[server.js](https://github.com/BrunaCelestino/She-Speaks/blob/main/server.js) - Servidor do projeto;
-- 📄[assets](https://github.com/BrunaCelestino/She-Speaks/tree/main/assets) - pasta contendo mídias do README.md;
+- 📂[assets](https://github.com/BrunaCelestino/She-Speaks/tree/main/assets) - pasta contendo mídias do README.md;
 - 📂[src](https://github.com/BrunaCelestino/She-Speaks/tree/main/src) - pasta contendo a segunda camada do projeto. 
 
 **🗄️ Segunda camada do projeto:**  
 
 - 📄[app.js](https://github.com/BrunaCelestino/She-Speaks/blob/main/src/app.js) - Requere as dependências necessárias para o projeto e define o padrão de cada rota;
-- 📄[swagger.json](https://github.com/BrunaCelestino/She-Speaks/blob/main/src/swagger.json) - Arquivo swagger, onfiguração para a rota /api-docs, que contém todas documentação do projeto;
+- 📄[swagger.json](https://github.com/BrunaCelestino/She-Speaks/blob/main/src/swagger.json) - Arquivo swagger, configuração para a rota /api-docs, que contém todas documentação do projeto;
 - 📂[controllers](https://github.com/BrunaCelestino/She-Speaks/tree/main/src/controllers) - Lógicas do projeto: 
+
     - 📂[admin](https://github.com/BrunaCelestino/She-Speaks/tree/main/src/controllers/admin) - Lógicas do usuário Admin:
       - 📄[adminController.js](https://github.com/BrunaCelestino/She-Speaks/blob/main/src/controllers/admin/adminController.js) - Funções responsáveis por criar, retornar, atualizar e deletar um perfil de Admin.
+
+         <br>
+
     - 📂[platform](https://github.com/BrunaCelestino/She-Speaks/tree/main/src/controllers/platform) - Lógicas da Plataforma:
-      - 📄[classroomController.js](https://github.com/BrunaCelestino/She-Speaks/tree/main/src/controllers/platform/classroomController.js) - Funções responsáveis pela criação, atualização e removão se salas de aula. Além disso, é por onde o aluno consegue pesquisar salas, achar seu match, se inscrever em uma turma e sair de uma sala. 
+      - 📄[classroomController.js](https://github.com/BrunaCelestino/She-Speaks/tree/main/src/controllers/platform/classroomController.js) - Funções responsáveis pela criação, atualização e remoção de salas de aula. Além disso, é por onde o aluno consegue pesquisar salas, achar seu match, se inscrever em uma turma e sair de uma sala. 
       - 📄[friendsListController.js](https://github.com/BrunaCelestino/She-Speaks/tree/main/src/controllers/platform/friendsListController.js) - Funções responsáveis pela criação do pedido de amizade, aceitar ou recusar o pedido, ver sua lista de amizades e excluir um amigo;
       - 📄[messagesController.js](https://github.com/BrunaCelestino/She-Speaks/tree/main/src/controllers/platform/messagesController.js) - Funções responsáveis por enviar mensagem, ver todas as mensagens, ver apenas as lidas ou não lidas, ler uma mensagem e exclui-las;
       - 📄[platformController.js](https://github.com/BrunaCelestino/She-Speaks/tree/main/src/controllers/platform/platformController.js) - Funções responsáveis pelo login dos usuários e por ver a lista de todos os usuários, baseado no seu nível de permissão (Se admin ou dono do perfil, consegue ver o perfil completo, caso contrário, somente as informações públicas);
       - 📄[postsController.js](https://github.com/BrunaCelestino/She-Speaks/tree/main/src/controllers/platform/postsController.js) - Funções responsáveis por criar um novo post, atualiza-lo, deleta-lo, avaliar um post, favoritar e desfavoritar um post, fazer comentários, atualizar comentários e excluí-los.
+
+         <br>
     - 📂[student](https://github.com/BrunaCelestino/She-Speaks/tree/main/src/controllers/student) - Lógicas do Aluno: 
       - 📄[studentController.js](https://github.com/BrunaCelestino/She-Speaks/tree/main/src/controllers/student/studentController.js) - Funções responsáveis pela criação, leitura, atualização e remoção de perfis de alunos;
       - 📄[studentPreRegisterController.js](https://github.com/BrunaCelestino/She-Speaks/tree/main/src/controllers/student/studentPreRegisterController.j) - Funções responsáveis pela criação, leitura, atualização e remoção dos pré-cadastros dos alunos.
+
+         <br>
     - 📂[teacher](https://github.com/BrunaCelestino/She-Speaks/tree/main/src/controllers/teacher) - Lógicas do Professor: 
       - 📄[teacherController.js](https://github.com/BrunaCelestino/She-Speaks/tree/main/src/controllers/teacher/teacherController.js) - Funções responsáveis pela criação, leitura, atualização e remoção de perfis de professores;
-      - 📄[teacherPreRegisterController.js](https://github.com/BrunaCelestino/She-Speaks/tree/main/src/controllers/teacher/teacherPreRegisterController.j) - Funções responsáveis pela criação, leitura, atualização e remoção dos pré-cadastros dos professores. 
+      - 📄[teacherPreRegisterController.js](https://github.com/BrunaCelestino/She-Speaks/tree/main/src/controllers/teacher/teacherPreRegisterController.j) - Funções responsáveis pela criação, leitura, atualização e remoção dos pré-cadastros dos 
+      professores. 
+
+         <br>
 - 📂[database](https://github.com/BrunaCelestino/She-Speaks/tree/main/src/database) - Configuração do banco de dados:  
     - 📄[mongoConfig.js](https://github.com/BrunaCelestino/She-Speaks/tree/main/src/database/mongoConfig.js) - Esse arquivo é responsável pela conexão com o banco de dados.
+
+       <br>
 - 📂[helpers](https://github.com/BrunaCelestino/She-Speaks/tree/main/src/helpers) - Funções auxiliares:
     - 📄[validationHerlpers.js](https://github.com/BrunaCelestino/She-Speaks/tree/main/src/helpers/validationHerlpers.js) - Funções auxiliares responsáveis por checar e validar formato de CPF, username, senha e email , além de fazer o hasheamento de senhas. 
+
+       <br>
 - 📂[middlewares](https://github.com/BrunaCelestino/She-Speaks/tree/main/src/middlewares) - Funções de autorização:
     - 📄[auth.js](https://github.com/BrunaCelestino/She-Speaks/tree/main/src/middlewares/auth.js) - Funções responsáveis por checar e validar autorização e níveis de permissão, através dos tokens.
+
+       <br>
 - 📂[models](https://github.com/BrunaCelestino/She-Speaks/tree/main/src/models) - Schemas dos usuários e funcionalidades da plataforma: 
     - 📂[admin](https://github.com/BrunaCelestino/She-Speaks/tree/main/src/models/admin) - Contém o schema Admin:
       - 📄[adminSchema.js](https://github.com/BrunaCelestino/She-Speaks/tree/main/src/models/admin/adminSchema.js) - Define o formato do cadastro do usuário Admin, informando as chaves utilizadas, se são obrigatórias, e que tipo de valor cada chave deve receber.
+
+         <br>
     - 📂[platform](https://github.com/BrunaCelestino/She-Speaks/tree/main/src/models/platform) - Contém os schemas das funcionalidades da Plataforma:
-      - 📄[classroomSchema.js](https://github.com/BrunaCelestino/She-Speaks/tree/main/src/models/platform/classroomSchema.js) - Define o formato do cadastro de uma sala de aula, informando as chaves utilizadas, se são obrigatórias, e que tipo de valor cada chave deve receber.
-      - 📄[messagesSchema.js](https://github.com/BrunaCelestino/She-Speaks/tree/main/src/models/platform/messagesSchema.js) - Define o formato da criação de uma mensagem, informando as chaves utilizadas, se são obrigatórias, e que tipo de valor cada chave deve receber.
-      - 📄[notificationSchema.js](https://github.com/BrunaCelestino/She-Speaks/tree/main/src/models/platform/notificationSchema.js) Define o formato da criação de uma mensagem, informando as chaves utilizadas, se são obrigatórias, e que tipo de valor cada chave deve receber.
-      - 📄[postsSchema.js](https://github.com/BrunaCelestino/She-Speaks/tree/main/src/models/platform/postsSchema.js)Define o formato da criação de uma postagem, informando as chaves utilizadas, se são obrigatórias, e que tipo de valor cada chave deve receber.
+      - 📄[classroomSchema.js](https://github.com/BrunaCelestino/She-Speaks/tree/main/src/models/platform/classroomSchema.js) - Define o formato do cadastro de uma sala de aula, informando as chaves utilizadas, se são obrigatórias, e que tipo de valor cada chave deve receber;
+      - 📄[messagesSchema.js](https://github.com/BrunaCelestino/She-Speaks/tree/main/src/models/platform/messagesSchema.js) - Define o formato da criação de uma mensagem, informando as chaves utilizadas, se são obrigatórias, e que tipo de valor cada chave deve receber;
+      - 📄[notificationSchema.js](https://github.com/BrunaCelestino/She-Speaks/tree/main/src/models/platform/notificationSchema.js) Define o formato da criação de uma notificação, informando as chaves utilizadas, se são obrigatórias, e que tipo de valor cada chave deve receber;
+      - 📄[postsSchema.js](https://github.com/BrunaCelestino/She-Speaks/tree/main/src/models/platform/postsSchema.js) - Define o formato da criação de uma postagem, informando as chaves utilizadas, se são obrigatórias, e que tipo de valor cada chave deve receber.
+
+         <br>
     - 📂[student](https://github.com/BrunaCelestino/She-Speaks/tree/main/src/models/student)  - Contém os schemas das funcionalidades do Aluno:
       - 📄[studentSchema.js](https://github.com/BrunaCelestino/She-Speaks/tree/main/src/models/student/studentSchema.js) - Define o formato da criação de um perfil de aluno, informando as chaves utilizadas, se são obrigatórias, e que tipo de valor cada chave deve receber;
       - 📄[studentPreRegisterSchema.js](https://github.com/BrunaCelestino/She-Speaks/tree/main/src/models/student/studentPreRegisterSchema.js) - Define o formato da criação de um pré-cadastro de aluno, informando as chaves utilizadas, se são obrigatórias, e que tipo de valor cada chave deve receber.
+
+         <br>
     - 📂[teacher](https://github.com/BrunaCelestino/She-Speaks/tree/main/src/models/teacher) - Contém os schemas das funcionalidades do Professor:
       - 📄[teacherSchema.js](https://github.com/BrunaCelestino/She-Speaks/tree/main/src/models/teacher/teacherSchema.js) - Define o formato da criação de um perfil de professor, informando as chaves utilizadas, se são obrigatórias, e que tipo de valor cada chave deve receber;
       - 📄[teacherPreRegisterSchema.js](https://github.com/BrunaCelestino/She-Speaks/tree/main/src/models/teacher/teacherPreRegisterSchema.js) - Define o formato da criação de um pré-cadastro de professor, informando as chaves utilizadas, se são obrigatórias, e que tipo de valor cada chave deve receber.
+
+         <br>
 - 📂[routes](https://github.com/BrunaCelestino/She-Speaks/tree/main/src/routes) - Rotas do projeto:            
     - 📄[indexRoutes.js](https://github.com/BrunaCelestino/She-Speaks/tree/main/src/routes/indexRoutes.js) - Rota inicial do projeto.
+
+       <br>
     - 📂[admin](https://github.com/BrunaCelestino/She-Speaks/tree/main/src/routes/admin) - Rotas do admin:
       - 📄[adminRoutes.js](https://github.com/BrunaCelestino/She-Speaks/tree/main/src/routes/admin/adminRoutes.js) - Rotas para executar as lógicas do admin.
+
+         <br>
     - 📂[platform](https://github.com/BrunaCelestino/She-Speaks/tree/main/src/routes/platform) - Rotas da plataforma:        
       - 📄[classroomRoutes.js](https://github.com/BrunaCelestino/She-Speaks/tree/main/src/routes/platform/classroomRoutes.js) - Rotas para executar as lógicas das salas de aula;
       - 📄[friendsListRoutes.js](https://github.com/BrunaCelestino/She-Speaks/tree/main/src/routes/platform/friendsListRoutes.js) - Rotas para executar as lógicas da lista de amigos;
       - 📄[messagesRoutes.js](https://github.com/BrunaCelestino/She-Speaks/tree/main/src/routes/platform/messagesRoutes.js) - Rotas para executar as lógicas das mensagens;
       - 📄[platformRoutes.js](https://github.com/BrunaCelestino/She-Speaks/tree/main/src/routes/platform/platformRoutes.j) - Rotas para executar as lógicas da plataforma;
       - 📄[postsRoutes.js](https://github.com/BrunaCelestino/She-Speaks/tree/main/src/routes/platform/postsRoutes.js]) - Rotas para executar as lógicas das postagens.
+
+         <br>
     - 📂[student](https://github.com/BrunaCelestino/She-Speaks/tree/main/src/routes/student) - Rotas do aluno:
       - 📄[studentRoutes.js](https://github.com/BrunaCelestino/She-Speaks/tree/main/src/routes/student/studentRoutes.js) - Rotas para executar as lógicas dos alunos;
       - 📄[studentPreRegisterRoutes.js](https://github.com/BrunaCelestino/She-Speaks/tree/main/src/routes/student/studentPreRegisterRoutes.js) - Rotas para executar as lógicas dos pré-cadastros dos alunos.
+
+         <br>
     - 📂[teacher](https://github.com/BrunaCelestino/She-Speaks/tree/main/src/routes/teacher) - Rotas do professor:
       - 📄[teacherRoutes.js](https://github.com/BrunaCelestino/She-Speaks/tree/main/src/routes/teacher/teacherRoutes.js) - Rotas para executar as lógicas dos professores;
       - 📄[teacherPreRegisterRoutes.js](https://github.com/BrunaCelestino/She-Speaks/tree/main/src/routes/teacher/teacherPreRegisterRoutes.js) - Rotas para executar as lógicas dos pré-cadastros dos professores.
+
+         <br>
 - 📂[test](https://github.com/BrunaCelestino/She-Speaks/tree/main/src/test) - Testes unitários:
     - 📄[admin.test.js](https://github.com/BrunaCelestino/She-Speaks/tree/main/src/test/admin.test.js) - Testes com as lógicas do admin;
     - 📄[student.test.js](https://github.com/BrunaCelestino/She-Speaks/tree/main/src/test/student.test.js) - Testes com as lógicas do pré-cadastro e perfil do aluno;
