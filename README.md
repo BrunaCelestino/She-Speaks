@@ -491,6 +491,13 @@ As alunas precisam preencher um pré-cadastro, dando suas informações pessoais
 2. **Perfil**  
 <br>
 
+>Criando perfil de uma aluna:
+<div align = "center">
+<img src='./assets/studentprofile.gif' alt = 'postman criando perfil de uma aluna'>
+
+</div>
+<br>
+
 🟡**POST**
 
 <div align ='center'>
@@ -542,6 +549,14 @@ As professoras precisam preencher um pré-cadastro, dando suas informações pes
 </div>
 
 1.  **Pré-cadastro** 
+<br>
+
+>Criando pré-cadastro de uma professora:
+<div align = "center">
+<img src='./assets/teacherpreregister.gif' alt = 'postman criando pré-cadastro de uma professora'>
+
+</div>
+
 <br>
 
 🟡**POST**
