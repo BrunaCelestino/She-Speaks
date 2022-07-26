@@ -435,7 +435,15 @@ As alunas precisam preencher um pré-cadastro, dando suas informações pessoais
 
 1.  **Pré-cadastro**
 
+>Criando pré-cadastro de uma aluna:
+<div align = "center">
+<img src='./assets/studentpreregister.gif' alt = 'postman criando pré-cadastro de uma aluna'>
+
+</div>
 <br>
+
+<br>
+
 
 🟡**POST**  
 
