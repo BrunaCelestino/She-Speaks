@@ -362,7 +362,7 @@ Identificada pelo seu “role”, e verificada através de seu token, a admin po
 
 <br>
 <div align = "center">
-<img src='./assets/adminpost.gif' width = 500 alt = 'postman fazendo cadastro do admin'>
+<img src='./assets/adminpost.gif' alt = 'postman fazendo cadastro do admin'>
 </div>
 <br>
 
