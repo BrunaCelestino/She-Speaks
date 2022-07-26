@@ -474,7 +474,6 @@ const findMessageById = async (req, res) => {
     const findTeacher = await TeacherSchema.findOne({ token: token });
     const findStudent = await StudentSchema.findOne({ token: token });
     const findAdmin = await AdminSchema.findOne({ token: token });
-
     if (findTeacher === null && findStudent === null && findAdmin === null) {
       return res.status(403).json({
         message: 'You cannot access this route',

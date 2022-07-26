@@ -357,9 +357,14 @@ Identificada pelo seu “role”, e verificada através de seu token, a admin po
 
 **Admin: Rotas/EndPoints**
 
+
 </div>
 
-
+<br>
+<div align = "center">
+<img src='./assets/adminpost.gif' width = 500 alt = 'postman fazendo cadastro do admin'>
+</div>
+<br>
 
 <br>
 
@@ -940,13 +945,13 @@ Opção 1:
 <br>
 
 Opção 2:
-- Importe a coleção para teste deste servidor clicando [aqui](https://www.getpostman.com/collections/8bf6ca3490ea774a08db)!
+- Importe a coleção para teste deste servidor clicando [aqui](https://www.getpostman.com/collections/75cbda62ee1a79bafc37)!
    - Copie o link acima e, no Postman, clique em **Import** -> **Link** (cole o link) -> **Continue** -> **Import**.
 
 <br>
 
 Opção 3:
-- Forke diretamente para o seu Postman clicando: <br> [![Run in Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/run-collection/20977023-ad9e3e45-03b8-4b01-a72c-5c4586fb5b5a?action=collection%2Ffork&collection-url=entityId%3D20977023-ad9e3e45-03b8-4b01-a72c-5c4586fb5b5a%26entityType%3Dcollection%26workspaceId%3D51132679-d0d9-4dec-aba4-1ccdfced55c7)
+- Forke diretamente para o seu Postman clicando: <br> [![Run in Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/run-collection/20977023-54109995-a01f-46a1-ac7f-67522b6558a6?action=collection%2Ffork&collection-url=entityId%3D20977023-54109995-a01f-46a1-ac7f-67522b6558a6%26entityType%3Dcollection%26workspaceId%3D51132679-d0d9-4dec-aba4-1ccdfced55c7)
 
 
 </div>
