@@ -435,7 +435,7 @@ As alunas precisam preencher um pré-cadastro, dando suas informações pessoais
 
 1.  **Pré-cadastro**
 
->Criando pré-cadastro de uma aluna:
+>Pré-cadastro de uma aluna:
 <div align = "center">
 <img src='./assets/studentpreregister.gif' alt = 'postman criando pré-cadastro de uma aluna'>
 
@@ -491,7 +491,7 @@ As alunas precisam preencher um pré-cadastro, dando suas informações pessoais
 2. **Perfil**  
 <br>
 
->Criando perfil de uma aluna:
+>Perfil de uma aluna:
 <div align = "center">
 <img src='./assets/studentprofile.gif' alt = 'postman criando perfil de uma aluna'>
 
@@ -551,7 +551,7 @@ As professoras precisam preencher um pré-cadastro, dando suas informações pes
 1.  **Pré-cadastro** 
 <br>
 
->Criando pré-cadastro de uma professora:
+>Pré-cadastro de uma professora:
 <div align = "center">
 <img src='./assets/teacherpreregister.gif' alt = 'postman criando pré-cadastro de uma professora'>
 
@@ -600,6 +600,13 @@ As professoras precisam preencher um pré-cadastro, dando suas informações pes
 </div>
 
 2. **Perfil**
+<br>
+
+>Perfil de uma professora:
+<div align = "center">
+<img src='./assets/teacherprofile.gif' alt = 'postman criando perfil de uma professora'>
+
+</div>
 <br>
 
 🟡**POST**  
@@ -661,6 +668,13 @@ A plataforma é subdividida em: Posts, Mensagens, Login, Lista de Amigos, Sala d
 1. **Posts** 
 <br>
 
+>Criação de uma postagem:
+<div align = "center">
+<img src='./assets/createpost.gif' alt = 'postman criando uma postagem'>
+
+</div>
+<br>
+
 🟡**POST**
 
 <div align ='center'>
@@ -671,6 +685,13 @@ A plataforma é subdividida em: Posts, Mensagens, Login, Lista de Amigos, Sala d
 </div>
 
 🟢**GET**
+
+>Acessando o feed da plataforma:
+<div align = "center">
+<img src='./assets/feed.gif' alt = 'postman retornando feed'>
+
+</div>
+<br>
 
 <div align ='center'>
 
@@ -714,6 +735,13 @@ A plataforma é subdividida em: Posts, Mensagens, Login, Lista de Amigos, Sala d
 
 🟣**PATCH**
 
+>Comentando uma postagem:
+<div align = "center">
+<img src='./assets/comment.gif' alt = 'postman criando um comentário em uma postagem'>
+
+</div>
+<br>
+
 <div align ='center'>
 
 |Método|Rota|Descrição|
@@ -734,6 +762,28 @@ A plataforma é subdividida em: Posts, Mensagens, Login, Lista de Amigos, Sala d
 3. **Mensagens**
 <br>
 
+>Envio de mensagem
+<div align = "center">
+<img src='./assets/sendmessage.gif' alt = 'postman enviando uma mensagem'>
+
+</div>
+<br>
+
+🟡**POST**
+<div align ='center'>
+
+|Método|Rota|Descrição|
+|:------:|:----:|:---------:|
+|`POST`|https://she-speaks.herokuapp.com/platform/message/send|Enviar (criar) uma mensagem
+</div>
+
+>Abrindo uma mensagem
+<div align = "center">
+<img src='./assets/messageid.gif' alt = 'postman retornando uma mensagem por Id'>
+
+</div>
+<br>
+
 🟢**GET**
 
 <div align ='center'>
@@ -749,14 +799,6 @@ A plataforma é subdividida em: Posts, Mensagens, Login, Lista de Amigos, Sala d
 
 </div>
 
-🟡**POST**
-<div align ='center'>
-
-|Método|Rota|Descrição|
-|:------:|:----:|:---------:|
-|`POST`|https://she-speaks.herokuapp.com/platform/message/send|Enviar (criar) uma mensagem
-</div>
-
 🔴**DELETE**
 <div align ='center'>
 
@@ -767,6 +809,13 @@ A plataforma é subdividida em: Posts, Mensagens, Login, Lista de Amigos, Sala d
 </div>
 
 4. **Login**
+<br>
+
+>Fazendo Login
+<div align = "center">
+<img src='./assets/login.gif' alt = 'postman fazendo login'>
+
+</div>
 <br>
 
 🟡**POST**
@@ -780,6 +829,13 @@ A plataforma é subdividida em: Posts, Mensagens, Login, Lista de Amigos, Sala d
 </div>
 
 5. **Lista de Amigas**
+<br>
+
+>Envio de pedido de amizade
+<div align = "center">
+<img src='./assets/friendreq.gif' alt = 'postman enviando um pedido de amizade'>
+
+</div>
 <br>
 
 🟡**POST**
@@ -818,6 +874,13 @@ A plataforma é subdividida em: Posts, Mensagens, Login, Lista de Amigos, Sala d
 6. **Sala de aula**
 <br>
 
+>Criação de sala de aula
+<div align = "center">
+<img src='./assets/classroom.gif' alt = 'postman criando uma sala de aula'>
+
+</div>
+<br>
+
 🟡**POST**
 <div align ='center'>
 
@@ -834,7 +897,33 @@ A plataforma é subdividida em: Posts, Mensagens, Login, Lista de Amigos, Sala d
 |`PUT`|https://she-speaks.herokuapp.com/platform/classroom/update/:id|Atualizar  uma sala de aula, somente para professoras
 </div>
 
+>Dando match com uma sala de aula
+<div align = "center">
+<img src='./assets/match.gif' alt = 'postman retornando sala de aula match'>
+
+</div>
+<br>
+
+🟢**GET**
+<div align ='center'>
+
+|Método|Rota|Descrição|
+|:------:|:----:|:---------:|
+|`GET`|https://she-speaks.herokuapp.com/platform/classroom/all|Retorna todas as salas de aula
+|`GET`|https://she-speaks.herokuapp.com/platform/classroom/:id|Retorna uma sala de aula por Id
+|`GET`|https://she-speaks.herokuapp.com/platform/classroom/filter|Retorna salas de aula baseando-se nas pesquisas
+|`GET`|https://she-speaks.herokuapp.com/platform/classroom/match|Retorna a sala ideal para aluna, baseando-se no perfil dela e da sala
+</div>
+
 🟣**PATCH**
+
+>Matriculando-se em uma sala de aula
+<div align = "center">
+<img src='./assets/enroll.gif' alt = 'postman matriculando-se em uma sala'>
+
+</div>
+<br>
+
 <div align ='center'>
 
 |Método|Rota|Descrição|
@@ -851,18 +940,15 @@ A plataforma é subdividida em: Posts, Mensagens, Login, Lista de Amigos, Sala d
 |`DELETE`|https://she-speaks.herokuapp.com/platform/classroom/leave/:id|Sair de uma sala de aula, somente para alunas
 </div>
 
-🟢**GET**
-<div align ='center'>
-
-|Método|Rota|Descrição|
-|:------:|:----:|:---------:|
-|`GET`|https://she-speaks.herokuapp.com/platform/classroom/all|Retorna todas as salas de aula
-|`GET`|https://she-speaks.herokuapp.com/platform/classroom/:id|Retorna uma sala de aula por Id
-|`GET`|https://she-speaks.herokuapp.com/platform/classroom/filter|Retorna salas de aula baseando-se nas pesquisas
-|`GET`|https://she-speaks.herokuapp.com/platform/classroom/match|Retorna a sala ideal para aluna, baseando-se no perfil dela e da sala
-</div>
 
 7. **Notificações**
+<br>
+
+>Notificações de um usuário
+<div align = "center">
+<img src='./assets/notification.gif' alt = 'postman retornando notificações'>
+
+</div>
 <br>
 
 🟢**GET**
@@ -883,17 +969,6 @@ A plataforma é subdividida em: Posts, Mensagens, Login, Lista de Amigos, Sala d
 |:------:|:----:|:---------:|
 |`GET`|https://she-speaks.herokuapp.com/platform/all-profiles|Retorna todos os perfis públicos e, se admin, privados
 </div>
-</div>
-
----
-
-
-## Automação de Testes
-
-<div align = "justify">
-
-Através das dependências Jest e SuperTest, foi possível realizar a automação dos testes das rotas dos usuários. Jest permite que que vários testes sejam realizados de uma única vez e SuperTest faz com que seja possível testar os métodos HTTP, acessando as rotas criadas e testando as funções atribuídas a elas. Com isso, foi possível assegurar que todas as rotas estejam funcionando. 
-
 </div>
 
 ---
