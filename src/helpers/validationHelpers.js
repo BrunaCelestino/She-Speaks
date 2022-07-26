@@ -1,4 +1,4 @@
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcryptjs');
 
 exports.validateCPF = async (req, res, next) => {
   const { CPF } = req.body;

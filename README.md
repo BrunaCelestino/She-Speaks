@@ -17,7 +17,11 @@
 </div>
 <br>
 
-> Projeto final para o bootcamp {reprograma} back-end. Plataforma para conexão entre professoras de idioma voluntárias e alunas de baixa renda.
+<div align = "center">
+
+> Projeto final para o bootcamp {reprograma} back-end. Plataforma para conexão entre professoras de idioma voluntárias e alunas de baixa renda. Acesse a apresentação [aqui!](https://www.canva.com/design/DAFHis5Rtuc/1UVpdijDOwMYiR4ux6eQWQ/view?utm_content=DAFHis5Rtuc&utm_campaign=designshare&utm_medium=link&utm_source=publishsharelink) 
+
+</div>
 
 <br>
 
@@ -102,11 +106,14 @@ O servidor, criado dentro do repositório [She-Speaks](https://github.com/BrunaC
 
 ```bash
         \--📂 she-speaks
-            | 
+            |
+            |    .dockerignore
             |    .editorconfig
             |    .env.example
             |    .eslintrs.json
             |    .gitignore
+            |    .docker-compose.yml
+            |    Dockerfile
             |    LICENSE
             |    package-lock.json
             |    package.json
@@ -234,10 +241,13 @@ O servidor, criado dentro do repositório [She-Speaks](https://github.com/BrunaC
 
 **🗄️ Camada inicial do projeto:** 
 
+- 📄[.dockerignore](https://github.com/BrunaCelestino/She-Speaks/blob/main/.dockerignore) - Especifica quais arquivos não devem subir para a Docker Image;
 - 📄[.editorconfig](https://github.com/BrunaCelestino/She-Speaks/blob/main/.editorconfig) - Configurações Eslint;
 - 📄[.env.example](https://github.com/BrunaCelestino/She-Speaks/blob/main/.env.example) - Exemplo de variáveis no arquivo .env;
 - 📄[.eslintrs.json](https://github.com/BrunaCelestino/She-Speaks/blob/main/.eslintrc.json) - Especificações de instalação Eslint;
 - 📄[.gitignore](https://github.com/BrunaCelestino/She-Speaks/blob/main/.gitignore) - Especifica quais arquivos não devem subir para o repositório;
+- 📄[docker-compose.yml](https://github.com/BrunaCelestino/She-Speaks/blob/main/.dockerignore) - Cria uma stack de containers a partir da imagem base;
+- 📄[Dockerfile](https://github.com/BrunaCelestino/She-Speaks/blob/main/.dockerignore) - Cria uma imagem para o container utilizar como base para iniciar o projeto;
 - 📄[LICENSE](https://github.com/BrunaCelestino/She-Speaks/blob/main/LICENSE) - Licença MIT do projeto;
 - 📄[package-lock.json](https://github.com/BrunaCelestino/She-Speaks/blob/main/package-lock.json) - Especifica a versão e suas dependências;
 - 📄[package.json](https://github.com/BrunaCelestino/She-Speaks/blob/main/package.json) - Arquivo de configuração utilizado para estipular e configurar dependências;
@@ -985,7 +995,7 @@ Para que fosse possível a execução desse projeto, foi necessária a utilizaç
 - [Cors](https://www.npmjs.com/package/cors) - permite que um site acesse recursos de outro site mesmo estando em domínios diferentes;
 - [Dotenv-safe](https://www.npmjs.com/package/dotenv-safes) - garante que todas as variáveis de ambiente necessárias sejam definidas depois de lidas no arquivo .env;
 - [Mongoose](https://www.npmjs.com/package/mongoose) - mongoose é uma ferramenta de modelagem de objetos MongoDB projetada para funcionar em um ambiente assíncrono;
-- [Bcrypt](https://www.npmjs.com/package/bcrypt) - bcrypt é uma biblioteca que auxilia na encriptação (hasheamento) de senhas;
+- [Bcryptjs](https://www.npmjs.com/package/bcryptjs) - bcryptjs é uma biblioteca que auxilia na encriptação (hasheamento) de senhas;
 - [Jsonwebtoken](https://www.npmjs.com/package/jsonwebtoken) - Jsonwebtoken implementa Json web tokens;
 
 ### Dependências de desenvolvimento:
@@ -1045,13 +1055,22 @@ Opção 1:
 
 <br>
 
-Opção 2:
+Opção 2: 
+
+- Para testar a documentação utilizando Docker, clique:   
+ <a>
+    <a href='https://hub.docker.com/repository/docker/brunacelestino9/projeto-final_she-speaks'><img width = 50 alt="Docker" src='./assets/docker.png'> 
+</a>  
+
+<br>
+
+Opção 3:
 - Importe a coleção para teste deste servidor clicando [aqui](https://www.getpostman.com/collections/75cbda62ee1a79bafc37)!
    - Copie o link acima e, no Postman, clique em **Import** -> **Link** (cole o link) -> **Continue** -> **Import**.
 
 <br>
 
-Opção 3:
+Opção 4:
 - Forke diretamente para o seu Postman clicando: <br> [![Run in Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/run-collection/20977023-54109995-a01f-46a1-ac7f-67522b6558a6?action=collection%2Ffork&collection-url=entityId%3D20977023-54109995-a01f-46a1-ac7f-67522b6558a6%26entityType%3Dcollection%26workspaceId%3D51132679-d0d9-4dec-aba4-1ccdfced55c7)
 
 

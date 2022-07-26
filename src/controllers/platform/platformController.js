@@ -1,5 +1,5 @@
 /* eslint-disable object-shorthand */
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const StudentSchema = require('../../models/student/studentSchema');
 const TeacherSchema = require('../../models/teacher/teacherSchema');
